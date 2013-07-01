@@ -14,7 +14,13 @@ module BlueCherries
       end
 
       @name = name
-      @keys = layout_file.readlines.map(&:chomp)
+
+      rows = layout_file.readlines.map(&:chomp)
+      rows_of_keys = rows.map.with_index(1) do |row, row_number|
+        row.chars.map { |char| Key.new(char, row_number) }
+      end
+
+      @keys = rows_of_keys.flatten
     end
 
     def motions
@@ -51,6 +57,17 @@ module BlueCherries
         Motion.new(:v)
       ]
     end
+  end
+
+  class Key
+    def initialize(char, row_number)
+      @char = char
+      @row_number = row_number
+    end
+
+    private
+
+    attr_reader :char, :row_number
   end
 
   # Defines the different motions that one can do with one hand that result in

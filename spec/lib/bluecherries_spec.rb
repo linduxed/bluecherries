@@ -28,6 +28,7 @@ module BlueCherries
         layout = Layout.new
 
         expect(layout.keys).not_to be_empty
+        expect(layout.keys.all? { |i| i.instance_of? Key }).to be_true
       end
     end
 
@@ -38,6 +39,16 @@ module BlueCherries
         expect(layout.motions).not_to be_empty
         expect(layout.motions.all? { |i| i.instance_of? Motion }).to be_true
       end
+    end
+  end
+
+  describe Key do
+    it 'should correspond to a character' do
+      expect(Key.new('q', 1).send(:char)).to eq('q')
+    end
+
+    it 'should know what row the character is on' do
+      expect(Key.new('q', 1).send(:row_number)).to eq(1)
     end
   end
 
