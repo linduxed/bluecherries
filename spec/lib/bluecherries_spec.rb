@@ -26,8 +26,8 @@ module BlueCherries
     it 'should have an array of keys' do
       layout = Layout.new
 
-      expect(layout.keys).not_to be_empty
-      expect(layout.keys.all? { |i| i.instance_of? Key }).to be_true
+      expect(layout.send(:keys)).not_to be_empty
+      expect(layout.send(:keys).all? { |i| i.instance_of? Key }).to be_true
     end
 
     it 'should have an array of possible motions' do
