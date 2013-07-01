@@ -2,7 +2,7 @@ require "bluecherries/version"
 
 module BlueCherries
   class Layout
-    attr_reader :name, :keys
+    attr_reader :name
 
     def initialize(name = :qwerty)
       begin
@@ -24,6 +24,8 @@ module BlueCherries
     end
 
     private
+
+    attr_reader :keys
 
     def layout_path(name)
       File.expand_path("../../layouts/#{name}.layout", __FILE__)
