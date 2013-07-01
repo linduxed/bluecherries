@@ -13,14 +13,13 @@ module BlueCherries
         exit 1
       end
 
-      @name = name
-
       rows = layout_file.readlines.map(&:chomp)
       rows_of_keys = rows.map.with_index(1) do |row, row_number|
         row.chars.map { |char| Key.new(char, row_number) }
       end
-
       @keys = rows_of_keys.flatten
+
+      @name = name
     end
 
     def motions
