@@ -33,6 +33,7 @@ module BlueCherries
     it 'should have an array of possible motions' do
       layout = Layout.new
 
+      expect(layout.motions).not_to be_empty
       expect(layout.motions.all? { |i| i.instance_of? Motion }).to be_true
     end
   end
