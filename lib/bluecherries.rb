@@ -14,7 +14,8 @@ module BlueCherries
 
       rows = layout_file.readlines.map(&:chomp)
       rows_of_keys = rows.map.with_index(1) do |row, row_number|
-        row.chars.map { |char| Key.new(char, row_number) }
+        # TODO: implement method which sets the hand correctly.
+        row.chars.map { |char| Key.new(char, :left, row_number) }
       end
       @keys = rows_of_keys.flatten
 
@@ -59,15 +60,24 @@ module BlueCherries
     end
   end
 
+  class BadHandError < StandardError
+  end
+
   class Key
-    def initialize(char, row_number)
+    def initialize(char, hand, row_number)
+      if hand == :left or hand == :right
+        @hand = hand
+      else
+        raise BadHandError
+      end
+
       @char = char
       @row_number = row_number
     end
 
     private
 
-    attr_reader :char, :row_number
+    attr_reader :char, :hand, :row_number
   end
 
   # Defines the different motions that one can do with one hand that result in
