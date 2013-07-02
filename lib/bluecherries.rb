@@ -2,7 +2,7 @@ require "bluecherries/version"
 
 module BlueCherries
   class Layout
-    attr_reader :name
+    attr_reader :name, :keys
 
     def initialize(name = :qwerty)
       begin
@@ -28,10 +28,6 @@ module BlueCherries
 
       return left_hand_motions + right_hand_motions
     end
-
-    private
-
-    attr_reader :keys
 
     def layout_path(name)
       File.expand_path("../../layouts/#{name}.layout", __FILE__)
@@ -64,6 +60,8 @@ module BlueCherries
   end
 
   class Key
+    attr_reader :char, :hand, :row_number
+
     def initialize(char, hand, row_number)
       if hand == :left or hand == :right
         @hand = hand
@@ -74,10 +72,6 @@ module BlueCherries
       @char = char
       @row_number = row_number
     end
-
-    private
-
-    attr_reader :char, :hand, :row_number
   end
 
   # Defines the different motions that one can do with one hand that result in
