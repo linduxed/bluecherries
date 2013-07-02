@@ -66,7 +66,7 @@ module BlueCherries
     attr_reader :char, :hand, :row_number
 
     def initialize(char, hand, row_number)
-      if hand == :left or hand == :right
+      if hand == :left || hand == :right
         @hand = hand
       else
         raise BadHandError
