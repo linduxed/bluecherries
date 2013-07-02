@@ -11,13 +11,8 @@ module BlueCherries
         exit 1
       end
 
-      rows = layout_file.readlines.map(&:chomp)
-      rows_of_keys = rows.map.with_index(1) do |row, row_number|
-        # TODO: implement method which sets the hand correctly.
-        row.chars.map { |char| Key.new(char, :left, row_number) }
-      end
-      @keys = rows_of_keys.flatten
 
+      @keys = layout_to_keys(layout_file)
       @name = name
     end
 
@@ -29,6 +24,16 @@ module BlueCherries
     end
 
     private
+
+    def layout_to_keys(layout_file)
+      rows = layout_file.readlines.map(&:chomp)
+      rows_of_keys = rows.map.with_index(1) do |row, row_number|
+        # TODO: implement method which sets the hand correctly.
+        row.chars.map { |char| Key.new(char, :left, row_number) }
+      end
+
+      return rows_of_keys.flatten
+    end
 
     def layout_path(name)
       File.expand_path("../../../layouts/#{name}.layout", __FILE__)
