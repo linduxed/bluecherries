@@ -24,11 +24,20 @@ module BlueCherries
     end
 
     describe '#keys' do
-      it 'should return the layout rows of keys' do
-        layout = Layout.new
+      let(:layout) { Layout.new }
 
+      it 'should return an array of Keys' do
         expect(layout.keys).not_to be_empty
         expect(layout.keys.all? { |i| i.instance_of? Key }).to be_true
+      end
+
+      describe 'array of Keys' do
+        it 'should have five left-hand keys on each row' do
+          left_hand_keys = layout.keys.select { |key| key.send(:hand) == :left }
+          rows = left_hand_keys.group_by { |key| key.send(:row_number) }.values
+
+          expect(rows.all? { |row| row.length == 5 }).to be_true
+        end
       end
     end
 

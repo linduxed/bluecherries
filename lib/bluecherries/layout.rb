@@ -11,7 +11,6 @@ module BlueCherries
         exit 1
       end
 
-
       @keys = layout_to_keys(layout_file)
       @name = name
     end
@@ -28,8 +27,10 @@ module BlueCherries
     def layout_to_keys(layout_file)
       rows = layout_file.readlines.map(&:chomp)
       rows_of_keys = rows.map.with_index(1) do |row, row_number|
-        # TODO: implement method which sets the hand correctly.
-        row.chars.map { |char| Key.new(char, :left, row_number) }
+        row.chars.map.with_index(1) do |char, position_from_left|
+          hand = if position_from_left <= 5 then :left else :right end
+          Key.new(char, hand, row_number)
+        end
       end
 
       return rows_of_keys.flatten
