@@ -2,7 +2,7 @@ require "bluecherries/version"
 
 module BlueCherries
   class Layout
-    attr_reader :name
+    attr_reader :name, :keys
 
     def initialize(name = :qwerty)
       begin
@@ -12,8 +12,14 @@ module BlueCherries
         exit
       end
 
+      rows = layout_file.readlines.map(&:chomp)
+      rows_of_keys = rows.map.with_index(1) do |row, row_number|
+        # TODO: implement method which sets the hand correctly.
+        row.chars.map { |char| Key.new(char, :left, row_number) }
+      end
+      @keys = rows_of_keys.flatten
+
       @name = name
-      @keys = layout_file.readlines.map(&:chomp)
     end
 
     def motions
@@ -22,10 +28,6 @@ module BlueCherries
 
       return left_hand_motions + right_hand_motions
     end
-
-    private
-
-    attr_reader :keys
 
     def layout_path(name)
       File.expand_path("../../layouts/#{name}.layout", __FILE__)
@@ -51,6 +53,24 @@ module BlueCherries
         Motion.new(:f),
         Motion.new(:v)
       ]
+    end
+  end
+
+  class BadHandError < StandardError
+  end
+
+  class Key
+    attr_reader :char, :hand, :row_number
+
+    def initialize(char, hand, row_number)
+      if hand == :left || hand == :right
+        @hand = hand
+      else
+        raise BadHandError
+      end
+
+      @char = char
+      @row_number = row_number
     end
   end
 
