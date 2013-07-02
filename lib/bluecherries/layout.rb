@@ -36,23 +36,23 @@ class Layout
 
   def right_index_finger_motions
     [
-      BlueCherries::Motion.new(:y),
-      BlueCherries::Motion.new(:h),
-      BlueCherries::Motion.new(:n),
-      BlueCherries::Motion.new(:u),
-      BlueCherries::Motion.new(:j),
-      BlueCherries::Motion.new(:m)
+      Motion.new(:y),
+      Motion.new(:h),
+      Motion.new(:n),
+      Motion.new(:u),
+      Motion.new(:j),
+      Motion.new(:m)
     ]
   end
 
   def left_index_finger_motions
     [
-      BlueCherries::Motion.new(:t),
-      BlueCherries::Motion.new(:g),
-      BlueCherries::Motion.new(:b),
-      BlueCherries::Motion.new(:r),
-      BlueCherries::Motion.new(:f),
-      BlueCherries::Motion.new(:v)
+      Motion.new(:t),
+      Motion.new(:g),
+      Motion.new(:b),
+      Motion.new(:r),
+      Motion.new(:f),
+      Motion.new(:v)
     ]
   end
 end
