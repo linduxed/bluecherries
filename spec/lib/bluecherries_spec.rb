@@ -9,7 +9,7 @@ module BlueCherries
     it 'should load a layout if an existing layout is provided' do
       layout = Layout.new(:qwerty)
 
-      expect(layout.send(:keys)).not_to be_nil
+      expect(layout.keys).not_to be_nil
     end
 
     it 'should print an error and exit if a non-existant layout is provided' do
