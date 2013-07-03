@@ -10,7 +10,7 @@ module BlueCherries
       rescue Errno::ENOENT
         $stderr.puts "ERROR: The layout file for #{name.to_s.upcase} "\
                      "doesn't exist."
-        exit
+        exit 1
       end
 
       @name = name

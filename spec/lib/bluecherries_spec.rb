@@ -26,6 +26,10 @@ module BlueCherries
           STDERR.should_receive(:puts).with(/ERROR/)
           expect { Layout.new(:foobar) }.to raise_error SystemExit
         end
+
+        it 'should return with the exit code "1"' do
+          expect { Layout.new(:foobar) }.to terminate.with_code(1)
+        end
       end
     end
 
