@@ -22,7 +22,7 @@ module BlueCherries
       it 'should print an error and exit if a non-existant layout is provided' do
         File.stub(:open) { raise Errno::ENOENT }
 
-        STDOUT.should_receive(:puts).with(/ERROR/)
+        STDERR.should_receive(:puts).with(/ERROR/)
         expect { Layout.new(:foobar) }.to raise_error SystemExit
       end
     end

@@ -8,7 +8,8 @@ module BlueCherries
       begin
         layout_file = File.open layout_path(name.to_s)
       rescue Errno::ENOENT
-        puts "ERROR: The layout file for #{name.to_s.upcase} doesn't exist."
+        $stderr.puts "ERROR: The layout file for #{name.to_s.upcase} "\
+                     "doesn't exist."
         exit
       end
 
