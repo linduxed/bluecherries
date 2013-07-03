@@ -19,11 +19,13 @@ module BlueCherries
         expect(layout.keys).not_to be_nil
       end
 
-      it 'should print an error and exit if a non-existant layout is provided' do
-        File.stub(:open) { raise Errno::ENOENT }
+      context 'a non-existant layout is provided' do
+        it 'should print an error and exit' do
+          File.stub(:open) { raise Errno::ENOENT }
 
-        STDERR.should_receive(:puts).with(/ERROR/)
-        expect { Layout.new(:foobar) }.to raise_error SystemExit
+          STDERR.should_receive(:puts).with(/ERROR/)
+          expect { Layout.new(:foobar) }.to raise_error SystemExit
+        end
       end
     end
 
