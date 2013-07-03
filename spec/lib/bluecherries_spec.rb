@@ -7,8 +7,8 @@ module BlueCherries
         expect(Layout.new.name).to eq(:qwerty)
       end
 
-      it 'should exist' do
-        expect(Layout.new.respond_to? :name).to be_true
+      it 'should return a symbol' do
+        expect(Layout.new.name).to be_a Symbol
       end
     end
 
