@@ -3,16 +3,16 @@ require 'spec_helper'
 module BlueCherries
   describe Layout do
     describe '#name' do
-      it 'should have the QWERTY keys when no layout is provided' do
-        expect(Layout.new.name).to eq(:qwerty)
-      end
-
       it 'should return a symbol' do
         expect(Layout.new.name).to be_a Symbol
       end
     end
 
     describe '#new' do
+      it 'should have the QWERTY keys when no layout is provided' do
+        expect(Layout.new.name).to eq(:qwerty)
+      end
+
       it 'should load a layout if an existing layout is provided' do
         layout = Layout.new(:qwerty)
 
