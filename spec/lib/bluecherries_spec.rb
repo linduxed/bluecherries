@@ -23,7 +23,7 @@ module BlueCherries
         it 'should print an error and exit' do
           File.stub(:open) { raise Errno::ENOENT }
 
-          STDERR.should_receive(:puts).with(/ERROR/)
+          $stderr.should_receive(:puts).with(/ERROR/)
           expect { Layout.new(:foobar) }.to raise_error SystemExit
         end
 
