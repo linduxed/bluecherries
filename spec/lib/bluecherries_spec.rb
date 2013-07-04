@@ -8,7 +8,7 @@ module BlueCherries
       end
     end
 
-    describe '#new' do
+    describe '.new' do
       it 'should have the QWERTY keys when no layout is provided' do
         expect(Layout.new.name).to eq(:qwerty)
       end
