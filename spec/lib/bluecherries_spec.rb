@@ -39,20 +39,26 @@ module BlueCherries
   end
 
   describe Key do
-    it 'should correspond to a character' do
-      expect(Key.new('q', :left, 1).char).to eq('q')
+    describe '#char' do
+      it "should return the Key's character" do
+        expect(Key.new('q', :left, 1).char).to eq('q')
+      end
     end
 
-    it 'should know what row the character is on' do
-      expect(Key.new('q', :left, 1).row_number).to eq(1)
+    describe '#row_number' do
+      it 'should return what row the character is on' do
+        expect(Key.new('q', :left, 1).row_number).to eq(1)
+      end
     end
 
-    it 'should belong to the left or right hand' do
-      q_key = Key.new 'q', :left, 1
-      j_key = Key.new 'j', :right, 2
+    describe '#hand' do
+      it 'should return a left or right hand symbol' do
+        q_key = Key.new 'q', :left, 1
+        j_key = Key.new 'j', :right, 2
 
-      expect(q_key.hand).to eq(:left)
-      expect(j_key.hand).to eq(:right)
+        expect(q_key.hand).to eq(:left)
+        expect(j_key.hand).to eq(:right)
+      end
     end
 
     context '.new' do
