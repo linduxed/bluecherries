@@ -9,8 +9,8 @@ module BlueCherries
     end
 
     describe '.new' do
-      it 'should have the QWERTY keys when no layout is provided' do
-        expect(Layout.new.name).to eq(:qwerty)
+      it 'should have default values' do
+        expect { Layout.new }.not_to raise_error
       end
 
       context 'a non-existant layout is provided' do
