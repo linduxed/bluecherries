@@ -2,12 +2,6 @@ require 'spec_helper'
 
 module BlueCherries
   describe Layout do
-    describe '#name' do
-      it 'should return a symbol' do
-        expect(Layout.new.name).to be_a Symbol
-      end
-    end
-
     describe '.new' do
       it 'should have default values' do
         expect { Layout.new }.not_to raise_error
@@ -20,6 +14,12 @@ module BlueCherries
           $stderr.should_receive(:puts).with(/ERROR/)
           expect { Layout.new(:foobar) }.to terminate.with_code(1)
         end
+      end
+    end
+
+    describe '#name' do
+      it 'should return a symbol' do
+        expect(Layout.new.name).to be_a Symbol
       end
     end
 
