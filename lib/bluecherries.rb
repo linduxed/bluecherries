@@ -2,12 +2,15 @@ require "bluecherries/version"
 
 module BlueCherries
   class Layout
+    attr_reader :name, :keys
+
     def initialize(name = :qwerty)
       begin
         layout_file = File.open layout_path(name.to_s)
       rescue Errno::ENOENT
-        puts "ERROR: The layout file for #{name.to_s.upcase} doesn't exist."
-        exit
+        $stderr.puts "ERROR: The layout file for #{name.to_s.upcase} "\
+                     "doesn't exist."
+        exit 1
       end
 
       @name = name
@@ -22,8 +25,6 @@ module BlueCherries
     end
 
     private
-
-    attr_reader :name, :keys
 
     def layout_path(name)
       File.expand_path("../../layouts/#{name}.layout", __FILE__)
