@@ -13,12 +13,6 @@ module BlueCherries
         expect(Layout.new.name).to eq(:qwerty)
       end
 
-      it 'should load a layout if an existing layout is provided' do
-        layout = Layout.new(:qwerty)
-
-        expect(layout.keys).not_to be_nil
-      end
-
       context 'a non-existant layout is provided' do
         it 'should print an error and exit' do
           File.stub(:open) { raise Errno::ENOENT }
@@ -30,6 +24,14 @@ module BlueCherries
         it 'should return with the exit code "1"' do
           expect { Layout.new(:foobar) }.to terminate.with_code(1)
         end
+      end
+    end
+
+    describe '#keys' do
+      it 'should return the layout rows of keys' do
+        layout = Layout.new
+
+        expect(layout.keys).not_to be_empty
       end
     end
 
