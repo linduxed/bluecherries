@@ -1,17 +1,19 @@
-class BadHandError < StandardError
-end
+module BlueCherries
+  class BadHandError < StandardError
+  end
 
-class Key
-  attr_reader :char, :hand, :row_number
+  class Key
+    attr_reader :char, :hand, :row_number
 
-  def initialize(char, hand, row_number)
-    if hand == :left || hand == :right
-      @hand = hand
-    else
-      raise BadHandError
+    def initialize(char, hand, row_number)
+      if hand == :left || hand == :right
+        @hand = hand
+      else
+        raise BadHandError
+      end
+
+      @char = char
+      @row_number = row_number
     end
-
-    @char = char
-    @row_number = row_number
   end
 end
