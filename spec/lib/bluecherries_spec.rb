@@ -42,8 +42,8 @@ module BlueCherries
   end
 
   describe Motion do
-    describe '#new' do
-      it 'should have sequence of keys' do
+    describe '#keys' do
+      it 'should return a symbol representing the sequence of keys' do
         motion = Motion.new(:asdf)
 
         expect(motion.keys).to eq(:asdf)
