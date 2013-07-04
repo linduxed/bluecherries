@@ -43,6 +43,12 @@ module BlueCherries
   end
 
   describe Key do
+    context '.new' do
+      it 'raises error when given an invalid hand' do
+        expect { Key.new 'x', :foobar, 3 }.to raise_error BlueCherries::BadHandError
+      end
+    end
+
     describe '#char' do
       it "should return the Key's character" do
         expect(Key.new('q', :left, 1).char).to eq('q')
@@ -62,12 +68,6 @@ module BlueCherries
 
         expect(q_key.hand).to eq(:left)
         expect(j_key.hand).to eq(:right)
-      end
-    end
-
-    context '.new' do
-      it 'raises error when given an invalid hand' do
-        expect { Key.new 'x', :foobar, 3 }.to raise_error BlueCherries::BadHandError
       end
     end
   end
