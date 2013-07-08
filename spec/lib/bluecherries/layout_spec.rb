@@ -31,13 +31,11 @@ module BlueCherries
         expect(layout.keys.all? { |i| i.instance_of? Key }).to be_true
       end
 
-      describe 'array of Keys' do
-        it 'should have five left-hand keys on each row' do
-          left_hand_keys = layout.keys.select { |key| key.send(:hand) == :left }
-          rows = left_hand_keys.group_by { |key| key.send(:row_number) }.values
+      it 'should have five left-hand keys on each row' do
+        left_hand_keys = layout.keys.select { |key| key.hand == :left }
+        rows = left_hand_keys.group_by { |key| key.row_number }.values
 
-          expect(rows.all? { |row| row.length == 5 }).to be_true
-        end
+        expect(rows.all? { |row| row.length == 5 }).to be_true
       end
     end
 

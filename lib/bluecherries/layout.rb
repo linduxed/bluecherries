@@ -27,9 +27,8 @@ module BlueCherries
     def layout_to_keys(layout_file)
       rows = layout_file.readlines.map(&:chomp)
       rows_of_keys = rows.map.with_index(1) do |row, row_number|
-        row.chars.map.with_index(1) do |char, position_from_left|
-          hand = if position_from_left <= 5 then :left else :right end
-          Key.new(char, hand, row_number)
+        row.chars.map.with_index(1) do |char, column_number|
+          Key.new(char, column_number, row_number)
         end
       end
 
