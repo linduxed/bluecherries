@@ -1,1 +1,7 @@
 #!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'bluecherries'
+
+6.times { puts BlueCherries::Password.generate }
