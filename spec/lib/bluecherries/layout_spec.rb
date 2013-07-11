@@ -32,10 +32,7 @@ module BlueCherries
       end
 
       it 'should have five left-hand keys on each row' do
-        left_hand_keys = layout.keys.select { |key| key.hand == :left }
-        rows = left_hand_keys.group_by { |key| key.row_number }.values
-
-        expect(rows.all? { |row| row.length == 5 }).to be_true
+        expect(layout).to have_key_count_on_each_row(5).on_hand(:left)
       end
     end
 
