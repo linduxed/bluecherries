@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Requesting a password' do
   describe 'without any arguments' do
-    let(:generated_passwords) { run_app.readlines }
+    let(:generated_passwords) { run_app.readlines.map(&:chomp) }
 
     it 'returns passwords with a default format' do
       expect(generated_passwords).to have(6).items
