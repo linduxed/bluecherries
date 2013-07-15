@@ -1,4 +1,4 @@
-require "bluecherries/version"
+require 'bluecherries/version'
 require 'bluecherries/key'
 require 'bluecherries/layout'
 require 'bluecherries/motion'
