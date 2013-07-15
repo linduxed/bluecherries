@@ -8,7 +8,7 @@ describe 'Requesting a password' do
       expect(generated_passwords).to have(6).items
       generated_passwords.each do |password|
         expect(password).to be_longer_than(15)
-        expect(password).to have_title_case
+        expect(password).to have_camel_case
       end
     end
 
