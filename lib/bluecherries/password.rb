@@ -1,7 +1,4 @@
 module BlueCherries
-  class Password
-    def self.generate
-      'Password'
-    end
+  class Password < String
   end
 end
