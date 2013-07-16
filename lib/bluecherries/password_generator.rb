@@ -1,13 +1,6 @@
 module BlueCherries
-  class EmptyDictionaryError < Exception
-  end
-
   class PasswordGenerator
     def generate(algorithm, dictionary, min_length)
-      if dictionary.words.empty?
-        raise EmptyDictionaryError
-      end
-
       password_components = algorithm.create_password_components(dictionary,
         min_length)
 

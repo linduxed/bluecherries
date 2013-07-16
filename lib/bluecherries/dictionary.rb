@@ -2,6 +2,9 @@ module BlueCherries
   class MissingDictionaryError < Exception
   end
 
+  class EmptyDictionaryError < Exception
+  end
+
   class Dictionary
     def initialize(name = :english)
       @name = name
@@ -21,6 +24,10 @@ module BlueCherries
       rescue Errno::ENOENT
         raise MissingDictionaryError, "ERROR: The dictionary file for "\
                                       "#{@name.to_s.upcase} doesn't exist."
+      end
+
+      if words.empty?
+        raise EmptyDictionaryError
       end
 
       words

@@ -24,6 +24,14 @@ module BlueCherries
         end
       end
 
+      it 'raises an error if an empty dictionary is provided' do
+        dictionary = Dictionary.new
+        empty_file = StringIO.new
+        File.stub(:open).and_return empty_file
+
+        expect { dictionary.words }.to raise_error EmptyDictionaryError
+      end
+
       context 'a non-existant dictionary was provided upon instantiation' do
         it 'raises an error' do
           File.stub(:open) { raise Errno::ENOENT }
