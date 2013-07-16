@@ -10,16 +10,7 @@ module BlueCherries
     end
 
     def keys
-      begin
-        layout_file = File.open layout_path(@name.to_s)
-        @keys = layout_to_keys(layout_file)
-        layout_file.close
-      rescue Errno::ENOENT
-        raise MissingLayoutError, "ERROR: The layout file for "\
-                                  "#{@name.to_s.upcase} doesn't exist."
-      end
-
-      @keys
+      @keys ||= extract_keys_from_layout_file
     end
 
     def motions
@@ -30,6 +21,19 @@ module BlueCherries
     end
 
     private
+
+    def extract_keys_from_layout_file
+      begin
+        layout_file = File.open layout_path(@name.to_s)
+        keys = layout_to_keys(layout_file)
+        layout_file.close
+      rescue Errno::ENOENT
+        raise MissingLayoutError, "ERROR: The layout file for "\
+                                  "#{@name.to_s.upcase} doesn't exist."
+      end
+
+      keys
+    end
 
     def layout_to_keys(layout_file)
       rows = layout_file.readlines.map(&:chomp)
