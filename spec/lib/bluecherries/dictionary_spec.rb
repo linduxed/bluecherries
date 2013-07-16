@@ -10,9 +10,11 @@ module BlueCherries
 
     describe '#words' do
       it 'returns a collection of words' do
+        sample_dictionary_file = StringIO.new "foo\nbar\nbaz"
+        File.stub(:open).and_return sample_dictionary_file
         words = Dictionary.new.words
 
-        expect(words[0]).to be_a String
+        expect(words).to eq %w{ foo bar baz }
       end
 
       it 'does not return invalid lines' do
