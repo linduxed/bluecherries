@@ -4,11 +4,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'bluecherries'
 
-generator = BlueCherries::PasswordGenerator.new
-algorithm = BlueCherries::HeadAlgorithm.new
-dictionary = BlueCherries::Dictionary.new :english
-min_length = 16
-
-6.times do
-  puts generator.generate(algorithm, dictionary, min_length)
-end
+BlueCherries::CommandLineOutput.new.run
