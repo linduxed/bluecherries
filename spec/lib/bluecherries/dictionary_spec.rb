@@ -17,11 +17,11 @@ module BlueCherries
       end
 
       context 'a non-existant dictionary is provided' do
-        it 'prints an error and exits with the code "1"' do
+        it 'raises an error' do
           File.stub(:open) { raise Errno::ENOENT }
 
-          $stderr.should_receive(:puts).with(/ERROR/)
-          expect { Dictionary.new(:foobar) }.to terminate.with_code(1)
+          expect { Dictionary.new(:foobar) }.to raise_error(
+            MissingDictionaryError)
         end
       end
     end

@@ -1,4 +1,7 @@
 module BlueCherries
+  class MissingDictionaryError < Exception
+  end
+
   class Dictionary
     attr_reader :words
 
@@ -6,9 +9,8 @@ module BlueCherries
       begin
         dictionary_file = File.open dictionary_path(name.to_s)
       rescue Errno::ENOENT
-        $stderr.puts "ERROR: The dictionary file for #{name.to_s.upcase} "\
-                     "doesn't exist."
-        exit 1
+        raise MissingDictionaryError, "ERROR: The dictionary file for "\
+                                      "#{name.to_s.upcase} doesn't exist."
       end
 
       @words = dictionary_to_words dictionary_file

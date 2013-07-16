@@ -8,11 +8,10 @@ module BlueCherries
       end
 
       context 'a non-existant layout is provided' do
-        it 'should print an error and exit with the code "1"' do
+        it 'should raise an error' do
           File.stub(:open) { raise Errno::ENOENT }
 
-          $stderr.should_receive(:puts).with(/ERROR/)
-          expect { Layout.new(:foobar) }.to terminate.with_code(1)
+          expect { Layout.new(:foobar) }.to raise_error MissingLayoutError
         end
       end
     end

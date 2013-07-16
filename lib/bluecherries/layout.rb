@@ -1,4 +1,7 @@
 module BlueCherries
+  class MissingLayoutError < Exception
+  end
+
   class Layout
     attr_reader :name, :keys
 
@@ -6,9 +9,8 @@ module BlueCherries
       begin
         layout_file = File.open layout_path(name.to_s)
       rescue Errno::ENOENT
-        $stderr.puts "ERROR: The layout file for #{name.to_s.upcase} "\
-                     "doesn't exist."
-        exit 1
+        raise MissingLayoutError, "ERROR: The layout file for "\
+                                  "#{name.to_s.upcase} doesn't exist."
       end
 
       @keys = layout_to_keys(layout_file)
