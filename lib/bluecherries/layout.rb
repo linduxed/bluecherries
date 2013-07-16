@@ -8,12 +8,13 @@ module BlueCherries
     def initialize(name = :qwerty)
       begin
         layout_file = File.open layout_path(name.to_s)
+        @keys = layout_to_keys(layout_file)
+        layout_file.close
       rescue Errno::ENOENT
         raise MissingLayoutError, "ERROR: The layout file for "\
                                   "#{name.to_s.upcase} doesn't exist."
       end
 
-      @keys = layout_to_keys(layout_file)
       @name = name
     end
 

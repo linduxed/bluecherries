@@ -8,12 +8,12 @@ module BlueCherries
     def initialize(name = :english)
       begin
         dictionary_file = File.open dictionary_path(name.to_s)
+        @words = dictionary_to_words dictionary_file
+        dictionary_file.close
       rescue Errno::ENOENT
         raise MissingDictionaryError, "ERROR: The dictionary file for "\
                                       "#{name.to_s.upcase} doesn't exist."
       end
-
-      @words = dictionary_to_words dictionary_file
     end
 
     private
