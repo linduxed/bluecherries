@@ -1,9 +1,6 @@
 module BlueCherries
-  class MissingDictionaryError < Exception
-  end
-
-  class EmptyDictionaryError < Exception
-  end
+  class MissingDictionaryError < Exception; end
+  class EmptyDictionaryError < Exception; end
 
   class Dictionary
     def initialize(name = :english)

@@ -1,6 +1,5 @@
 module BlueCherries
-  class MissingLayoutError < Exception
-  end
+  class MissingLayoutError < Exception; end
 
   class Layout
     attr_reader :name
