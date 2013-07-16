@@ -3,17 +3,21 @@ module BlueCherries
   end
 
   class Dictionary
-    attr_reader :words
-
     def initialize(name = :english)
+      @name = name
+    end
+
+    def words
       begin
-        dictionary_file = File.open dictionary_path(name.to_s)
+        dictionary_file = File.open dictionary_path(@name.to_s)
         @words = dictionary_to_words dictionary_file
         dictionary_file.close
       rescue Errno::ENOENT
         raise MissingDictionaryError, "ERROR: The dictionary file for "\
-                                      "#{name.to_s.upcase} doesn't exist."
+                                      "#{@name.to_s.upcase} doesn't exist."
       end
+
+      @words
     end
 
     private

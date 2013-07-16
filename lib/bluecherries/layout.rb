@@ -3,19 +3,23 @@ module BlueCherries
   end
 
   class Layout
-    attr_reader :name, :keys
+    attr_reader :name
 
     def initialize(name = :qwerty)
+      @name = name
+    end
+
+    def keys
       begin
-        layout_file = File.open layout_path(name.to_s)
+        layout_file = File.open layout_path(@name.to_s)
         @keys = layout_to_keys(layout_file)
         layout_file.close
       rescue Errno::ENOENT
         raise MissingLayoutError, "ERROR: The layout file for "\
-                                  "#{name.to_s.upcase} doesn't exist."
+                                  "#{@name.to_s.upcase} doesn't exist."
       end
 
-      @name = name
+      @keys
     end
 
     def motions

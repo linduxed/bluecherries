@@ -6,8 +6,16 @@ module BlueCherries
       it 'has default values' do
         expect { Dictionary.new }.not_to raise_error
       end
+    end
 
-      it 'does not include invalid lines' do
+    describe '#words' do
+      it 'returns a collection of words' do
+        words = Dictionary.new.words
+
+        expect(words[0]).to be_a String
+      end
+
+      it 'does not return invalid lines' do
         dictionary = Dictionary.new
 
         dictionary.words.each do |word|
@@ -16,21 +24,13 @@ module BlueCherries
         end
       end
 
-      context 'a non-existant dictionary is provided' do
+      context 'a non-existant dictionary was provided upon instantiation' do
         it 'raises an error' do
           File.stub(:open) { raise Errno::ENOENT }
 
-          expect { Dictionary.new(:foobar) }.to raise_error(
+          expect { Dictionary.new(:foobar).words }.to raise_error(
             MissingDictionaryError)
         end
-      end
-    end
-
-    describe '#words' do
-      it 'returns a collection of words' do
-        words = Dictionary.new.words
-
-        expect(words[0]).to be_a String
       end
     end
   end

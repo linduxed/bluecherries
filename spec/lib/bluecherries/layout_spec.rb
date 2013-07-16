@@ -7,13 +7,6 @@ module BlueCherries
         expect { Layout.new }.not_to raise_error
       end
 
-      context 'a non-existant layout is provided' do
-        it 'should raise an error' do
-          File.stub(:open) { raise Errno::ENOENT }
-
-          expect { Layout.new(:foobar) }.to raise_error MissingLayoutError
-        end
-      end
     end
 
     describe '#name' do
@@ -35,6 +28,14 @@ module BlueCherries
         rows = left_hand_keys.group_by { |key| key.row_number }.values
 
         expect(rows.all? { |row| row.length == 5 }).to be_true
+      end
+
+      context 'a non-existant layout was provided upon instantiation' do
+        it 'raises an error' do
+          File.stub(:open) { raise Errno::ENOENT }
+
+          expect { Layout.new(:foobar).keys }.to raise_error MissingLayoutError
+        end
       end
     end
 
