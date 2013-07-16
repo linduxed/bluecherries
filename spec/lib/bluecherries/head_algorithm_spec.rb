@@ -3,7 +3,7 @@ require 'spec_helper'
 module BlueCherries
   describe HeadAlgorithm do
     describe '#create_password_components' do
-      let(:dictionary) { Dictionary.new }
+      let(:dictionary) { double 'dictionary' }
       before { dictionary.stub(:words).and_return %w{ foo bar baz } }
 
       it 'returns the first words of the dictionary' do
