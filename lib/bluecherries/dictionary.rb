@@ -28,12 +28,10 @@ module BlueCherries
     end
 
     def lines_from_dictionary
-      begin
-        File.readlines(dictionary_path).map(&:chomp)
-      rescue Errno::ENOENT
-        raise MissingDictionaryError, "ERROR: The dictionary file '#{@path}' "\
-                                      "doesn't exist."
-      end
+      File.readlines(dictionary_path).map(&:chomp)
+    rescue Errno::ENOENT
+      raise MissingDictionaryError, "ERROR: The dictionary file '#{@path}' "\
+                                    "doesn't exist."
     end
 
     def dictionary_path

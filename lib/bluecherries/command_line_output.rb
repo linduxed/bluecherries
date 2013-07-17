@@ -11,14 +11,10 @@ module BlueCherries
     end
 
     def run
-      begin
-        @amount_of_passwords.times do
-          puts @generator.generate(@algorithm)
-        end
-      rescue => error
-        $stderr.puts "ERROR: #{error.class} -- #{error.message}"
-        exit 1
-      end
+      @amount_of_passwords.times { puts @generator.generate(@algorithm) }
+    rescue => error
+      $stderr.puts "ERROR: #{error.class} -- #{error.message}"
+      exit 1
     end
 
     private
