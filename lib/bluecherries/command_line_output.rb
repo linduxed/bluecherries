@@ -2,7 +2,7 @@ module BlueCherries
   class CommandLineOutput
     def initialize(generator = BlueCherries::PasswordGenerator.new,
                    algorithm = BlueCherries::HeadAlgorithm,
-                   dictionary = BlueCherries::Dictionary.new(:english),
+                   dictionary = BlueCherries::Dictionary.new('english'),
                    amount_of_passwords = 6,
                    min_password_length = 16)
       @generator = generator

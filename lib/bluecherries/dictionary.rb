@@ -3,8 +3,8 @@ module BlueCherries
   class EmptyDictionaryError < Exception; end
 
   class Dictionary
-    def initialize(name = :english)
-      @name = name
+    def initialize(path = 'english')
+      @path = path
     end
 
     def words
@@ -18,8 +18,8 @@ module BlueCherries
         dictionary = File.readlines(dictionary_path).map(&:chomp)
         words = dictionary_to_words dictionary
       rescue Errno::ENOENT
-        raise MissingDictionaryError, "ERROR: The dictionary file for "\
-                                      "#{@name.to_s.upcase} doesn't exist."
+        raise MissingDictionaryError, "ERROR: The dictionary file "\
+                                      "'#{@path}' doesn't exist."
       end
 
       if words.empty?
@@ -34,7 +34,18 @@ module BlueCherries
     end
 
     def dictionary_path
-      File.expand_path "../../../dictionaries/#{@name.to_s}", __FILE__
+      search_paths = [
+        __FILE__ + '/../../../dictionaries/',
+        Dir.pwd + '/',
+        ''
+      ]
+
+      valid_search_path = search_paths.find do |search_path|
+        file_path = File.expand_path @path, search_path
+        File.exists? file_path
+      end
+
+      File.expand_path @path, valid_search_path
     end
   end
 end

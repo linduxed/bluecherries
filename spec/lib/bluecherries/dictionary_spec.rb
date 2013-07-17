@@ -38,7 +38,7 @@ module BlueCherries
         it 'raises an error' do
           File.stub(:open) { raise Errno::ENOENT }
 
-          expect { Dictionary.new(:foobar).words }.to raise_error(
+          expect { Dictionary.new('foobar').words }.to raise_error(
             MissingDictionaryError)
         end
       end
