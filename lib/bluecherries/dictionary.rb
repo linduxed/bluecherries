@@ -15,7 +15,7 @@ module BlueCherries
 
     def extract_words_from_dictionary_file
       begin
-        dictionary_file = File.open dictionary_path(@name.to_s)
+        dictionary_file = File.open dictionary_path
         words = dictionary_to_words dictionary_file
         dictionary_file.close
       rescue Errno::ENOENT
@@ -36,8 +36,8 @@ module BlueCherries
       words.reject { |word| word.nil? || word.empty? }
     end
 
-    def dictionary_path(name)
-      File.expand_path "../../../dictionaries/#{name}", __FILE__
+    def dictionary_path
+      File.expand_path "../../../dictionaries/#{@name.to_s}", __FILE__
     end
   end
 end
