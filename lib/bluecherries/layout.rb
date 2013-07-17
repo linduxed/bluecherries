@@ -16,7 +16,7 @@ module BlueCherries
       left_hand_motions = left_index_finger_motions
       right_hand_motions = right_index_finger_motions
 
-      return left_hand_motions + right_hand_motions
+      left_hand_motions + right_hand_motions
     end
 
     private
