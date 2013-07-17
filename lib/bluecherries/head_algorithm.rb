@@ -3,21 +3,26 @@ module BlueCherries
     def initialize(dictionary, min_length)
       @dictionary = dictionary
       @min_length = min_length
+      @words = dictionary.words.to_enum
     end
 
     def create_password_components
-      words = @dictionary.words.to_enum
       password_components = []
 
       while password_components.join.length < @min_length
-        begin
-          password_components << words.next
-        rescue StopIteration
-          password_components << password_components.last
-        end
+        password_components << next_word
       end
 
       password_components
+    end
+
+    private
+
+    def next_word
+      @word = @words.next
+      @word
+    rescue StopIteration
+      @word
     end
   end
 end
