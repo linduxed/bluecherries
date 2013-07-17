@@ -29,6 +29,16 @@ module BlueCherries
         expect(words).to eq ['validline']
       end
 
+      it 'only returns lowercase words' do
+        file = Tempfile.new 'dictionary_file'
+        file.write "Some\nWeIrDlY\ncased\nWORDS\n"
+        file.close
+
+        words = Dictionary.new(file.path).words
+
+        expect(words).to eq %w{ some weirdly cased words }
+      end
+
       it 'raises an error if an empty dictionary is provided' do
         dictionary = Dictionary.new
         empty_dictionary = []
