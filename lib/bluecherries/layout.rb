@@ -22,7 +22,13 @@ module BlueCherries
     private
 
     def extract_keys_from_layout_file
-      rows_to_keys rows_from_file
+      rows_of_keys = rows_from_file.map.with_index(1) do |row, row_number|
+        row.chars.map.with_index(1) do |char, column_number|
+          Key.new(char, column_number, row_number)
+        end
+      end
+
+      rows_of_keys.flatten
     end
 
     def rows_from_file
@@ -32,15 +38,6 @@ module BlueCherries
                                 "#{@name.to_s.upcase} doesn't exist."
     end
 
-    def rows_to_keys(layout_rows)
-      rows_of_keys = layout_rows.map.with_index(1) do |row, row_number|
-        row.chars.map.with_index(1) do |char, column_number|
-          Key.new(char, column_number, row_number)
-        end
-      end
-
-      return rows_of_keys.flatten
-    end
 
     def layout_path
       File.expand_path("../../../layouts/#{@name.to_s}.layout", __FILE__)
