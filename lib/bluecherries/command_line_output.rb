@@ -16,9 +16,5 @@ module BlueCherries
       $stderr.puts "ERROR: #{error.class} -- #{error.message}"
       exit 1
     end
-
-    private
-
-    attr_reader :output
   end
 end
