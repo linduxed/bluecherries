@@ -40,11 +40,10 @@ module BlueCherries
       end
 
       it 'raises an error if an empty dictionary is provided' do
-        dictionary = Dictionary.new
-        empty_dictionary = []
-        File.stub(:readlines).and_return empty_dictionary
+        file = Tempfile.new 'dictionary_file'
 
-        expect { dictionary.words }.to raise_error EmptyDictionaryError
+        expect { Dictionary.new(file.path).words }.to(
+          raise_error EmptyDictionaryError)
       end
 
       context 'a path to a non-existant dictionary was provided' do
