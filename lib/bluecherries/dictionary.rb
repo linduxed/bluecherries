@@ -18,7 +18,7 @@ module BlueCherries
         word.nil? || word.empty? || word =~ /^\s+$/
       end
 
-      words.map(&:downcase!)
+      words.map!(&:downcase)
 
       if words.empty?
         raise EmptyDictionaryError
