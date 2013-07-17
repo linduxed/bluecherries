@@ -34,11 +34,9 @@ module BlueCherries
         expect { dictionary.words }.to raise_error EmptyDictionaryError
       end
 
-      context 'a non-existant dictionary was provided upon instantiation' do
+      context 'a path to a non-existant dictionary was provided' do
         it 'raises an error' do
-          File.stub(:open) { raise Errno::ENOENT }
-
-          expect { Dictionary.new('foobar').words }.to raise_error(
+          expect { Dictionary.new('foo.bar.baz').words }.to raise_error(
             MissingDictionaryError)
         end
       end
