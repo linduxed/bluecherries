@@ -10,8 +10,8 @@ module BlueCherries
 
     describe '#words' do
       it 'returns a collection of words' do
-        sample_dictionary_file = StringIO.new "foo\nbar\nbaz"
-        File.stub(:open).and_return sample_dictionary_file
+        processed_dictionary = %w{ foo bar baz }
+        File.stub(:readlines).and_return processed_dictionary
         words = Dictionary.new.words
 
         expect(words).to eq %w{ foo bar baz }
@@ -28,8 +28,8 @@ module BlueCherries
 
       it 'raises an error if an empty dictionary is provided' do
         dictionary = Dictionary.new
-        empty_file = StringIO.new
-        File.stub(:open).and_return empty_file
+        empty_dictionary = []
+        File.stub(:readlines).and_return empty_dictionary
 
         expect { dictionary.words }.to raise_error EmptyDictionaryError
       end

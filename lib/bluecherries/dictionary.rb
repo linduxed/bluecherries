@@ -15,9 +15,8 @@ module BlueCherries
 
     def extract_words_from_dictionary_file
       begin
-        dictionary_file = File.open dictionary_path
-        words = dictionary_to_words dictionary_file
-        dictionary_file.close
+        dictionary = File.readlines(dictionary_path).map(&:chomp)
+        words = dictionary_to_words dictionary
       rescue Errno::ENOENT
         raise MissingDictionaryError, "ERROR: The dictionary file for "\
                                       "#{@name.to_s.upcase} doesn't exist."
@@ -30,10 +29,8 @@ module BlueCherries
       words
     end
 
-    def dictionary_to_words(dictionary_file)
-      words = dictionary_file.readlines.map(&:chomp)
-
-      words.reject { |word| word.nil? || word.empty? }
+    def dictionary_to_words(dictionary)
+      dictionary.reject { |word| word.nil? || word.empty? }
     end
 
     def dictionary_path
