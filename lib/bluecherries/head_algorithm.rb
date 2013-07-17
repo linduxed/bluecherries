@@ -3,7 +3,6 @@ module BlueCherries
     def initialize(dictionary, min_length)
       @dictionary = dictionary
       @min_length = min_length
-      @words = dictionary.words.to_enum
     end
 
     def create_password_components
@@ -19,10 +18,13 @@ module BlueCherries
     private
 
     def next_word
-      @word = @words.next
-      @word
+      word_enumerator.next
     rescue StopIteration
-      @word
+      @dictionary.words.last
+    end
+
+    def word_enumerator
+      @word_enumerator ||= @dictionary.words.to_enum
     end
   end
 end
