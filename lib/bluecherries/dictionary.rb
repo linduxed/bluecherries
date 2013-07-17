@@ -14,13 +14,8 @@ module BlueCherries
     private
 
     def extract_words_from_dictionary_file
-      begin
-        dictionary = File.readlines(dictionary_path).map(&:chomp)
-        words = dictionary_to_words dictionary
-      rescue Errno::ENOENT
-        raise MissingDictionaryError, "ERROR: The dictionary file "\
-                                      "'#{@path}' doesn't exist."
-      end
+      dictionary = File.readlines(dictionary_path).map(&:chomp)
+      words = dictionary_to_words dictionary
 
       if words.empty?
         raise EmptyDictionaryError
@@ -40,12 +35,17 @@ module BlueCherries
         ''
       ]
 
-      valid_search_path = search_paths.find do |search_path|
+      found_search_path = search_paths.find do |search_path|
         file_path = File.expand_path @path, search_path
         File.exists? file_path
       end
 
-      File.expand_path @path, valid_search_path
+      if found_search_path.nil?
+        raise MissingDictionaryError, "ERROR: The dictionary file '#{@path}' "\
+                                      "doesn't exist."
+      end
+
+      File.expand_path @path, found_search_path
     end
   end
 end
