@@ -22,21 +22,18 @@ module BlueCherries
     private
 
     def extract_keys_from_layout_file
-      begin
-        layout_file = File.open layout_path(@name.to_s)
-        keys = layout_to_keys(layout_file)
-        layout_file.close
-      rescue Errno::ENOENT
-        raise MissingLayoutError, "ERROR: The layout file for "\
-                                  "#{@name.to_s.upcase} doesn't exist."
-      end
-
-      keys
+      rows_to_keys rows_from_file
     end
 
-    def layout_to_keys(layout_file)
-      rows = layout_file.readlines.map(&:chomp)
-      rows_of_keys = rows.map.with_index(1) do |row, row_number|
+    def rows_from_file
+      File.readlines(layout_path).map(&:chomp)
+    rescue Errno::ENOENT
+      raise MissingLayoutError, "ERROR: The layout file for "\
+                                "#{@name.to_s.upcase} doesn't exist."
+    end
+
+    def rows_to_keys(layout_rows)
+      rows_of_keys = layout_rows.map.with_index(1) do |row, row_number|
         row.chars.map.with_index(1) do |char, column_number|
           Key.new(char, column_number, row_number)
         end
@@ -45,8 +42,8 @@ module BlueCherries
       return rows_of_keys.flatten
     end
 
-    def layout_path(name)
-      File.expand_path("../../../layouts/#{name}.layout", __FILE__)
+    def layout_path
+      File.expand_path("../../../layouts/#{@name.to_s}.layout", __FILE__)
     end
 
     def right_index_finger_motions
