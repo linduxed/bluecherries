@@ -3,14 +3,14 @@ require 'spec_helper'
 module BlueCherries
   describe Layout do
     describe '.new' do
-      it 'should have default values' do
+      it 'has default values' do
         expect { Layout.new }.not_to raise_error
       end
 
     end
 
     describe '#name' do
-      it 'should return a symbol' do
+      it 'returns a symbol' do
         expect(Layout.new.name).to be_a Symbol
       end
     end
@@ -18,12 +18,12 @@ module BlueCherries
     describe '#keys' do
       let(:layout) { Layout.new }
 
-      it 'should return an array of Keys' do
+      it 'returns an array of Keys' do
         expect(layout.keys).not_to be_empty
         expect(layout.keys.all? { |i| i.instance_of? Key }).to be_true
       end
 
-      it 'should have five left-hand keys on each row' do
+      it 'has five left-hand keys on each row' do
         expect(layout).to have_key_count_on_each_row(5).on_hand(:left)
       end
 
@@ -37,7 +37,7 @@ module BlueCherries
     end
 
     describe '#motions' do
-      it 'should return an array of possible motions' do
+      it 'returns an array of possible motions' do
         layout = Layout.new
 
         expect(layout.motions).not_to be_empty
