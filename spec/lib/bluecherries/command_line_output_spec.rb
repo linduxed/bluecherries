@@ -4,11 +4,17 @@ module BlueCherries
   describe CommandLineOutput do
     describe '#run' do
       it 'returns the output of the application' do
-        output_generator = CommandLineOutput.new
         sample_output = "firstPassword\nsecondPassword"
-        output_generator.stub(:run).and_return sample_output
+        generator = double 'generator'
+        generator.stub(:generate).and_return sample_output
+        orig_stdout = $stdout
+        $stdout = StringIO.new
 
-        expect(output_generator.run).to eq sample_output
+        CommandLineOutput.new(generator).run
+
+        expect($stdout.string).to match sample_output
+
+        $stdout = orig_stdout
       end
 
       context 'an error is raised' do
