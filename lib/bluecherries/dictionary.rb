@@ -14,7 +14,9 @@ module BlueCherries
     private
 
     def extract_words_from_dictionary_file
-      words = lines_from_dictionary.reject { |word| word.nil? || word.empty? }
+      words = lines_from_dictionary.reject do |word|
+        word.nil? || word.empty? || word =~ /^\s+$/
+      end
 
       if words.empty?
         raise EmptyDictionaryError

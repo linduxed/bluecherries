@@ -10,20 +10,23 @@ module BlueCherries
 
     describe '#words' do
       it 'returns a collection of words' do
-        processed_dictionary = %w{ foo bar baz }
-        File.stub(:readlines).and_return processed_dictionary
-        words = Dictionary.new.words
+        file = Tempfile.new 'dictionary_file'
+        file.write "foo\nbar\nbaz\n"
+        file.close
+
+        words = Dictionary.new(file.path).words
 
         expect(words).to eq %w{ foo bar baz }
       end
 
       it 'does not return invalid lines' do
-        dictionary = Dictionary.new
+        file = Tempfile.new 'dictionary_file'
+        file.write "   \nvalidline\n  \n\t\n \t\n"
+        file.close
 
-        dictionary.words.each do |word|
-          word.should_not be_nil
-          word.should_not be_empty
-        end
+        words = Dictionary.new(file.path).words
+
+        expect(words).to eq ['validline']
       end
 
       it 'raises an error if an empty dictionary is provided' do
