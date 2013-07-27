@@ -20,7 +20,7 @@ matcher :terminate do
 
   failure_message_for_should do |block|
     "expected block to call exit(#{status_code}) but exit" +
-      (actual.nil? ? " not called" : "(#{actual}) was called")
+      (actual.nil? ? ' not called' : "(#{actual}) was called")
   end
 
   failure_message_for_should_not do |block|
