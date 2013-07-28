@@ -7,12 +7,12 @@ describe Executable do
     end
   end
 
-  describe '#passwords' do
+  describe '#lines' do
     it 'returns a list of strings' do
-      passwords = Executable.run.passwords
+      lines = Executable.run.lines
 
-      expect(passwords).not_to be_empty
-      expect(passwords.all? { |p| p.class == String }).to be_true
+      expect(lines).not_to be_empty
+      expect(lines.all? { |p| p.class == String }).to be_true
     end
   end
 end

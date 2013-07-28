@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Requesting a password' do
   context 'without any arguments' do
-    let(:generated_passwords) { Executable.run.passwords }
+    let(:generated_passwords) { Executable.run.lines }
 
     it 'returns passwords with a default format' do
       expect(generated_passwords).to have(6).items
@@ -14,8 +14,8 @@ describe 'Requesting a password' do
   end
 
   context 'with a valid non-default algorithm argument' do
-    let(:default_passwords) { Executable.run.passwords }
-    let(:generated_passwords) { Executable.run('-a random').passwords }
+    let(:default_passwords) { Executable.run.lines }
+    let(:generated_passwords) { Executable.run('-a random').lines }
 
     it 'returns a list of passwords' do
       expect(generated_passwords).to have(6).items

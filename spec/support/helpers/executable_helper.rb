@@ -3,7 +3,7 @@ class Executable
     @args_string = args_string
   end
 
-  def passwords
+  def lines
     raw_output.readlines.map(&:chomp)
   end
 
