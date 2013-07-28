@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Requesting a password' do
-  describe 'without any arguments' do
+  context 'without any arguments' do
     let(:generated_passwords) { Executable.run.passwords }
 
     it 'returns passwords with a default format' do
@@ -13,7 +13,7 @@ describe 'Requesting a password' do
     end
   end
 
-  describe 'with a valid non-default algorithm argument' do
+  context 'with a valid non-default algorithm argument' do
     let(:default_passwords) { Executable.run.passwords }
     let(:generated_passwords) { Executable.run('-a random').passwords }
 
