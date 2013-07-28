@@ -1,4 +1,8 @@
 class Executable
+  def initialize(args_string = '')
+    @args_string = args_string
+  end
+
   def passwords
     raw_output.readlines.map(&:chomp)
   end
@@ -6,7 +10,7 @@ class Executable
   private
 
   def raw_output
-    IO.popen(binary_location)
+    IO.popen(binary_location + " " + @args_string)
   end
 
   def binary_location

@@ -12,4 +12,14 @@ describe 'Requesting a password' do
       end
     end
   end
+
+  describe 'with a valid non-default algorithm argument' do
+    let(:default_passwords) { Executable.run.passwords }
+    let(:generated_passwords) { Executable.run('-a random').passwords }
+
+    it 'returns a list of passwords' do
+      expect(generated_passwords).to have(6).items
+      expect(generated_passwords).not_to eq default_passwords
+    end
+  end
 end
