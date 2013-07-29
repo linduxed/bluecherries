@@ -22,4 +22,22 @@ describe 'Requesting a password' do
       expect(generated_passwords).not_to eq default_passwords
     end
   end
+
+  context 'with an invalid algorithm argument' do
+    it 'exits with exit code "64" and prints an error message to $stderr' do
+      executable = Executable.run('-a foobarAlgorithm')
+
+      expect(executable.exit_code).to eq 64
+      expect(executable.error).to have_error_message('non-existant algorithm')
+    end
+  end
+
+  context 'with an invalid flag' do
+    it 'exits with exit code "64" and prints an error message to $stderr' do
+      executable = Executable.run('-foo someValidAlgorithm')
+
+      expect(executable.exit_code).to eq 64
+      expect(executable.error).to have_error_message('invalid option')
+    end
+  end
 end
