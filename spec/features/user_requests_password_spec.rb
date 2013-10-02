@@ -15,6 +15,8 @@ describe 'Requesting a password' do
 
   context 'with a valid non-default algorithm argument' do
     it 'returns a list of passwords' do
+      pending 'Finish the invalid-flag test first.'
+
       default_passwords = Executable.run.lines
       generated_passwords = Executable.run('-a random').lines
 
@@ -25,6 +27,8 @@ describe 'Requesting a password' do
 
   context 'with an invalid algorithm argument' do
     it 'exits with exit code "64" and prints an error message to $stderr' do
+      pending 'Finish the invalid-flag test first.'
+
       executable = Executable.run('-a foobarAlgorithm')
 
       expect(executable.exit_code).to eq 64
