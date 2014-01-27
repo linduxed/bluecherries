@@ -12,7 +12,7 @@ module BlueCherries
     end
 
     def run
-      @amount_of_passwords.times { puts @generator.generate(algorithm) }
+      amount_of_passwords.times { puts generator.generate(algorithm) }
     rescue => error
       $stderr.puts "ERROR: #{error.class} -- #{error.message}"
       exit 1
@@ -20,7 +20,8 @@ module BlueCherries
 
     private
 
-    attr_reader :algorithm_kind, :dictionary, :min_password_length
+    attr_reader :algorithm_kind, :dictionary, :generator, :min_password_length,
+      :amount_of_passwords
 
     def algorithm
       algorithm_kind.new dictionary, min_password_length
