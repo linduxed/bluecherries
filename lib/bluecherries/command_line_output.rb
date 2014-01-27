@@ -1,12 +1,14 @@
 module BlueCherries
   class CommandLineOutput
-    def initialize(opts = {})
-      @unparsed_args = opts.fetch(:args, ARGV)
-      @generator = opts.fetch(:generator, BlueCherries::PasswordGenerator.new)
-      @amount_of_passwords = opts.fetch(:amount_of_passwords, 6)
-      @min_password_length = opts.fetch(:min_password_length, 16)
-      @algorithm_kind = opts.fetch(:algorithm_kind, BlueCherries::HeadAlgorithm)
-      @dictionary = opts.fetch(:dict, BlueCherries::Dictionary.new('english'))
+    def initialize(options = {})
+      @unparsed_args = options.fetch(:args, ARGV)
+      @generator = options.fetch(:generator, BlueCherries::PasswordGenerator.new)
+      @amount_of_passwords = options.fetch(:amount_of_passwords, 6)
+      @min_password_length = options.fetch(:min_password_length, 16)
+      @algorithm_kind = options.fetch(:algorithm_kind,
+        BlueCherries::HeadAlgorithm)
+      @dictionary = options.fetch(:dictionary,
+        BlueCherries::Dictionary.new('english'))
     end
 
     def run
