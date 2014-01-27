@@ -1,6 +1,7 @@
 module BlueCherries
   class CommandLineOutput
     def initialize(opts = {})
+      @unparsed_args = opts.fetch(:args, ARGV)
       @generator = opts.fetch(:generator, BlueCherries::PasswordGenerator.new)
       @amount_of_passwords = opts.fetch(:amount_of_passwords, 6)
 
