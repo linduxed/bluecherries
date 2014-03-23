@@ -1,6 +1,6 @@
 module BlueCherries
   # Handles command line arguments and command line output.
-  class CommandLineOutput
+  class CLI
     def initialize(options = {})
       @unparsed_args = options.fetch(:args, ARGV)
       @generator = options.fetch(:generator,

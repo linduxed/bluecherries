@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module BlueCherries
-  describe CommandLineOutput do
+  describe CLI do
     describe '#run' do
       it 'returns the output of the application' do
         sample_output = "firstPassword\nsecondPassword"
@@ -10,7 +10,7 @@ module BlueCherries
         orig_stdout = $stdout
         $stdout = StringIO.new
 
-        CommandLineOutput.new(generator: generator).run
+        CLI.new(generator: generator).run
 
         expect($stdout.string).to match sample_output
 
@@ -24,7 +24,7 @@ module BlueCherries
           orig_stderr = $stderr
           $stderr = StringIO.new
 
-          expect { CommandLineOutput.new(generator: generator).run }.to(
+          expect { CLI.new(generator: generator).run }.to(
             terminate.with_code 1)
           expect($stderr.string).to have_error_message('RuntimeError')
 
