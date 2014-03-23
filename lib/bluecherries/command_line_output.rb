@@ -1,8 +1,10 @@
 module BlueCherries
+  # Handles command line arguments and command line output.
   class CommandLineOutput
     def initialize(options = {})
       @unparsed_args = options.fetch(:args, ARGV)
-      @generator = options.fetch(:generator, BlueCherries::PasswordGenerator.new)
+      @generator = options.fetch(:generator,
+        BlueCherries::PasswordGenerator.new)
       @amount_of_passwords = options.fetch(:amount_of_passwords, 6)
       @min_password_length = options.fetch(:min_password_length, 16)
       @algorithm_kind = options.fetch(:algorithm_kind,
@@ -24,7 +26,7 @@ module BlueCherries
       :amount_of_passwords
 
     def algorithm
-      algorithm_kind.new dictionary, min_password_length
+      algorithm_kind.new(dictionary, min_password_length)
     end
   end
 end
