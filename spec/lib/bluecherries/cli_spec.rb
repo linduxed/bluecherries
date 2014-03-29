@@ -3,29 +3,29 @@ require 'spec_helper'
 module BlueCherries
   describe CLI do
     describe '#run' do
-      it 'returns the output of the application' do
-        sample_output = "firstPassword\nsecondPassword"
-        generator = double 'generator'
-        generator.stub(:generate).and_return sample_output
+      it 'returns a list of strings' do
+        output_text = "firstPassword\nsecondPassword"
+        output_generator = double('output_generator', lines: output_text)
+        CommandLineOutput.stub(:new).and_return(output_generator)
         orig_stdout = $stdout
         $stdout = StringIO.new
 
-        CLI.new(generator: generator).run
+        CLI.new.run
 
-        expect($stdout.string).to match sample_output
+        expect($stdout.string).to match(output_text)
 
         $stdout = orig_stdout
       end
 
       context 'an error is raised' do
         it 'exits with exit code "1" and prints an error message to $stderr' do
-          generator = double 'password generator'
-          generator.stub(:generate).and_raise RuntimeError
+          output_generator = double 'output generator'
+          output_generator.stub(:lines).and_raise RuntimeError
+          CommandLineOutput.stub(:new).and_return(output_generator)
           orig_stderr = $stderr
           $stderr = StringIO.new
 
-          expect { CLI.new(generator: generator).run }.to(
-            terminate.with_code 1)
+          expect { CLI.new.run }.to terminate.with_code(1)
           expect($stderr.string).to have_error_message('RuntimeError')
 
           $stderr = orig_stderr
