@@ -9,8 +9,9 @@ module BlueCherries
         CommandLineOutput.stub(:new).and_return(output_generator)
         orig_stdout = $stdout
         $stdout = StringIO.new
+        empty_args = []
 
-        CLI.new.run
+        CLI.new(args: empty_args).run
 
         expect($stdout.string).to match(output_text)
 
@@ -24,8 +25,9 @@ module BlueCherries
           CommandLineOutput.stub(:new).and_return(output_generator)
           orig_stderr = $stderr
           $stderr = StringIO.new
+          empty_args = []
 
-          expect { CLI.new.run }.to terminate.with_code(1)
+          expect { CLI.new(args: empty_args).run }.to terminate.with_code(1)
           expect($stderr.string).to have_error_message('RuntimeError')
 
           $stderr = orig_stderr
