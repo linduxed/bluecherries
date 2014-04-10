@@ -2,24 +2,26 @@ require 'spec_helper'
 
 describe ArgumentParser do
   describe '#parse' do
-    it 'adds amount_of_passwords to the output hash for the "-n" flag' do
-      args = %w[-n 3]
-      empty_options = {}
-      expected_hash = { amount_of_passwords: 3 }
+    describe 'flags' do
+      it 'adds amount_of_passwords to the output hash for the "-n" flag' do
+        args = %w[-n 3]
+        empty_options = {}
+        expected_hash = { amount_of_passwords: 3 }
 
-      parsed_arguments = ArgumentParser.new(args, empty_options).parse
+        parsed_arguments = ArgumentParser.new(args, empty_options).parse
 
-      expect(parsed_arguments).to eq(expected_hash)
-    end
+        expect(parsed_arguments).to eq(expected_hash)
+      end
 
-    it 'adds min_password_length to the output hash for the "-l" flag' do
-      args = %w[-l 3]
-      empty_options = {}
-      expected_hash = { min_password_length: 3 }
+      it 'adds amount_of_passwords to the output hash for the "-n" flag' do
+        args = %w[-n 3]
+        empty_options = {}
+        expected_hash = { amount_of_passwords: 3 }
 
-      parsed_arguments = ArgumentParser.new(args, empty_options).parse
+        parsed_arguments = ArgumentParser.new(args, empty_options).parse
 
-      expect(parsed_arguments).to eq(expected_hash)
+        expect(parsed_arguments).to eq(expected_hash)
+      end
     end
 
     it 'returns the options hash unmodified if no arguments are provided' do
