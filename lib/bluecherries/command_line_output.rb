@@ -12,11 +12,9 @@ module BlueCherries
     end
 
     def lines
-      passwords = []
-      amount_of_passwords.times do
-        passwords << generator.generate(algorithm)
+      amount_of_passwords.times.map do
+        generator.generate(algorithm)
       end
-      passwords
     end
 
     private
