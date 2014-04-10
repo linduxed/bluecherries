@@ -12,6 +12,16 @@ describe ArgumentParser do
       expect(parsed_arguments).to eq(expected_hash)
     end
 
+    it 'adds min_password_length to the output hash for the "-l" flag' do
+      args = %w[-l 3]
+      empty_options = {}
+      expected_hash = { min_password_length: 3 }
+
+      parsed_arguments = ArgumentParser.new(args, empty_options).parse
+
+      expect(parsed_arguments).to eq(expected_hash)
+    end
+
     it 'returns the options hash unmodified if no arguments are provided' do
       empty_args = []
       input_options = { foo: 'foo', bar: 'bar' }

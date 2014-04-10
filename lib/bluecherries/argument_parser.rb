@@ -24,6 +24,11 @@ class ArgumentParser
         'Generate an integer amount of passwords') do |n|
         opt_hash[:amount_of_passwords] = n
       end
+
+      opts.on('-l [NUMBER]', Integer,
+        'Passwords need to have at least NUMBER characters') do |n|
+        opt_hash[:min_password_length] = n
+      end
     end
 
     parser.parse(unparsed_args)
