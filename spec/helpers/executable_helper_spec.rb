@@ -6,7 +6,7 @@ describe Executable do
       lines = Executable.run.lines
 
       expect(lines).not_to be_empty
-      expect(lines.all? { |p| p.class == String }).to be_true
+      expect(lines.map(&:class)).to be_all { |c| c == String }
     end
   end
 
