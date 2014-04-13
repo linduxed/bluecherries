@@ -7,7 +7,7 @@ module BlueCherries
     end
 
     def run
-      $stdout.puts CommandLineOutput.new(parsed_args).lines
+      $stdout.puts CommandLineOutput.new(merged_options).lines
     rescue => error
       $stderr.puts "ERROR: #{error.class} -- #{error.message}"
       exit 1
@@ -17,8 +17,12 @@ module BlueCherries
 
     attr_reader :unparsed_args, :non_arg_options
 
+    def merged_options
+      parsed_args.merge(non_arg_options)
+    end
+
     def parsed_args
-      ArgumentParser.new(unparsed_args, non_arg_options).parse
+      ArgumentParser.new(unparsed_args).parse
     end
   end
 end

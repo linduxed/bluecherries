@@ -1,20 +1,11 @@
 require 'optparse'
 
 class ArgumentParser
-  def initialize(unparsed_args, non_arg_options)
+  def initialize(unparsed_args)
     @unparsed_args = unparsed_args
-    @non_arg_options = non_arg_options
   end
 
   def parse
-    parsed_arguments.merge(non_arg_options)
-  end
-
-  private
-
-  attr_reader :unparsed_args, :non_arg_options
-
-  def parsed_arguments
     opt_hash = {}
 
     parser = OptionParser.new do |opts|
@@ -39,4 +30,8 @@ class ArgumentParser
     $stderr.puts parser.banner
     exit 64
   end
+
+  private
+
+  attr_reader :unparsed_args
 end
