@@ -53,19 +53,17 @@ describe ArgumentParser do
     end
 
     it 'prints a usage message if an invalid option is provided' do
-      bad_args = %w[-foo bar]
-      empty_options = {}
-      orig_stderr = $stderr
-      $stderr = StringIO.new
+      with_stubbed_stderr do
+        bad_args = %w[-foo bar]
+        empty_options = {}
 
-      expect do
-        ArgumentParser.new(bad_args, empty_options).parse
-      end.to terminate.with_code(64)
+        expect do
+          ArgumentParser.new(bad_args, empty_options).parse
+        end.to terminate.with_code(64)
 
-      expect($stderr.string).to have_error_message('invalid option')
-      expect($stderr.string).to match(/Usage:/)
-
-      $stderr = orig_stderr
+        expect($stderr.string).to have_error_message('invalid option')
+        expect($stderr.string).to match(/Usage:/)
+      end
     end
   end
 end
