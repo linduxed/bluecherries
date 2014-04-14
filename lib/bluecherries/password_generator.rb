@@ -3,7 +3,7 @@ module BlueCherries
     def generate(algorithm)
       password_components = algorithm.create_password_components
 
-      Password.new camel_case(password_components).join
+      Password.new(camel_case(password_components).join)
     end
 
     private
