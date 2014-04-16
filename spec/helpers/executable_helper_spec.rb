@@ -1,18 +1,28 @@
 require 'spec_helper'
 
 describe Executable do
-  describe '.run' do
-    it 'returns an instance of Executable' do
-      expect(Executable.run).to be_an Executable
+  describe '#lines' do
+    it 'returns a list of strings' do
+      lines = Executable.run.lines
+
+      expect(lines).not_to be_empty
+      expect(lines.map(&:class)).to be_all { |c| c == String }
     end
   end
 
-  describe '#passwords' do
-    it 'returns a list of strings' do
-      passwords = Executable.run.passwords
+  describe '#error' do
+    it 'returns the error string' do
+      error = Executable.run('-foo bar').error
 
-      expect(passwords).not_to be_empty
-      expect(passwords.all? { |p| p.class == String }).to be_true
+      expect(error).to be_a String
+    end
+  end
+
+  describe '#exit_code' do
+    it 'returns an integer' do
+      exit_code = Executable.run.exit_code
+
+      expect(exit_code).to be_a Fixnum
     end
   end
 end

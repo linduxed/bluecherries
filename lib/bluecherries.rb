@@ -1,3 +1,5 @@
+require 'bluecherries/argument_parser'
+require 'bluecherries/cli'
 require 'bluecherries/command_line_output'
 require 'bluecherries/dictionary'
 require 'bluecherries/head_algorithm'
