@@ -43,7 +43,7 @@ module BlueCherries
     end
 
     def search_paths
-      [__FILE__ + '/../../../dictionaries/', Dir.pwd + '/']
+      [__FILE__ + '/../../../../dictionaries/', Dir.pwd + '/']
     end
   end
 end

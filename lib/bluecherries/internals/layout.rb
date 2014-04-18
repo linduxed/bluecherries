@@ -40,7 +40,7 @@ module BlueCherries
 
 
     def layout_path
-      File.expand_path("../../../layouts/#{@name.to_s}.layout", __FILE__)
+      File.expand_path("../../../../layouts/#{@name.to_s}.layout", __FILE__)
     end
 
     def right_index_finger_motions
