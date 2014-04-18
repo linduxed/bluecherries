@@ -8,6 +8,7 @@ require 'bluecherries/layout'
 require 'bluecherries/motion'
 require 'bluecherries/password'
 require 'bluecherries/password_generator'
+require 'bluecherries/random_algorithm'
 require 'bluecherries/version'
 
 module BlueCherries
