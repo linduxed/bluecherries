@@ -4,4 +4,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'bluecherries'
 
-BlueCherries::CommandLineOutput.new.run
+BlueCherries::CLI.new.run
