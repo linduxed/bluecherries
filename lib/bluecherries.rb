@@ -1,14 +1,14 @@
+require 'bluecherries/algorithms/head_algorithm'
+require 'bluecherries/algorithms/random_algorithm'
 require 'bluecherries/argument_parser'
 require 'bluecherries/cli'
 require 'bluecherries/command_line_output'
 require 'bluecherries/dictionary'
-require 'bluecherries/head_algorithm'
 require 'bluecherries/key'
 require 'bluecherries/layout'
 require 'bluecherries/motion'
 require 'bluecherries/password'
 require 'bluecherries/password_generator'
-require 'bluecherries/random_algorithm'
 require 'bluecherries/version'
 
 module BlueCherries
