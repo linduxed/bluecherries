@@ -1,8 +1,4 @@
-require 'rspec/expectations'
-
-extend RSpec::Matchers::DSL
-
-matcher :terminate do
+RSpec::Matchers.define :terminate do
   actual = nil
 
   match do |block|
