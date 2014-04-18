@@ -12,9 +12,9 @@ describe ArgumentParser do
         expect(parsed_arguments).to eq(expected_hash)
       end
 
-      it 'adds amount_of_passwords to the output hash for the "-n" flag' do
-        args = %w[-n 3]
-        expected_hash = { amount_of_passwords: 3 }
+      it 'adds min_password_length to the output hash for the "-l" flag' do
+        args = %w[-l 20]
+        expected_hash = { min_password_length: 20 }
 
         parsed_arguments = ArgumentParser.new(args).parse
 
