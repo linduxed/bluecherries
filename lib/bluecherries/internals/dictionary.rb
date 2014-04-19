@@ -3,8 +3,8 @@ module BlueCherries
   class EmptyDictionaryError < Exception; end
 
   class Dictionary
-    def initialize(path = 'english')
-      @path = path
+    def initialize(input_path = 'english')
+      @input_path = input_path
     end
 
     def words
@@ -12,6 +12,8 @@ module BlueCherries
     end
 
     private
+
+    attr_reader :input_path
 
     def extract_words_from_dictionary_file
       words = lines_from_dictionary.reject do |word|
@@ -31,12 +33,12 @@ module BlueCherries
       File.readlines(dictionary_path).map(&:chomp)
     rescue Errno::ENOENT
       raise MissingDictionaryError,
-        "ERROR: The dictionary file '#{@path}' doesn't exist."
+        "ERROR: The dictionary file '#{input_path}' doesn't exist."
     end
 
     def dictionary_path
       full_paths = search_paths.map do |search_path|
-        File.expand_path @path, search_path
+        File.expand_path input_path, search_path
       end
 
       full_paths.find { |path| File.exists? path } || ''
