@@ -20,6 +20,11 @@ class ArgumentParser
         'Passwords need to have at least NUMBER characters') do |n|
         opt_hash[:min_password_length] = n
       end
+
+      opts.on('-d [DICTIONARY]',
+        'Absolute path or one of default dictionaries') do |n|
+        opt_hash[:dictionary_path] = n
+      end
     end
 
     parser.parse(unparsed_args)
