@@ -20,6 +20,18 @@ describe ArgumentParser do
 
         expect(parsed_arguments).to eq(expected_hash)
       end
+
+      it 'adds dictionary_path to the output hash for the "-d" flag' do
+        file = Tempfile.new 'dictionary_file'
+        file.write "foo\nbar\nbaz\n"
+        file.close
+        args = ['-d', file.path]
+        expected_hash = { dictionary_path: file.path }
+
+        parsed_arguments = ArgumentParser.new(args).parse
+
+        expect(parsed_arguments).to eq(expected_hash)
+      end
     end
 
     it 'prints a usage message if an invalid option is provided' do

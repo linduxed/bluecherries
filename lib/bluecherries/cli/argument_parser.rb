@@ -12,13 +12,18 @@ class ArgumentParser
       opts.banner = 'Usage: bluecherries [options]'
 
       opts.on('-n [NUMBER]', Integer,
-        'Generate an integer amount of passwords') do |n|
+        'Generate NUMBER passwords') do |n|
         opt_hash[:amount_of_passwords] = n
       end
 
       opts.on('-l [NUMBER]', Integer,
-        'Passwords need to have at least NUMBER characters') do |n|
+        'At least NUMBER characters') do |n|
         opt_hash[:min_password_length] = n
+      end
+
+      opts.on('-d [DICTIONARY]',
+        'Absolute/relative path or default dicts.') do |n|
+        opt_hash[:dictionary_path] = n
       end
     end
 

@@ -37,15 +37,19 @@ module BlueCherries
     end
 
     def dictionary_path
-      full_paths = search_paths.map do |search_path|
-        File.expand_path input_path, search_path
+      full_paths = search_path_prefixes.map do |prefix|
+        File.expand_path input_path, prefix
       end
 
       full_paths.find { |path| File.exists? path } || ''
     end
 
-    def search_paths
-      [__FILE__ + '/../../../../dictionaries/', Dir.pwd + '/']
+    def search_path_prefixes
+      [
+        __FILE__ + '/../../../../dictionaries/',
+        '',
+        Dir.pwd + '/'
+      ]
     end
   end
 end
