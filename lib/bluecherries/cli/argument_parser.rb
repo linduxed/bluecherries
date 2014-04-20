@@ -22,7 +22,7 @@ class ArgumentParser
       end
 
       opts.on('-d [DICTIONARY]',
-        'Absolute path or one of default dictionaries') do |n|
+        'Absolute/relative path or default dicts.') do |n|
         opt_hash[:dictionary_path] = n
       end
     end
