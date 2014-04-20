@@ -7,8 +7,9 @@ module BlueCherries
       @min_password_length = options.fetch(:min_password_length, 16)
       @algorithm_kind = options.fetch(:algorithm_kind,
         BlueCherries::HeadAlgorithm)
-      @dictionary = options.fetch(:dictionary,
-        BlueCherries::Dictionary.new('english'))
+      @dictionary_kind = options.fetch(:dictionary_kind,
+        BlueCherries::Dictionary)
+      @dictionary_path = options.fetch(:dictionary_path, 'english')
     end
 
     def lines
@@ -20,10 +21,14 @@ module BlueCherries
     private
 
     attr_reader :generator, :amount_of_passwords, :min_password_length,
-      :algorithm_kind, :dictionary
+      :algorithm_kind, :dictionary_kind, :dictionary_path
 
     def algorithm
       algorithm_kind.new(dictionary, min_password_length)
+    end
+
+    def dictionary
+      dictionary_kind.new(dictionary_path)
     end
   end
 end
