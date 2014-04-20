@@ -46,8 +46,8 @@ module BlueCherries
 
     def search_path_prefixes
       [
-        '',
         __FILE__ + '/../../../../dictionaries/',
+        '',
         Dir.pwd + '/'
       ]
     end
