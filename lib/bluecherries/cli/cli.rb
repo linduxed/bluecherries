@@ -8,9 +8,6 @@ module BlueCherries
 
     def run
       $stdout.puts CommandLineOutput.new(merged_options).lines
-    rescue => error
-      $stderr.puts "ERROR: #{error.class} -- #{error.message}"
-      exit 1
     end
 
     private
