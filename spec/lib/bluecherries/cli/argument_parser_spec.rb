@@ -33,6 +33,18 @@ module BlueCherries
 
           expect(parsed_arguments).to eq(expected_hash)
         end
+
+        it 'adds algorithm_kind to the output hash for the "-a" flag' do
+          class FoobarAlgorithm; end
+          args = %w[-a foobar]
+          expected_hash = { algorithm_kind: FoobarAlgorithm }
+
+          parsed_arguments = ArgumentParser.new(args).parse
+
+          expect(parsed_arguments).to eq(expected_hash)
+
+          BlueCherries.send(:remove_const, :FoobarAlgorithm)
+        end
       end
 
       it 'prints a usage message if an invalid option is provided' do
