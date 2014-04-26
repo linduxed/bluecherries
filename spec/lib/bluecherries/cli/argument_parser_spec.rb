@@ -37,6 +37,8 @@ module BlueCherries
         it 'adds algorithm_kind to the output hash for the "-a" flag' do
           class FoobarAlgorithm; end
           args = %w[-a foobar]
+          algorithm_finder = double('alg_finder', find: FoobarAlgorithm)
+          AlgorithmFinder.stub(:new).and_return(algorithm_finder)
           expected_hash = { algorithm_kind: FoobarAlgorithm }
 
           parsed_arguments = ArgumentParser.new(args).parse

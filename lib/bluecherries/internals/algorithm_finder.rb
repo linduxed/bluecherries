@@ -1,22 +1,24 @@
 module BlueCherries
   class AlgorithmFinder
-    def initialize(name)
+    ALGORITHMS = {
+      'head' => HeadAlgorithm,
+      'random' => RandomAlgorithm
+    }.freeze
+
+    def initialize(name, options = {})
       @name = name
+      @algorithm_list = options.fetch(:algorithm_list, ALGORITHMS)
     end
 
     def find
-      eval(titleized_name + 'Algorithm')
-    rescue NameError
-      $stderr.puts "ERROR: there is no \"#{name}\" algorithm"
-      exit 64
+      algorithm_list.fetch(name) do
+        $stderr.puts "ERROR: there is no \"#{name}\" algorithm"
+        exit 64
+      end
     end
 
     private
 
-    attr_reader :name
-
-    def titleized_name
-      name[0].upcase + name[1..-1].downcase
-    end
+    attr_reader :name, :algorithm_list
   end
 end

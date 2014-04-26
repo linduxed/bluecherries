@@ -3,11 +3,15 @@ require 'spec_helper'
 module BlueCherries
   describe AlgorithmFinder do
     describe '#find' do
-      it 'looks for an algorithm class name with the input string as prefix' do
+      it 'finds an algorithm that corresponds to the provided name' do
         class FoobarAlgorithm; end
         name = 'foobar'
+        algorithm_list = {
+          'foobar' => FoobarAlgorithm
+        }
 
-        algorithm = AlgorithmFinder.new(name).find
+        algorithm = AlgorithmFinder.new(name,
+          algorithm_list: algorithm_list).find
 
         expect(algorithm).to eq(FoobarAlgorithm)
 
