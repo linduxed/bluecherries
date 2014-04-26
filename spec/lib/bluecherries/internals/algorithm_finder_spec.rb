@@ -25,6 +25,7 @@ module BlueCherries
           expect { AlgorithmFinder.new(name).find }.to terminate.with_code(64)
           expect($stderr.string).to have_error_message(
             "there is no \"#{name}\" algorithm")
+          expect($stderr.string).to match(/[Aa]vailable algorithms/)
         end
       end
     end

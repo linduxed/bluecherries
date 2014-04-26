@@ -13,6 +13,7 @@ module BlueCherries
     def find
       algorithm_list.fetch(name) do
         $stderr.puts "ERROR: there is no \"#{name}\" algorithm"
+        $stderr.puts "Available algorithms are: #{available_algorithms}"
         exit 64
       end
     end
@@ -20,5 +21,9 @@ module BlueCherries
     private
 
     attr_reader :name, :algorithm_list
+
+    def available_algorithms
+      algorithm_list.keys.join(', ')
+    end
   end
 end
