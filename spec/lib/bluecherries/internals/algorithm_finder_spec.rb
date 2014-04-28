@@ -4,18 +4,16 @@ module BlueCherries
   describe AlgorithmFinder do
     describe '#find' do
       it 'finds an algorithm that corresponds to the provided name' do
-        class FoobarAlgorithm; end
         name = 'foobar'
+        foobar_algorithm = double('foobar_algorithm')
         algorithm_list = {
-          'foobar' => FoobarAlgorithm
+          'foobar' => foobar_algorithm
         }
 
         algorithm = AlgorithmFinder.new(name,
           algorithm_list: algorithm_list).find
 
-        expect(algorithm).to eq(FoobarAlgorithm)
-
-        BlueCherries.send(:remove_const, :FoobarAlgorithm)
+        expect(algorithm).to eq(foobar_algorithm)
       end
 
       it 'writes an error message if an algorithm is not found' do
