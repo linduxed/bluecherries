@@ -28,8 +28,8 @@ module BlueCherries
         end
 
         opts.on('-a [ALGORITHM]',
-          'Name of one of the provided algorithms.') do |n|
-          opt_hash[:algorithm_kind] = AlgorithmFinder.new(n).find
+          'Name of one of the provided algorithms.') do |algorithm_name|
+          opt_hash[:algorithm_kind] = AlgorithmFinder.new(algorithm_name).find
         end
       end
 
