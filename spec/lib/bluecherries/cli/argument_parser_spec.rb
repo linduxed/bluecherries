@@ -43,6 +43,7 @@ module BlueCherries
 
           parsed_arguments = ArgumentParser.new(args).parse
 
+          expect(AlgorithmFinder).to have_received(:new).with('foobar')
           expect(parsed_arguments).to eq(expected_hash)
         end
       end
