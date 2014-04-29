@@ -13,18 +13,18 @@ module BlueCherries
         opts.banner = 'Usage: bluecherries [options]'
 
         opts.on('-n [NUMBER]', Integer,
-          'Generate NUMBER passwords') do |n|
-          opt_hash[:amount_of_passwords] = n
+          'Generate NUMBER passwords') do |number|
+          opt_hash[:amount_of_passwords] = number
         end
 
         opts.on('-l [NUMBER]', Integer,
-          'At least NUMBER characters') do |n|
-          opt_hash[:min_password_length] = n
+          'At least NUMBER characters') do |number|
+          opt_hash[:min_password_length] = number
         end
 
         opts.on('-d [DICTIONARY]',
-          'Absolute/relative path or default dicts.') do |n|
-          opt_hash[:dictionary_path] = n
+          'Absolute/relative path or default dicts.') do |dictionary_path|
+          opt_hash[:dictionary_path] = dictionary_path
         end
 
         opts.on('-a [ALGORITHM]',
