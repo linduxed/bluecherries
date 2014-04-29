@@ -26,6 +26,11 @@ module BlueCherries
           'Absolute/relative path or default dicts.') do |n|
           opt_hash[:dictionary_path] = n
         end
+
+        opts.on('-a [ALGORITHM]',
+          'Name of one of the provided algorithms.') do |algorithm_name|
+          opt_hash[:algorithm_kind] = AlgorithmFinder.new(algorithm_name).find
+        end
       end
 
       parser.parse(unparsed_args)
