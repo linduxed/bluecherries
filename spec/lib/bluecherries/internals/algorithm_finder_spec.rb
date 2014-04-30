@@ -22,7 +22,7 @@ module BlueCherries
 
           expect do
             AlgorithmFinder.new(non_existent_algorithm_name).find
-          end.to terminate.with_code(64)
+          end.to raise_error(AlgorithmNotFound)
           expect($stderr.string).to have_error_message(
             "there is no \"#{non_existent_algorithm_name}\" algorithm")
           expect($stderr.string).to match(/[Aa]vailable algorithms/)
