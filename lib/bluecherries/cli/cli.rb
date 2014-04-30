@@ -1,6 +1,8 @@
 module BlueCherries
   # Handles command line arguments and command line output.
   class CLI
+    EX_USAGE = 64
+
     def initialize(options = {})
       @unparsed_args = options.delete(:args) { ARGV }
       @non_arg_options = options
@@ -8,6 +10,8 @@ module BlueCherries
 
     def run
       $stdout.puts CommandLineOutput.new(merged_options).lines
+    rescue => error
+      handle_error(error)
     end
 
     private
@@ -20,6 +24,16 @@ module BlueCherries
 
     def parsed_args
       ArgumentParser.new(unparsed_args).parse
+    end
+
+    def handle_error(error)
+      case error
+      when AlgorithmNotFound
+        $stderr.puts "ERROR: #{error.message}"
+        exit EX_USAGE
+      else
+        raise error
+      end
     end
   end
 end
