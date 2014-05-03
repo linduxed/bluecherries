@@ -34,7 +34,6 @@ module BlueCherries
         opts.on('-a [ALGORITHM]',
           'Name of one of the provided algorithms.') do |algorithm_name|
           if algorithm_name.nil?
-            $stderr.puts parser.banner
             raise(OptionParser::MissingArgument, 'missing algorithm name')
           else
             opt_hash[:algorithm_kind] = AlgorithmFinder.new(
@@ -46,7 +45,7 @@ module BlueCherries
       parser.parse(unparsed_args)
 
       opt_hash
-    rescue OptionParser::InvalidOption => error
+    rescue => error
       $stderr.puts parser.banner
       raise error
     end
