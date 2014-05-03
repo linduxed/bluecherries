@@ -34,17 +34,31 @@ module BlueCherries
           expect(parsed_arguments).to eq(expected_hash)
         end
 
-        it 'adds algorithm_kind to the output hash for the "-a" flag' do
-          args = %w[-a foobar]
-          foobar_algorithm = double('foobar_algorithm')
-          algorithm_finder = double('alg_finder', find: foobar_algorithm)
-          AlgorithmFinder.stub(:new).and_return(algorithm_finder)
-          expected_hash = { algorithm_kind: foobar_algorithm }
+        describe '"-a"' do
+          it 'adds algorithm_kind to the output hash' do
+            args = %w[-a foobar]
+            foobar_algorithm = double('foobar_algorithm')
+            algorithm_finder = double('alg_finder', find: foobar_algorithm)
+            AlgorithmFinder.stub(:new).and_return(algorithm_finder)
+            expected_hash = { algorithm_kind: foobar_algorithm }
 
-          parsed_arguments = ArgumentParser.new(args).parse
+            parsed_arguments = ArgumentParser.new(args).parse
 
-          expect(AlgorithmFinder).to have_received(:new).with('foobar')
-          expect(parsed_arguments).to eq(expected_hash)
+            expect(AlgorithmFinder).to have_received(:new).with('foobar')
+            expect(parsed_arguments).to eq(expected_hash)
+          end
+
+          it 'requires an argument' do
+            with_stubbed_stderr do
+              args = ['-a']
+
+              expect do
+                ArgumentParser.new(args).parse
+              end.to raise_error(OptionParser::MissingArgument)
+
+              expect($stderr.string).to match(/Usage:/)
+            end
+          end
         end
       end
 

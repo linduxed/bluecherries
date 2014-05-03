@@ -34,6 +34,9 @@ module BlueCherries
       when OptionParser::InvalidOption
         $stderr.puts error.message
         exit EX_USAGE
+      when OptionParser::MissingArgument
+        $stderr.puts error.message
+        exit EX_USAGE
       else
         raise error
       end
