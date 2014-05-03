@@ -22,7 +22,7 @@ module BlueCherries
           if number > 0
             opt_hash[:min_password_length] = number
           else
-            raise(OptionParser::InvalidArgument, 'Bad minimum password length')
+            raise(OptionParser::InvalidArgument, 'bad minimum password length')
           end
         end
 
