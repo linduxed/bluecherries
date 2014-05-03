@@ -24,11 +24,15 @@ module BlueCherries
           end
 
           it 'does not accept zero as a length' do
-            args = %w[-l 0]
+            with_stubbed_stderr do
+              args = %w[-l 0]
 
-            expect do
-              ArgumentParser.new(args).parse
-            end.to raise_error(OptionParser::InvalidArgument)
+              expect do
+                ArgumentParser.new(args).parse
+              end.to raise_error(OptionParser::InvalidArgument)
+
+              expect($stderr.string).to match(/Usage:/)
+            end
           end
         end
 
