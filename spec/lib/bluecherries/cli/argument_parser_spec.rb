@@ -47,6 +47,18 @@ module BlueCherries
             expect(AlgorithmFinder).to have_received(:new).with('foobar')
             expect(parsed_arguments).to eq(expected_hash)
           end
+
+          it 'requires an argument' do
+            with_stubbed_stderr do
+              args = ['-a']
+
+              expect do
+                ArgumentParser.new(args).parse
+              end.to raise_error(OptionParser::MissingArgument)
+
+              expect($stderr.string).to match(/Usage:/)
+            end
+          end
         end
       end
 
