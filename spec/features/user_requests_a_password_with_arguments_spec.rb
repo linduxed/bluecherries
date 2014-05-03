@@ -24,4 +24,18 @@ describe 'Requesting passwords' do
       end
     end
   end
+
+  context 'with a custom dictionary' do
+    it 'returns passwords which contain words from the provided dictionary' do
+      dictionary = Tempfile.new 'dictionary_file'
+      dictionary.write "someverylongword\n"
+      dictionary.close
+
+      generated_passwords = Executable.run("-d #{dictionary.path}").lines
+
+      generated_passwords.each do |password|
+        expect(password).to match(/someverylongword/)
+      end
+    end
+  end
 end
