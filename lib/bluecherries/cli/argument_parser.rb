@@ -37,9 +37,8 @@ module BlueCherries
 
       opt_hash
     rescue OptionParser::InvalidOption => error
-      $stderr.puts "ERROR: #{error}"
       $stderr.puts parser.banner
-      exit 64
+      raise error
     end
 
     private
