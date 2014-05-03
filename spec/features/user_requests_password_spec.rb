@@ -18,7 +18,7 @@ describe 'Requesting a password' do
       executable = Executable.run('-foo someValidAlgorithm')
 
       expect(executable.exit_code).to eq 64
-      expect(executable.error).to have_error_message('invalid option')
+      expect(executable.error).to match(/invalid option/)
     end
   end
 end

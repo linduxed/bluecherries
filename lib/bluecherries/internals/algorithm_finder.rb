@@ -1,4 +1,6 @@
 module BlueCherries
+  class AlgorithmNotFound < StandardError; end
+
   class AlgorithmFinder
     ALGORITHMS = {
       'head' => HeadAlgorithm,
@@ -12,9 +14,8 @@ module BlueCherries
 
     def find
       algorithm_list.fetch(name) do
-        $stderr.puts "ERROR: there is no \"#{name}\" algorithm"
         $stderr.puts "Available algorithms are: #{available_algorithms}"
-        exit 64
+        fail AlgorithmNotFound, "There is no \"#{name}\" algorithm."
       end
     end
 
