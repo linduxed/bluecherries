@@ -29,7 +29,7 @@ module BlueCherries
     def handle_error(error)
       case error
       when AlgorithmNotFound
-        $stderr.puts error.message
+        $stderr.puts "invalid argument: #{error.message}"
         exit EX_USAGE
       when OptionParser::InvalidOption
         $stderr.puts error.message
