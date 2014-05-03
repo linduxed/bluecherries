@@ -22,6 +22,14 @@ module BlueCherries
 
             expect(parsed_arguments).to eq(expected_hash)
           end
+
+          it 'does not accept zero as a length' do
+            args = %w[-l 0]
+
+            expect do
+              ArgumentParser.new(args).parse
+            end.to raise_error(OptionParser::InvalidArgument)
+          end
         end
 
         it 'adds dictionary_path to the output hash for the "-d" flag' do
