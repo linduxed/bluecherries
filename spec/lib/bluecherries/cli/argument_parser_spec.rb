@@ -13,13 +13,23 @@ module BlueCherries
           expect(parsed_arguments).to eq(expected_hash)
         end
 
-        it 'adds min_password_length to the output hash for the "-l" flag' do
-          args = %w[-l 20]
-          expected_hash = { min_password_length: 20 }
+        describe '"-l"' do
+          it 'adds min_password_length to the output hash' do
+            args = %w[-l 20]
+            expected_hash = { min_password_length: 20 }
 
-          parsed_arguments = ArgumentParser.new(args).parse
+            parsed_arguments = ArgumentParser.new(args).parse
 
-          expect(parsed_arguments).to eq(expected_hash)
+            expect(parsed_arguments).to eq(expected_hash)
+          end
+
+          it 'does not accept zero as a length' do
+            args = %w[-l 0]
+
+            expect do
+              ArgumentParser.new(args).parse
+            end.to raise_error(OptionParser::InvalidArgument)
+          end
         end
 
         it 'adds dictionary_path to the output hash for the "-d" flag' do
