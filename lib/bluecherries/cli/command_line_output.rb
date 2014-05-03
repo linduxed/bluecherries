@@ -1,4 +1,5 @@
 module BlueCherries
+  # Initiates the password generation process and defines defaults.
   class CommandLineOutput
     def initialize(options = {})
       @generator = options.fetch(:generator,

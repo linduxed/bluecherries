@@ -2,6 +2,7 @@ module BlueCherries
   class MissingDictionaryError < Exception; end
   class EmptyDictionaryError < Exception; end
 
+  # Transforms a plaintext dictionary file into an array of words.
   class Dictionary
     def initialize(input_path = 'english')
       @input_path = input_path

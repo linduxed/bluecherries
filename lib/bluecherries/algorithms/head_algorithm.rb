@@ -1,4 +1,5 @@
 module BlueCherries
+  # Takes words from the start of the dictionary until the length is satisfied.
   class HeadAlgorithm
     def initialize(dictionary, min_length)
       @dictionary = dictionary

@@ -1,6 +1,7 @@
 require 'optparse'
 
 module BlueCherries
+  # Defines what options are available to the CLI.
   class ArgumentParser
     def initialize(unparsed_args)
       @unparsed_args = unparsed_args
