@@ -56,7 +56,6 @@ module BlueCherries
             ArgumentParser.new(bad_args).parse
           end.to raise_error(OptionParser::InvalidOption)
 
-          expect($stderr.string).to have_error_message('invalid option')
           expect($stderr.string).to match(/Usage:/)
         end
       end
