@@ -31,10 +31,7 @@ module BlueCherries
       when AlgorithmNotFound
         $stderr.puts "invalid argument: #{error.message}"
         exit EX_USAGE
-      when OptionParser::InvalidOption
-        $stderr.puts error.message
-        exit EX_USAGE
-      when OptionParser::MissingArgument
+      when OptionParser::InvalidOption, OptionParser::MissingArgument
         $stderr.puts error.message
         exit EX_USAGE
       else
