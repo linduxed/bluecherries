@@ -19,7 +19,7 @@ class Executable
   end
 
   def error
-    @stderr.read
+    @error ||= @stderr.read
   end
 
   def exit_code
