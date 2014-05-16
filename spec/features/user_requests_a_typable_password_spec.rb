@@ -10,10 +10,10 @@ describe 'Requesting typeable passwords' do
       dictionary.write(all_words + "\n")
       dictionary.close
 
-      executable = Executable.run('-a typeable')
+      executable = Executable.run("-a typeable -d #{dictionary.path}")
       generated_passwords = executable.lines
 
-      expect(executable.error).to be_empty
+      expect(executable.error).to be_empty, "Error:\n#{executable.error}"
       generated_passwords.each do |password|
         expect(password).to include_words_from(high_typability_words)
         expect(password).not_to include_words_from(low_typeability_words)
