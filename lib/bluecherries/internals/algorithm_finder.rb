@@ -8,7 +8,7 @@ module BlueCherries
     }.freeze
 
     def self.default_instance
-      @default_instance = new('default', algorithm_list: ALGORITHMS) unless @default_instance
+      @default_instance = new('random', algorithm_list: ALGORITHMS) unless @default_instance
       @default_instance
     end
 
