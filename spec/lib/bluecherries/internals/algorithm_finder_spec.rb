@@ -7,11 +7,10 @@ module BlueCherries
         name = 'foobar'
         foobar_algorithm = double('foobar_algorithm')
         algorithm_list = {
-          'foobar' => foobar_algorithm
+          foobar: foobar_algorithm
         }
 
-        algorithm = AlgorithmFinder.new(name,
-          algorithm_list: algorithm_list).find
+        algorithm = AlgorithmFinder.new(name, algorithm_list: algorithm_list).find
 
         expect(algorithm).to eq(foobar_algorithm)
       end

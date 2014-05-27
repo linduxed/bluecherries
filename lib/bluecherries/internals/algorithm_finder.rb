@@ -3,8 +3,8 @@ module BlueCherries
 
   class AlgorithmFinder
     ALGORITHMS = {
-      'head' => HeadAlgorithm,
-      'random' => RandomAlgorithm
+      head: HeadAlgorithm,
+      random: RandomAlgorithm
     }.freeze
 
     def self.default_instance
@@ -13,7 +13,7 @@ module BlueCherries
     end
 
     def initialize(name, options = {})
-      @name = name
+      @name = name.to_sym
       @algorithm_list = options.fetch(:algorithm_list, ALGORITHMS)
     end
 
