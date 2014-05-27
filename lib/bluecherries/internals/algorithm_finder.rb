@@ -7,6 +7,11 @@ module BlueCherries
       'random' => RandomAlgorithm
     }.freeze
 
+    def self.default_instance
+      @default_instance = new('default', algorithm_list: ALGORITHMS) unless @default_instance
+      @default_instance
+    end
+
     def initialize(name, options = {})
       @name = name
       @algorithm_list = options.fetch(:algorithm_list, ALGORITHMS)
@@ -14,17 +19,16 @@ module BlueCherries
 
     def find
       algorithm_list.fetch(name) do
-        $stderr.puts "Available algorithms are: #{available_algorithms}"
+        $stderr.puts "Available algorithms are: #{available_algorithms.join(', ')}"
         fail AlgorithmNotFound, "There is no \"#{name}\" algorithm."
       end
     end
 
-    private
-
-    attr_reader :name, :algorithm_list
-
     def available_algorithms
-      algorithm_list.keys.join(', ')
+      algorithm_list.keys
     end
+
+    private
+    attr_reader :name, :algorithm_list
   end
 end
