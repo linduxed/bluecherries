@@ -9,4 +9,16 @@ describe 'Requesting a password' do
       expect(executable.error).to match(/invalid option/)
     end
   end
+
+  context 'with -a flag without an algorithm' do
+    algorithm_list = %w[foobar bazquux banana]
+    AlgorithmFinder.stub(:available_algorithms).and_return(algorithm_list)
+
+    executable = Executable.run('-a')
+
+    expect(executable.exit_code).to eq 64
+    algorithm_list.each do |algorithm_name|
+      expect(executable.error).to match(/#{algorithm_name}/)
+    end
+  end
 end
