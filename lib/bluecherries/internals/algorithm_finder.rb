@@ -7,6 +7,10 @@ module BlueCherries
       'random' => RandomAlgorithm
     }.freeze
 
+    def self.names_of_available_algorithms
+      ALGORITHMS.keys
+    end
+
     def initialize(name, options = {})
       @name = name
       @algorithm_list = options.fetch(:algorithm_list, ALGORITHMS)
