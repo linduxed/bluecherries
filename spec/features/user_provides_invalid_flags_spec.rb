@@ -11,14 +11,12 @@ describe 'Requesting a password' do
   end
 
   context 'with -a flag without an algorithm' do
-    algorithm_list = %w[foobar bazquux banana]
-    AlgorithmFinder.stub(:available_algorithms).and_return(algorithm_list)
+    it 'exits with exit code "64" and prints list of available algorithms' do
+      executable = Executable.run('-a')
 
-    executable = Executable.run('-a')
-
-    expect(executable.exit_code).to eq 64
-    algorithm_list.each do |algorithm_name|
-      expect(executable.error).to match(/#{algorithm_name}/)
+      expect(executable.exit_code).to eq 64
+      expect(executable.error).to match(/Usage/)
+      expect(executable.error).to match(/available algorithms/i)
     end
   end
 end
