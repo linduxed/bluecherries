@@ -53,7 +53,7 @@ module BlueCherries
             args = %w[-a foobar]
             foobar_algorithm = double('foobar_algorithm')
             algorithm_finder = double('alg_finder', find: foobar_algorithm)
-            AlgorithmFinder.stub(:new).and_return(algorithm_finder)
+            allow(AlgorithmFinder).to receive(:new).and_return(algorithm_finder)
             expected_hash = { algorithm_kind: foobar_algorithm }
 
             parsed_arguments = ArgumentParser.new(args).parse

@@ -5,7 +5,7 @@ module BlueCherries
     describe '#generate' do
       it 'returns a Password' do
         dictionary = Dictionary.new
-        dictionary.stub(:words).and_return %w{ foo bar baz }
+        allow(dictionary).to receive(:words).and_return %w{ foo bar baz }
         min_length = 1
         algorithm = HeadAlgorithm.new dictionary, min_length
 

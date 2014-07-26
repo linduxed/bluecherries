@@ -7,7 +7,7 @@ module BlueCherries
         with_stubbed_stdout do
           output_text = "firstPassword\nsecondPassword"
           output_generator = double('output_generator', lines: output_text)
-          CommandLineOutput.stub(:new).and_return(output_generator)
+          allow(CommandLineOutput).to receive(:new).and_return(output_generator)
           empty_args = []
 
           CLI.new(args: empty_args).run
@@ -19,7 +19,7 @@ module BlueCherries
       it 'forwards arguments to a parser' do
         with_stubbed_stdout do
           parser = double(parse: {})
-          ArgumentParser.stub(:new).and_return(parser)
+          allow(ArgumentParser).to receive(:new).and_return(parser)
           input_args = %w[-n 3]
 
           CLI.new({ args: input_args }).run
@@ -31,10 +31,10 @@ module BlueCherries
       it 'forwards a provided options-hash to the output generator' do
         with_stubbed_stdout do
           silent_output = double('silent_output')
-          silent_output.stub(:lines)
+          allow(silent_output).to receive(:lines)
           empty_args = []
           args_and_options = { args: empty_args, foo: 'foo' }
-          CommandLineOutput.stub(:new).and_return(silent_output)
+          allow(CommandLineOutput).to receive(:new).and_return(silent_output)
 
           CLI.new(args_and_options).run
 
@@ -47,10 +47,10 @@ module BlueCherries
           with_stubbed_stdout do
             parsed_args = { amount_of_passwords: 3 }
             parser = double('arg_parser', parse: parsed_args)
-            ArgumentParser.stub(:new).and_return(parser)
+            allow(ArgumentParser).to receive(:new).and_return(parser)
             silent_output = double('silent_output')
-            silent_output.stub(:lines)
-            CommandLineOutput.stub(:new).and_return(silent_output)
+            allow(silent_output).to receive(:lines)
+            allow(CommandLineOutput).to receive(:new).and_return(silent_output)
 
             CLI.new(args: 'stubbed', min_password_length: 10).run
 
@@ -63,10 +63,10 @@ module BlueCherries
           with_stubbed_stdout do
             parsed_args = { amount_of_passwords: 3 }
             parser = double('arg_parser', parse: parsed_args)
-            ArgumentParser.stub(:new).and_return(parser)
+            allow(ArgumentParser).to receive(:new).and_return(parser)
             silent_output = double('silent_output')
-            silent_output.stub(:lines)
-            CommandLineOutput.stub(:new).and_return(silent_output)
+            allow(silent_output).to receive(:lines)
+            allow(CommandLineOutput).to receive(:new).and_return(silent_output)
 
             CLI.new({
               args: 'whatever parses into { amount_of_passwords: 3 }',

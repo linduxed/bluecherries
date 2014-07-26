@@ -6,7 +6,7 @@ module BlueCherries
       it 'returns the generated passwords' do
         sample_password = 'foobar'
         generator = double 'generator'
-        generator.stub(:generate).and_return sample_password
+        allow(generator).to receive(:generate).and_return sample_password
 
         lines = CommandLineOutput.new(generator: generator).lines
 
