@@ -7,6 +7,7 @@ require 'bluecherries/internals/algorithm_finder'
 require 'bluecherries/internals/dictionary'
 require 'bluecherries/internals/password'
 require 'bluecherries/internals/password_generator'
+require 'bluecherries/support/descendants'
 require 'bluecherries/version'
 
 module BlueCherries
