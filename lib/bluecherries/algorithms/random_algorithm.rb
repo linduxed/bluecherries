@@ -1,5 +1,5 @@
 module BlueCherries
-  class RandomAlgorithm
+  class RandomAlgorithm < Algorithm
     def initialize(dictionary, min_length)
       @dictionary = dictionary
       @min_length = min_length

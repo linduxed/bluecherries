@@ -1,3 +1,4 @@
+require 'bluecherries/algorithms/algorithm'
 require 'bluecherries/algorithms/head_algorithm'
 require 'bluecherries/algorithms/random_algorithm'
 require 'bluecherries/cli/argument_parser'
