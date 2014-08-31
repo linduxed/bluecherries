@@ -15,14 +15,11 @@ module BlueCherries
       end
 
       it 'writes an error message if an algorithm is not found' do
-        with_stubbed_stderr do
-          non_existent_algorithm_name = 'some_non_existent_algorithm'
+        non_existent_algorithm_name = 'some_non_existent_algorithm'
 
-          expect do
-            AlgorithmFinder.new(non_existent_algorithm_name).find
-          end.to raise_error(AlgorithmNotFound)
-          expect($stderr.string).to match(/[Aa]vailable algorithms/)
-        end
+        expect do
+          AlgorithmFinder.new(non_existent_algorithm_name).find
+        end.to raise_error(AlgorithmNotFound, /[Aa]vailable algorithms/)
       end
     end
   end

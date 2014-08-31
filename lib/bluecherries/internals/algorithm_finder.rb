@@ -26,8 +26,10 @@ module BlueCherries
     end
 
     def algorithm_not_found
-      $stderr.puts "Available algorithms are: #{available_algorithms}"
-      fail AlgorithmNotFound, "There is no \"#{name}\" algorithm."
+      fail(AlgorithmNotFound,
+        "There is no \"#{name}\" algorithm.\n" +
+        "Available algorithms are: #{available_algorithms}"
+      )
     end
 
     def available_algorithms
