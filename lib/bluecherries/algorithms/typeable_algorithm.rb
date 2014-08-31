@@ -1,8 +1,10 @@
-class TypeableAlgorithm
-  def initialize(dictionary, min_length)
-  end
+module BlueCherries
+  class TypeableAlgorithm
+    def initialize(dictionary, min_length)
+    end
 
-  def create_password_components
-    ['1234567']
+    def create_password_components
+      ['1234567']
+    end
   end
 end
