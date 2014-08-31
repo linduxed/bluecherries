@@ -1,4 +1,5 @@
 module BlueCherries
+  # Base class which all algorithms inherit from.
   class Algorithm
     def self.names_of_all_algorithms
       descendants.map(&:name)
