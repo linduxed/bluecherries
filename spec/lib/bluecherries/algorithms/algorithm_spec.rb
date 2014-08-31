@@ -7,8 +7,8 @@ module BlueCherries
         foo_alg = double(name: 'foo')
         bar_alg = double(name: 'bar')
         baz_alg = double(name: 'baz')
-        allow(Algorithm).to receive(:descendants).and_return([foo_alg, bar_alg,
-          baz_alg])
+        allow(Algorithm).to receive(:descendants).and_return(
+          [foo_alg, bar_alg, baz_alg])
 
         names = Algorithm.names_of_all_algorithms
 
