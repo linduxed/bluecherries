@@ -5,10 +5,8 @@ module BlueCherries
     describe '#find' do
       it 'finds an algorithm that corresponds to the provided name' do
         name = 'foobar'
-        foobar_algorithm = double('foobar_algorithm')
-        algorithm_list = {
-          'foobar' => foobar_algorithm
-        }
+        foobar_algorithm = double('foobar_algorithm', name: 'foobar')
+        algorithm_list = [foobar_algorithm]
 
         algorithm = AlgorithmFinder.new(name,
           algorithm_list: algorithm_list).find
