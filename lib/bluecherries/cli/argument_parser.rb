@@ -35,7 +35,13 @@ module BlueCherries
         opts.on('-a [ALGORITHM]',
           'Name of one of the provided algorithms.') do |algorithm_name|
           if algorithm_name.nil?
-            raise(OptionParser::MissingArgument, 'missing algorithm name')
+            algorithm_names = Algorithm.names_of_all_algorithms.join(', ')
+
+            raise(
+              OptionParser::MissingArgument,
+              "missing algorithm name\n" +
+              "available algorithms: #{algorithm_names}"
+            )
           else
             opt_hash[:algorithm_kind] = AlgorithmFinder.new(
               algorithm_name).find
