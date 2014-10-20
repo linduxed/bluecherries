@@ -1,6 +1,6 @@
 module BlueCherries
   # Finds words that are easy to type for specific keyboard layouts
-  class TypeableAlgorithm
+  class TypeableAlgorithm < Algorithm
     def initialize(dictionary, min_length, layout)
       @dictionary = dictionary
       @min_length = min_length
