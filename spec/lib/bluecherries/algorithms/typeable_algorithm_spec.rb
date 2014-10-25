@@ -10,8 +10,11 @@ module BlueCherries
         sorter = double(:sorter, sort: %w[ foo bar baz ])
         allow(LayoutBasedDictionarySorter).to receive(:new).and_return(sorter)
 
-        algorithm = TypeableAlgorithm.new(dictionary, min_password_length,
-          layout)
+        algorithm = TypeableAlgorithm.new(
+          dictionary: dictionary,
+          min_password_length: min_password_length,
+          layout: layout
+        )
         password_components = algorithm.create_password_components
 
         expect(password_components.join.length).to be >= min_password_length
@@ -29,15 +32,21 @@ module BlueCherries
           dictionary, qwerty_layout).and_return(
           double(:qwerty_sorter, sort: [qwerty_word, colemak_word])
         )
-        qwerty_components = TypeableAlgorithm.new(dictionary,
-          min_password_length, qwerty_layout).create_password_components
+        qwerty_components = TypeableAlgorithm.new(
+          dictionary: dictionary,
+          min_password_length: min_password_length,
+          layout: qwerty_layout
+        ).create_password_components
 
         allow(LayoutBasedDictionarySorter).to receive(:new).with(
           dictionary, colemak_layout).and_return(
           double(:colemak_sorter, sort: [colemak_word, qwerty_word])
         )
-        colemak_components = TypeableAlgorithm.new(dictionary,
-          min_password_length, colemak_layout).create_password_components
+        colemak_components = TypeableAlgorithm.new(
+          dictionary: dictionary,
+          min_password_length: min_password_length,
+          layout: colemak_layout
+        ).create_password_components
 
         expect(qwerty_components).not_to eq(colemak_components)
       end

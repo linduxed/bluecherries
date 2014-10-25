@@ -25,7 +25,10 @@ module BlueCherries
       :algorithm_kind, :dictionary_kind, :dictionary_path
 
     def algorithm
-      algorithm_kind.new(dictionary, min_password_length)
+      algorithm_kind.new(
+        dictionary: dictionary,
+        min_password_length: min_password_length
+      )
     end
 
     def dictionary

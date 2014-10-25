@@ -1,10 +1,10 @@
 module BlueCherries
   # Finds words that are easy to type for specific keyboard layouts
   class TypeableAlgorithm < Algorithm
-    def initialize(dictionary, min_password_length, layout)
-      @dictionary = dictionary
-      @min_password_length = min_password_length
-      @layout = layout
+    def initialize(options)
+      @dictionary = options[:dictionary]
+      @min_password_length = options[:min_password_length]
+      @layout = options[:layout]
     end
 
     def create_password_components

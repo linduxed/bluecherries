@@ -1,8 +1,8 @@
 module BlueCherries
   class RandomAlgorithm < Algorithm
-    def initialize(dictionary, min_password_length)
-      @dictionary = dictionary
-      @min_password_length = min_password_length
+    def initialize(options)
+      @dictionary = options[:dictionary]
+      @min_password_length = options[:min_password_length]
     end
 
     def create_password_components
