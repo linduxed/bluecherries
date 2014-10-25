@@ -5,18 +5,18 @@ module BlueCherries
     describe '#create_password_components' do
       it 'respects the minimum length' do
         dictionary = double('dictionary', words: %w{ foo bar baz })
-        min_length = 10
-        algorithm = RandomAlgorithm.new(dictionary, min_length)
+        min_password_length = 10
+        algorithm = RandomAlgorithm.new(dictionary, min_password_length)
 
         password_components = algorithm.create_password_components
 
-        expect(password_components.join.length).to be >= min_length
+        expect(password_components.join.length).to be >= min_password_length
       end
 
       it 'is nondeterministic' do
         dictionary = double('dictionary', words: %w{ foo bar baz })
-        min_length = 10
-        algorithm = RandomAlgorithm.new(dictionary, min_length)
+        min_password_length = 10
+        algorithm = RandomAlgorithm.new(dictionary, min_password_length)
 
         srand 1
         first_set_of_components = algorithm.create_password_components
@@ -28,8 +28,8 @@ module BlueCherries
 
       it 'does not transform the words from the dictionary' do
         dictionary = double('dictionary', words: %w{ foo bar baz })
-        min_length = 10
-        algorithm = RandomAlgorithm.new(dictionary, min_length)
+        min_password_length = 10
+        algorithm = RandomAlgorithm.new(dictionary, min_password_length)
 
         password_components = algorithm.create_password_components
 

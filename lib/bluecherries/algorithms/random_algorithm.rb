@@ -1,14 +1,14 @@
 module BlueCherries
   class RandomAlgorithm < Algorithm
-    def initialize(dictionary, min_length)
+    def initialize(dictionary, min_password_length)
       @dictionary = dictionary
-      @min_length = min_length
+      @min_password_length = min_password_length
     end
 
     def create_password_components
       password_components = []
 
-      while password_components.join.length < min_length
+      while password_components.join.length < min_password_length
         password_components << dictionary.words.sample
       end
 
@@ -17,6 +17,6 @@ module BlueCherries
 
     private
 
-    attr_reader :dictionary, :min_length
+    attr_reader :dictionary, :min_password_length
   end
 end

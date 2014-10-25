@@ -1,15 +1,15 @@
 module BlueCherries
   # Takes words from the start of the dictionary until the length is satisfied.
   class HeadAlgorithm < Algorithm
-    def initialize(dictionary, min_length)
+    def initialize(dictionary, min_password_length)
       @dictionary = dictionary
-      @min_length = min_length
+      @min_password_length = min_password_length
     end
 
     def create_password_components
       password_components = []
 
-      while password_components.join.length < min_length
+      while password_components.join.length < min_password_length
         password_components << next_word
       end
 
@@ -18,7 +18,7 @@ module BlueCherries
 
     private
 
-    attr_reader :min_length, :dictionary
+    attr_reader :min_password_length, :dictionary
 
     def next_word
       word_enumerator.next

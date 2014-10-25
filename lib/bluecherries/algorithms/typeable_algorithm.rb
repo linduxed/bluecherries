@@ -1,16 +1,16 @@
 module BlueCherries
   # Finds words that are easy to type for specific keyboard layouts
   class TypeableAlgorithm < Algorithm
-    def initialize(dictionary, min_length, layout)
+    def initialize(dictionary, min_password_length, layout)
       @dictionary = dictionary
-      @min_length = min_length
+      @min_password_length = min_password_length
       @layout = layout
     end
 
     def create_password_components
       password_components = []
 
-      while password_components.join.length < min_length
+      while password_components.join.length < min_password_length
         password_components << next_word
       end
 
@@ -19,7 +19,7 @@ module BlueCherries
 
     private
 
-    attr_reader :dictionary, :min_length, :layout
+    attr_reader :dictionary, :min_password_length, :layout
 
     def next_word
       sorted_dictionary_enumerator.next
