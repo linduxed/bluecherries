@@ -4,9 +4,9 @@ describe 'Requesting typeable passwords' do
   context 'using the QWERTY layout with a polarized dictionary' do
     it 'returns passwords with only the highly typeable words' do
       pending 'Fix TypeableAlgorithm tests first'
-      high_typeability_words = %w[asdflkj qwerpoiu jklfds sdfjkl oiurew]
       low_typeability_words = %w[pzecuq yqmebigs mqoxht]
-      all_words = (high_typeability_words + low_typeability_words).join("\n")
+      high_typeability_words = %w[asdflkj qwerpoiu jklfds sdfjkl oiurew]
+      all_words = (low_typeability_words + high_typeability_words).join("\n")
       dictionary = Tempfile.new 'dictionary_file'
       dictionary.write(all_words + "\n")
       dictionary.close
