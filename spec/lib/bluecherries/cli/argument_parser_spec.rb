@@ -17,9 +17,9 @@ module BlueCherries
           expect(parsed_arguments).to eq(expected_hash)
         end
 
-        describe '"-l"' do
+        describe '"-c"' do
           it 'adds min_password_length to the output hash' do
-            args = %w[-l 20]
+            args = %w[-c 20]
             expected_hash = { min_password_length: 20 }
 
             parsed_arguments = ArgumentParser.new(args).parse
@@ -28,7 +28,7 @@ module BlueCherries
           end
 
           it 'does not accept zero as a length' do
-            args = %w[-l 0]
+            args = %w[-c 0]
 
             expect do
               ArgumentParser.new(args).parse

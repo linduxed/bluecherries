@@ -18,7 +18,7 @@ module BlueCherries
           opt_hash[:amount_of_passwords] = number
         end
 
-        opts.on('-l [NUMBER]', Integer,
+        opts.on('-c [NUMBER]', Integer,
           'At least NUMBER characters') do |number|
           if number > 0
             opt_hash[:min_password_length] = number

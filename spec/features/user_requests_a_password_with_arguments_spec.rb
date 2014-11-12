@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Requesting passwords' do
   context 'with custom length' do
     it 'returns passwords with at least provided length' do
-      generated_passwords = Executable.run('-l 50').lines
+      generated_passwords = Executable.run('-c 50').lines
 
       expect(generated_passwords).not_to be_empty
       generated_passwords.each do |password|
@@ -14,7 +14,7 @@ describe 'Requesting passwords' do
 
   context 'with both custom length and custom amount of passwords' do
     it 'returns the correct amount of passwords with right length' do
-      generated_passwords = Executable.run('-l 50 -n 20').lines
+      generated_passwords = Executable.run('-c 50 -n 20').lines
 
       expect(generated_passwords).not_to be_empty
       expect(generated_passwords.count).to eq(20)
