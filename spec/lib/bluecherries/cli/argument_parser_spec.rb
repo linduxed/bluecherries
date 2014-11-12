@@ -2,6 +2,10 @@ require 'spec_helper'
 
 module BlueCherries
   describe ArgumentParser do
+    around(:example) do |example|
+      with_stubbed_stderr(&example)
+    end
+
     describe '#parse' do
       describe 'flags' do
         it 'adds amount_of_passwords to the output hash for the "-n" flag' do
@@ -24,15 +28,13 @@ module BlueCherries
           end
 
           it 'does not accept zero as a length' do
-            with_stubbed_stderr do
-              args = %w[-l 0]
+            args = %w[-l 0]
 
-              expect do
-                ArgumentParser.new(args).parse
-              end.to raise_error(OptionParser::InvalidArgument)
+            expect do
+              ArgumentParser.new(args).parse
+            end.to raise_error(OptionParser::InvalidArgument)
 
-              expect($stderr.string).to match(/Usage:/)
-            end
+            expect($stderr.string).to match(/Usage:/)
           end
         end
 
@@ -63,29 +65,25 @@ module BlueCherries
           end
 
           it 'requires an argument' do
-            with_stubbed_stderr do
-              args = ['-a']
+            args = ['-a']
 
-              expect do
-                ArgumentParser.new(args).parse
-              end.to raise_error(OptionParser::MissingArgument)
+            expect do
+              ArgumentParser.new(args).parse
+            end.to raise_error(OptionParser::MissingArgument)
 
-              expect($stderr.string).to match(/Usage:/)
-            end
+            expect($stderr.string).to match(/Usage:/)
           end
         end
       end
 
       it 'prints a usage message if an invalid option is provided' do
-        with_stubbed_stderr do
-          bad_args = %w[-foo bar]
+        bad_args = %w[-foo bar]
 
-          expect do
-            ArgumentParser.new(bad_args).parse
-          end.to raise_error(OptionParser::InvalidOption)
+        expect do
+          ArgumentParser.new(bad_args).parse
+        end.to raise_error(OptionParser::InvalidOption)
 
-          expect($stderr.string).to match(/Usage:/)
-        end
+        expect($stderr.string).to match(/Usage:/)
       end
     end
   end
