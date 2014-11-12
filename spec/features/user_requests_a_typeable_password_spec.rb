@@ -10,7 +10,7 @@ describe 'Requesting typeable passwords' do
       dictionary.write(all_words + "\n")
       dictionary.close
 
-      executable = Executable.run("-a typeable -d #{dictionary.path}")
+      executable = Executable.run("-a typeable -d #{dictionary.path} -l qwerty")
       generated_passwords = executable.lines
 
       expect(executable.error).to be_empty, "Error:\n#{executable.error}"
