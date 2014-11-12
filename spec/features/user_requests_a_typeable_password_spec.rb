@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'Requesting typeable passwords' do
   context 'using the QWERTY layout with a polarized dictionary' do
     it 'returns passwords with only the highly typeable words' do
-      pending 'Fix TypeableAlgorithm tests first'
       low_typeability_words = %w[pzecuq yqmebigs mqoxht]
       high_typeability_words = %w[asdflkj qwerpoiu jklfds sdfjkl oiurew]
       all_words = (low_typeability_words + high_typeability_words).join("\n")
