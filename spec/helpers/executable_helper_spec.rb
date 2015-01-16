@@ -17,7 +17,7 @@ describe Executable do
       expect(error).to be_a String
     end
 
-    it 'returns th esame result if invoked multiple times' do
+    it 'returns the same result if invoked multiple times' do
       executable = Executable.run('-foo bar')
 
       first_invocation = executable.error
