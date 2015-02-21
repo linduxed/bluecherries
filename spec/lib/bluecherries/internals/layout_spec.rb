@@ -8,6 +8,30 @@ module BlueCherries
       end
     end
 
+    it 'raises an error if a malformed layout is provided' do
+      file = Tempfile.new 'layout_file'
+      file.write("qw\nasdf\nz")
+      file.close
+
+      expect { Layout.new(file.path).left_hand_motions }.to raise_error(
+        BadLayoutError)
+    end
+
+    it 'raises an error if an empty layout is provided' do
+      file = Tempfile.new 'layout_file'
+      file.close
+
+      expect { Layout.new(file.path).left_hand_motions }.to raise_error(
+        BadLayoutError)
+    end
+
+    context 'a path to a non-existant dictionary was provided' do
+      it 'raises an error' do
+        expect { Layout.new('foo.bar.baz').left_hand_motions }.to raise_error(
+          MissingLayoutError)
+      end
+    end
+
     describe '#left_hand_motions' do
       it 'returns all one letter sequences' do
         one_letter_sequences = %w[ q w e r t a s d f g z x c v b ]
