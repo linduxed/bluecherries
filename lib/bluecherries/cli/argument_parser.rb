@@ -47,6 +47,11 @@ module BlueCherries
               algorithm_name).find
           end
         end
+
+        opts.on('-l [LAYOUT]',
+          'Absolute/relative path or default layouts.') do |layout_path|
+          opt_hash[:layout_path] = layout_path
+        end
       end
 
       parser.parse(unparsed_args)

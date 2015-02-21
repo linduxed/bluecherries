@@ -74,6 +74,18 @@ module BlueCherries
             expect($stderr.string).to match(/Usage:/)
           end
         end
+
+        it 'adds layout_path to the output hash for the "-l" flag' do
+          file = Tempfile.new 'layout_file'
+          file.write "foo\nbar\nbaz\n"
+          file.close
+          args = ['-l', file.path]
+          expected_hash = { layout_path: file.path }
+
+          parsed_arguments = ArgumentParser.new(args).parse
+
+          expect(parsed_arguments).to eq(expected_hash)
+        end
       end
 
       it 'prints a usage message if an invalid option is provided' do
