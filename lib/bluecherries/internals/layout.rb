@@ -1,3 +1,6 @@
+require 'bluecherries/algorithms/strategies/left_hand_one_letter_motions'
+require 'bluecherries/algorithms/strategies/left_hand_two_letter_motions'
+
 module BlueCherries
   class MissingLayoutError < StandardError; end
   class BadLayoutError < StandardError; end
@@ -8,7 +11,10 @@ module BlueCherries
     end
 
     def left_hand_motions
-      []
+      [
+        LeftHandOneLetterMotions,
+        LeftHandTwoLetterMotions
+      ].map { |strategy| strategy.new(chars) }.map(&:generate).flatten
     end
 
     private
