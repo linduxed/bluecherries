@@ -37,10 +37,10 @@ module BlueCherries
         one_letter_sequences = %w[ q w e r t a s d f g z x c v b ]
         forbidden_sequences = %w[ y u i o p h j k l n m ]
 
-        list_of_motions = Layout.new('qwerty').left_hand_motions
+        generated_motions = Layout.new('qwerty').left_hand_motions
 
-        expect(list_of_motions).to include(*one_letter_sequences)
-        expect(list_of_motions).not_to include(*forbidden_sequences)
+        expect(generated_motions).to include(*one_letter_sequences)
+        expect(generated_motions).not_to include(*forbidden_sequences)
       end
 
       it 'returns all two letter sequences' do
@@ -89,18 +89,18 @@ module BlueCherries
         pending
         three_letter_sequences = %w[ sdf fds lkj jkl aer liu adv poi ]
 
-        list_of_motions = Layout.new('qwerty').left_hand_motions
+        generated_motions = Layout.new('qwerty').left_hand_motions
 
-        expect(list_of_motions).to include(*three_letter_sequences)
+        expect(generated_motions).to include(*three_letter_sequences)
       end
 
       it 'returns all four letter sequences' do
         pending
         four_letter_sequences = %w[ asdf fdsa qwer awer zsdf ]
 
-        list_of_motions = Layout.new('qwerty').left_hand_motions
+        generated_motions = Layout.new('qwerty').left_hand_motions
 
-        expect(list_of_motions).to include(*four_letter_sequences)
+        expect(generated_motions).to include(*four_letter_sequences)
       end
     end
   end
