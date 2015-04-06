@@ -52,8 +52,12 @@ module BlueCherries
         same_row_two_spaces_left = %w[ rq tw fa gs vz bx ]
         same_row_three_spaces_right = %w[ qt ag zb ]
         same_row_three_spaces_left = %w[ tq ga bz ]
-        two_rows_adjacent = %w[ aw se dr zs xd cf wa es rd rf fr ed fv dc
-          vf cd tg gt bg ]
+        two_rows_same_column_right = %w[ ed rf tg sx dc fv gb ]
+        two_rows_same_column_left = %w[ de fr gt xs cd vf bg ]
+        two_rows_adjacent_right = %w[ aw se dr zs xd cf ]
+        two_rows_adjacent_left = %w[ wa es rd sz dx fc ]
+        two_rows_one_space_right = %w[ ae sr dt zd xf cg ]
+        two_rows_one_space_left = %w[ ea rs td dz fx gc ]
         forbidden_motions = %w[ zq zw ze xq xw xe xr cr qz qx qb bq yu
           jk op mn hj iu ft aq az za vg ]
 
@@ -68,7 +72,12 @@ module BlueCherries
           same_row_two_spaces_left,
           same_row_three_spaces_right,
           same_row_three_spaces_left,
-          two_rows_adjacent,
+          two_rows_same_column_right,
+          two_rows_same_column_left,
+          two_rows_adjacent_right,
+          two_rows_adjacent_left,
+          two_rows_one_space_right,
+          two_rows_one_space_left,
         ].each do |expected_motions|
           expect(generated_motions).to(
             include(*expected_motions),
