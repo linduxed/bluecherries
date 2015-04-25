@@ -38,9 +38,12 @@ module BlueCherries
         forbidden_sequences = %w[ y u i o p h j k l n m ]
 
         generated_motions = Layout.new('qwerty').left_hand_motions
+        generated_motions_as_letters = generated_motions.
+          map { |motion| motion.chars }
 
-        expect(generated_motions).to include(*one_letter_sequences)
-        expect(generated_motions).not_to include(*forbidden_sequences)
+        expect(generated_motions_as_letters).to include(*one_letter_sequences)
+        expect(generated_motions_as_letters).not_to include(
+          *forbidden_sequences)
       end
 
       it 'returns all two letter sequences' do
@@ -62,6 +65,8 @@ module BlueCherries
           jk op mn hj iu ft aq az za vg ]
 
         generated_motions = Layout.new('qwerty').left_hand_motions
+        generated_motions_as_letters = generated_motions.
+          map { |motion| motion.chars }
 
         [
           same_row_adjacent_right,
@@ -79,18 +84,20 @@ module BlueCherries
           two_rows_one_space_right,
           two_rows_one_space_left,
         ].each do |expected_motions|
-          expect(generated_motions).to(
+          expect(generated_motions_as_letters).to(
             include(*expected_motions),
-            "Generated motions: #{generated_motions}\n" +
+            "Generated motions: #{generated_motions_as_letters}\n" +
               "Expected motions: #{expected_motions}\n" +
-              "Missing motions: #{expected_motions - generated_motions}"
+              "Missing motions: #{
+                expected_motions - generated_motions_as_letters}"
           )
         end
-        expect(generated_motions).not_to(
+        expect(generated_motions_as_letters).not_to(
           include(*forbidden_motions),
-            "Generated motions: #{generated_motions}\n" +
+            "Generated motions: #{generated_motions_as_letters}\n" +
               "Forbidden motions: #{forbidden_motions}\n" +
-              "Forbidden found: #{forbidden_motions & generated_motions}"
+              "Forbidden found: #{
+                forbidden_motions & generated_motions_as_letters}"
         )
       end
 

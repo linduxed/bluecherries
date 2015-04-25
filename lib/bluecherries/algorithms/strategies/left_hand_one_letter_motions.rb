@@ -1,15 +1,17 @@
 module BlueCherries
   class LeftHandOneLetterMotions
-    def initialize(layout_chars)
-      @layout_chars = layout_chars
+    def initialize(layout_keys)
+      @layout_keys = layout_keys
     end
 
     def generate
-      layout_chars.map { |row| row.first(5) }.flatten
+      layout_keys.map { |row| row.first(5) }.flatten.map do |key|
+        Motion.new([key])
+      end
     end
 
     private
 
-    attr_reader :layout_chars
+    attr_reader :layout_keys
   end
 end
