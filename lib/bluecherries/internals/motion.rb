@@ -1,5 +1,7 @@
 module BlueCherries
   class Motion
+    attr_reader :keys
+
     def initialize(keys)
       @keys = keys
     end
@@ -8,8 +10,8 @@ module BlueCherries
       keys.map { |key| key.char }.join
     end
 
-    private
-
-    attr_reader :keys
+    def ==(motion)
+      motion.keys == keys
+    end
   end
 end
