@@ -1,24 +1,41 @@
 module BlueCherries
   class MotionGenerator
-    def initialize(key_rows, keys_per_motion, forbidden_motions)
+    HORIZONTAL_LEFT_HAND_KEYS = 5
+
+    def initialize(key_rows, keys_per_motion)
       @key_rows = key_rows
       @keys_per_motion = keys_per_motion
-      @forbidden_motions = forbidden_motions
     end
 
-    def generate
-      all_possible_motions.reject do |motion|
-        forbidden_motions.any? { |f_motion| f_motion == motion }
-      end
+    def all
+      all_permutations(@key_rows)
+    end
+
+    def left_hand
+      all_permutations(left_hand_key_rows)
+    end
+
+    def right_hand
+      all_permutations(right_hand_key_rows)
     end
 
     private
 
-    attr_reader :key_rows, :keys_per_motion, :forbidden_motions
-
-    def all_possible_motions
-      key_rows.flatten.permutation(keys_per_motion).map do |keys|
+    def all_permutations(key_rows)
+      key_rows.flatten.permutation(@keys_per_motion).map do |keys|
         Motion.new(keys)
+      end
+    end
+
+    def left_hand_key_rows
+      @key_rows.map do |row|
+        row.first(HORIZONTAL_LEFT_HAND_KEYS)
+      end
+    end
+
+    def right_hand_key_rows
+      @key_rows.map do |row|
+        row.drop(HORIZONTAL_LEFT_HAND_KEYS)
       end
     end
   end
