@@ -5,7 +5,19 @@ module BlueCherries
     end
 
     def generate
-      MotionGenerator.new(@layout_keys, 2).left_hand
+      all_possible_motions.reject do |motion|
+        forbidden_motion_rules.any? { |rule| rule.banned_motion?(motion) }
+      end
+    end
+
+    private
+
+    def all_possible_motions
+      @all_possible_motions ||= MotionGenerator.new(@layout_keys, 2).left_hand
+    end
+
+    def forbidden_motion_rules
+      []
     end
   end
 end
