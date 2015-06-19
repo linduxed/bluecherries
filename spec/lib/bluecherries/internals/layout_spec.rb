@@ -61,8 +61,8 @@ module BlueCherries
         two_rows_adjacent_left = %w[ wa es rd sz dx fc ]
         two_rows_one_space_right = %w[ ae sr dt zd xf cg ]
         two_rows_one_space_left = %w[ ea rs td dz fx gc ]
-        forbidden_motions = %w[ zq zw ze xq xw xe xr cr qz qx qb bq yu
-          jk op mn hj iu ft aq az za vg ]
+        forbidden_motions = %w[ zq zw ze xq xw xe xr cr qz qx yu jk op mn hj iu
+          ft aq az za vg ]
 
         generated_motions = Layout.new('qwerty').left_hand_motions
         generated_motions_as_letters = generated_motions.
