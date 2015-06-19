@@ -58,8 +58,3 @@ Style/MultilineOperationIndentation:
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:
   Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/WhileUntilDo:
-  Enabled: false
