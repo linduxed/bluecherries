@@ -88,7 +88,7 @@ module BlueCherries
             include(*expected_motions),
             "Generated motions: #{generated_motions_as_letters}\n" \
               "Expected motions: #{expected_motions}\n" \
-              "Missing motions: " \
+              'Missing motions: ' \
               "#{expected_motions - generated_motions_as_letters}"
           )
         end
@@ -96,7 +96,7 @@ module BlueCherries
           include(*forbidden_motions),
             "Generated motions: #{generated_motions_as_letters}\n" \
               "Forbidden motions: #{forbidden_motions}\n" \
-              "Forbidden found: " \
+              'Forbidden found: ' \
               "#{forbidden_motions & generated_motions_as_letters}"
         )
       end
