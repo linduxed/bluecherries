@@ -8,11 +8,7 @@ module BlueCherries
     end
 
     def find
-      if found = find_name_in_algorithm_list
-        found
-      else
-        algorithm_not_found
-      end
+      find_name_in_algorithm_list || algorithm_not_found
     end
 
     private
