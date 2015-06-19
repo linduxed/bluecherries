@@ -39,7 +39,7 @@ module BlueCherries
 
             raise(
               OptionParser::MissingArgument,
-              "missing algorithm name\n" +
+              "missing algorithm name\n" \
               "available algorithms: #{algorithm_names}"
             )
           else

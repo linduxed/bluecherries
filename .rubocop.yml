@@ -51,11 +51,6 @@ Style/Documentation:
 Style/DotPosition:
   EnforcedStyle: trailing
 
-# Offense count: 6
-# Cop supports --auto-correct.
-Style/LineEndConcatenation:
-  Enabled: false
-
 # Offense count: 14
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

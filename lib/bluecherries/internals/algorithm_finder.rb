@@ -24,7 +24,7 @@ module BlueCherries
     def algorithm_not_found
       fail(
         AlgorithmNotFound,
-        "There is no \"#{name}\" algorithm.\n" +
+        "There is no \"#{name}\" algorithm.\n" \
         "Available algorithms are: #{available_algorithms}"
       )
     end
