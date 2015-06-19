@@ -58,7 +58,7 @@ module BlueCherries
         File.expand_path(path, prefix)
       end
 
-      full_paths.find { |path| File.exists? path } || ''
+      full_paths.find { |path| File.exist? path } || ''
     end
 
     def search_path_prefixes
