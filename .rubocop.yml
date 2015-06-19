@@ -51,12 +51,6 @@ Style/Documentation:
 Style/DotPosition:
   EnforcedStyle: trailing
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles.
-Style/IndentHash:
-  EnforcedStyle: consistent
-
 # Offense count: 6
 # Cop supports --auto-correct.
 Style/LineEndConcatenation:
