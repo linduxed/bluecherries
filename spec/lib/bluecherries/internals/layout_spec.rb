@@ -38,8 +38,7 @@ module BlueCherries
         forbidden_sequences = %w(y u i o p h j k l n m)
 
         generated_motions = Layout.new('qwerty').left_hand_motions
-        generated_motions_as_letters = generated_motions.
-          map { |motion| motion.chars }
+        generated_motions_as_letters = generated_motions.map(&:chars)
 
         expect(generated_motions_as_letters).to include(*one_letter_sequences)
         expect(generated_motions_as_letters).not_to include(
@@ -65,8 +64,7 @@ module BlueCherries
           ft aq az za vg)
 
         generated_motions = Layout.new('qwerty').left_hand_motions
-        generated_motions_as_letters = generated_motions.
-          map { |motion| motion.chars }
+        generated_motions_as_letters = generated_motions.map(&:chars)
 
         [
           same_row_adjacent_right,

@@ -7,7 +7,7 @@ module BlueCherries
     end
 
     def chars
-      keys.map { |key| key.char }.join
+      keys.map(&:char).join
     end
 
     def ==(other)
