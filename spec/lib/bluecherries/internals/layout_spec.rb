@@ -88,16 +88,16 @@ module BlueCherries
             include(*expected_motions),
             "Generated motions: #{generated_motions_as_letters}\n" \
               "Expected motions: #{expected_motions}\n" \
-              "Missing motions: #{
-                expected_motions - generated_motions_as_letters}"
+              "Missing motions: " \
+              "#{expected_motions - generated_motions_as_letters}"
           )
         end
         expect(generated_motions_as_letters).not_to(
           include(*forbidden_motions),
             "Generated motions: #{generated_motions_as_letters}\n" \
               "Forbidden motions: #{forbidden_motions}\n" \
-              "Forbidden found: #{
-                forbidden_motions & generated_motions_as_letters}"
+              "Forbidden found: " \
+              "#{forbidden_motions & generated_motions_as_letters}"
         )
       end
 
