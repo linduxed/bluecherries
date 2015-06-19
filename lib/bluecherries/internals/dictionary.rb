@@ -23,7 +23,7 @@ module BlueCherries
 
       words.map!(&:downcase)
 
-      raise EmptyDictionaryError if words.empty?
+      fail EmptyDictionaryError if words.empty?
 
       words
     end

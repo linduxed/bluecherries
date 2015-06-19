@@ -3,7 +3,7 @@ module BlueCherries
 
   class MotionBanRule
     def initialize(&rule)
-      block_given? or raise NoBlockGiven
+      block_given? or fail NoBlockGiven
 
       @rule = rule
     end

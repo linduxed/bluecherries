@@ -54,12 +54,6 @@ Style/DotPosition:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/SignalException:
-  Enabled: false
-
 # Offense count: 1
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:

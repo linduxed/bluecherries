@@ -23,7 +23,7 @@ module BlueCherries
           if number > 0
             opt_hash[:min_password_length] = number
           else
-            raise(OptionParser::InvalidArgument, 'bad minimum password length')
+            fail(OptionParser::InvalidArgument, 'bad minimum password length')
           end
         end
 
@@ -37,7 +37,7 @@ module BlueCherries
           if algorithm_name.nil?
             algorithm_names = Algorithm.names_of_all_algorithms.join(', ')
 
-            raise(
+            fail(
               OptionParser::MissingArgument,
               "missing algorithm name\n" \
               "available algorithms: #{algorithm_names}"

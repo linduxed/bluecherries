@@ -65,7 +65,7 @@ module BlueCherries
     end
 
     def missing_motion
-      -> { raise NonExhaustiveMotionSetError }
+      -> { fail NonExhaustiveMotionSetError }
     end
   end
 end
