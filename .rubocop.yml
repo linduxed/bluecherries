@@ -59,10 +59,6 @@ Style/MultilineOperationIndentation:
 Style/SingleLineBlockParams:
   Enabled: false
 
-# Offense count: 1
-Style/StructInheritance:
-  Enabled: false
-
 # Offense count: 6
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoredMethods.

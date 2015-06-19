@@ -5,6 +5,8 @@ module BlueCherries
   class MissingLayoutError < StandardError; end
   class BadLayoutError < StandardError; end
 
+  Key = Struct.new(:char, :row, :column)
+
   class Layout
     def initialize(path = 'qwerty')
       @path = path
@@ -65,9 +67,6 @@ module BlueCherries
         '',
         Dir.pwd + '/'
       ]
-    end
-
-    class Key < Struct.new(:char, :row, :column)
     end
   end
 end
