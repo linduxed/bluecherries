@@ -55,7 +55,8 @@ module BlueCherries
             CLI.new(args: 'stubbed', min_password_length: 10).run
 
             merged_options = { min_password_length: 10, amount_of_passwords: 3 }
-            expect(CommandLineOutput).to have_received(:new).with(merged_options)
+            expect(CommandLineOutput).to have_received(:new).
+              with(merged_options)
           end
         end
 
@@ -74,8 +75,12 @@ module BlueCherries
               min_password_length: 10
             }).run
 
-            merged_options = { min_password_length: 10, amount_of_passwords: 10 }
-            expect(CommandLineOutput).to have_received(:new).with(merged_options)
+            merged_options = {
+              min_password_length: 10,
+              amount_of_passwords: 10
+            }
+            expect(CommandLineOutput).to have_received(:new).
+              with(merged_options)
           end
         end
       end
