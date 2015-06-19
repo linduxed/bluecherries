@@ -5,9 +5,9 @@ module BlueCherries
     describe '#sort' do
       it 'returns the words found in the provided dictionary' do
         dictionary = double(:dictionary, words: %w(foobar quuxbar))
-        foo = double(:foo, value: 5, letters: 'foo')
-        quux = double(:quux, value: 1, letters: 'quux')
-        bar = double(:bar, value: 5, letters: 'bar')
+        foo = double(:foo, value: 5, chars: 'foo')
+        quux = double(:quux, value: 1, chars: 'quux')
+        bar = double(:bar, value: 5, chars: 'bar')
         layout = double(:layout, motions: [foo, quux, bar])
 
         sorted_words = LayoutBasedDictionarySorter.new(dictionary, layout).sort
@@ -30,9 +30,9 @@ module BlueCherries
     describe '#value' do
       it 'calculates the sum of the values of the motions of the word' do
         analyzed_word = 'foobar'
-        foo = double(:foo, value: 5, letters: 'foo')
-        quux = double(:quux, value: 1, letters: 'quux')
-        bar = double(:bar, value: 5, letters: 'bar')
+        foo = double(:foo, value: 5, chars: 'foo')
+        quux = double(:quux, value: 1, chars: 'quux')
+        bar = double(:bar, value: 5, chars: 'bar')
         layout = double(:layout, motions: [foo, quux, bar])
 
         value = MotionAnalyzedWord.new(analyzed_word, layout).value
@@ -42,8 +42,8 @@ module BlueCherries
       end
 
       it "raises an error if the available motions can't construct the word" do
-        abc = double(:abc, value: 1, letters: 'abc')
-        xyz = double(:xyz, value: 5, letters: 'xyz')
+        abc = double(:abc, value: 1, chars: 'abc')
+        xyz = double(:xyz, value: 5, chars: 'xyz')
         layout = double(:layout, motions: [abc, xyz])
 
         expect do
