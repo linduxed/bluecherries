@@ -48,11 +48,8 @@ Style/AndOr:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/DotPosition:
-  Enabled: false
+  EnforcedStyle: trailing
 
 # Offense count: 2
 # Cop supports --auto-correct.
