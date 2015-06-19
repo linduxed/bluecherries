@@ -54,10 +54,6 @@ Style/DotPosition:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
-# Offense count: 1
-Style/OpMethod:
-  Enabled: false
-
 # Offense count: 42
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.

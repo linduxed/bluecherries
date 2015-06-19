@@ -10,8 +10,8 @@ module BlueCherries
       keys.map { |key| key.char }.join
     end
 
-    def ==(motion)
-      motion.keys == keys
+    def ==(other)
+      other.keys == keys
     end
   end
 end
