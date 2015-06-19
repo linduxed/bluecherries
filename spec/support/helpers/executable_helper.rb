@@ -11,7 +11,7 @@ class Executable
 
   def run
     _, @stdout, @stderr, @wait_thr = Open3.popen3(
-      "#{binary_location} #{args_string}")
+      "#{binary_location} #{@args_string}")
   end
 
   def lines
@@ -27,8 +27,6 @@ class Executable
   end
 
   private
-
-  attr_reader :args_string
 
   def binary_location
     File.expand_path('../../../../bin/bluecherries', __FILE__)

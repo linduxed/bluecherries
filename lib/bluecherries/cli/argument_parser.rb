@@ -54,16 +54,12 @@ module BlueCherries
         end
       end
 
-      parser.parse(unparsed_args)
+      parser.parse(@unparsed_args)
 
       opt_hash
     rescue
       $stderr.puts parser.banner
       raise
     end
-
-    private
-
-    attr_reader :unparsed_args
   end
 end

@@ -5,13 +5,9 @@ module BlueCherries
     end
 
     def generate
-      layout_keys.map { |row| row.first(5) }.flatten.map do |key|
+      @layout_keys.map { |row| row.first(5) }.flatten.map do |key|
         Motion.new([key])
       end
     end
-
-    private
-
-    attr_reader :layout_keys
   end
 end

@@ -13,10 +13,8 @@ module BlueCherries
 
     private
 
-    attr_reader :dictionary, :layout
-
     def motion_analyzed_words
-      dictionary.words.map { |word| MotionAnalyzedWord.new(word, layout) }
+      @dictionary.words.map { |word| MotionAnalyzedWord.new(word, @layout) }
     end
   end
 
@@ -46,8 +44,6 @@ module BlueCherries
 
     private
 
-    attr_reader :layout
-
     def find_highest_valued_matching_motion(word)
       motions_sorted_descending_by_value.find(missing_motion) do |motion|
         word.match(/^#{motion.chars}/)
@@ -55,7 +51,7 @@ module BlueCherries
     end
 
     def motions_sorted_descending_by_value
-      @sorted_motions ||= layout.motions.sort_by(&:value).reverse
+      @sorted_motions ||= @layout.motions.sort_by(&:value).reverse
     end
 
     def remove_letters_from_start_of_word!(word, motion)

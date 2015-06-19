@@ -16,14 +16,12 @@ module BlueCherries
 
     private
 
-    attr_reader :unparsed_args, :non_arg_options
-
     def merged_options
-      parsed_args.merge(non_arg_options)
+      parsed_args.merge(@non_arg_options)
     end
 
     def parsed_args
-      ArgumentParser.new(unparsed_args).parse
+      ArgumentParser.new(@unparsed_args).parse
     end
 
     def handle_error(error)

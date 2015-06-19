@@ -21,8 +21,6 @@ module BlueCherries
 
     private
 
-    attr_reader :path
-
     def keys
       @keys ||= extract_character_rows_from_layout_file.
         map.with_index do |row_of_chars, row_index|
@@ -44,7 +42,7 @@ module BlueCherries
       File.readlines(layout_path).map(&:chomp)
     rescue Errno::ENOENT
       raise MissingLayoutError,
-        "ERROR: The layout file '#{path}' doesn't exist."
+        "ERROR: The layout file '#{@path}' doesn't exist."
     end
 
     def valid_layout?(rows)
@@ -55,7 +53,7 @@ module BlueCherries
 
     def layout_path
       full_paths = search_path_prefixes.map do |prefix|
-        File.expand_path(path, prefix)
+        File.expand_path(@path, prefix)
       end
 
       full_paths.find { |path| File.exist? path } || ''

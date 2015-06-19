@@ -10,7 +10,7 @@ module BlueCherries
     def create_password_components
       password_components = []
 
-      while password_components.join.length < min_password_length
+      while password_components.join.length < @min_password_length
         password_components << next_word
       end
 
@@ -18,8 +18,6 @@ module BlueCherries
     end
 
     private
-
-    attr_reader :dictionary, :min_password_length, :layout
 
     def next_word
       sorted_dictionary_enumerator.next
@@ -33,7 +31,7 @@ module BlueCherries
 
     def sorted_dictionary
       @sorted_dictionary ||= LayoutBasedDictionarySorter.new(
-        dictionary, layout).sort
+        @dictionary, @layout).sort
     end
   end
 end

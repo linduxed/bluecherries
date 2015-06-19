@@ -14,8 +14,6 @@ module BlueCherries
 
     private
 
-    attr_reader :input_path
-
     def extract_words_from_dictionary_file
       words = lines_from_dictionary.reject do |word|
         word.nil? || word.empty? || word =~ /^\s+$/
@@ -32,12 +30,12 @@ module BlueCherries
       File.readlines(dictionary_path).map(&:chomp)
     rescue Errno::ENOENT
       raise MissingDictionaryError,
-        "ERROR: The dictionary file '#{input_path}' doesn't exist."
+        "ERROR: The dictionary file '#{@input_path}' doesn't exist."
     end
 
     def dictionary_path
       full_paths = search_path_prefixes.map do |prefix|
-        File.expand_path input_path, prefix
+        File.expand_path @input_path, prefix
       end
 
       full_paths.find { |path| File.exist? path } || ''

@@ -16,31 +16,27 @@ module BlueCherries
     end
 
     def lines
-      amount_of_passwords.times.map do
-        generator.generate(algorithm)
+      @amount_of_passwords.times.map do
+        @generator.generate(algorithm)
       end
     end
 
     private
 
-    attr_reader :generator, :amount_of_passwords, :min_password_length,
-      :algorithm_kind, :dictionary_kind, :dictionary_path, :layout_kind,
-      :layout_path
-
     def algorithm
-      algorithm_kind.new(
+      @algorithm_kind.new(
         dictionary: dictionary,
         layout: layout,
-        min_password_length: min_password_length
+        min_password_length: @min_password_length
       )
     end
 
     def dictionary
-      dictionary_kind.new(dictionary_path)
+      @dictionary_kind.new(@dictionary_path)
     end
 
     def layout
-      layout_kind.new(layout_path)
+      @layout_kind.new(@layout_path)
     end
   end
 end
