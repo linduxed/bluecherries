@@ -4,7 +4,7 @@ module BlueCherries
   describe LayoutBasedDictionarySorter do
     describe '#sort' do
       it 'returns the words found in the provided dictionary' do
-        dictionary = double(:dictionary, words: %w[ foobar quuxbar ])
+        dictionary = double(:dictionary, words: %w(foobar quuxbar))
         foo = double(:foo, value: 5, letters: 'foo')
         quux = double(:quux, value: 1, letters: 'quux')
         bar = double(:bar, value: 5, letters: 'bar')

@@ -4,10 +4,10 @@ module BlueCherries
   describe TypeableAlgorithm do
     describe '#create_password_components' do
       it 'respects the minimum length' do
-        dictionary = double('dictionary', words: %w{ foo bar baz })
+        dictionary = double('dictionary', words: %w(foo bar baz))
         layout = double(:layout)
         min_password_length = 7
-        sorter = double(:sorter, sort: %w[ foo bar baz ])
+        sorter = double(:sorter, sort: %w(foo bar baz))
         allow(LayoutBasedDictionarySorter).to receive(:new).and_return(sorter)
 
         algorithm = TypeableAlgorithm.new(

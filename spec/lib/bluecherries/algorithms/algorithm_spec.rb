@@ -12,7 +12,7 @@ module BlueCherries
 
         names = Algorithm.names_of_all_algorithms
 
-        expect(names).to match_array(%w[foo bar baz])
+        expect(names).to match_array(%w(foo bar baz))
       end
     end
 

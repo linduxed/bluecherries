@@ -20,7 +20,7 @@ module BlueCherries
         with_stubbed_stdout do
           parser = double(parse: {})
           allow(ArgumentParser).to receive(:new).and_return(parser)
-          input_args = %w[-n 3]
+          input_args = %w(-n 3)
 
           CLI.new(args: input_args).run
 
