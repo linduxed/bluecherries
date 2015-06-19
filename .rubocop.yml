@@ -51,11 +51,8 @@ Style/Documentation:
 Style/DotPosition:
   EnforcedStyle: trailing
 
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/MultilineOperationIndentation:
-  Enabled: false
+  EnforcedStyle: indented
 
 # Offense count: 1
 # Cop supports --auto-correct.
