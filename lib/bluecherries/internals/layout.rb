@@ -14,15 +14,20 @@ module BlueCherries
       [
         LeftHandOneLetterMotions,
         LeftHandTwoLetterMotions
-      ].map { |strategy| strategy.new(chars) }.map(&:generate).flatten
+      ].map { |strategy| strategy.new(keys) }.map(&:generate).flatten
     end
 
     private
 
     attr_reader :path
 
-    def chars
-      @chars ||= extract_character_rows_from_layout_file
+    def keys
+      @keys ||= extract_character_rows_from_layout_file.
+        map.with_index do |row_of_chars, row_index|
+        row_of_chars.map.with_index do |char, column_index|
+          Key.new(char, row_index, column_index)
+        end
+      end
     end
 
     def extract_character_rows_from_layout_file
@@ -62,6 +67,9 @@ module BlueCherries
         '',
         Dir.pwd + '/'
       ]
+    end
+
+    class Key < Struct.new(:char, :row, :column)
     end
   end
 end
