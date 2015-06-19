@@ -1,16 +1,9 @@
-# Offense count: 14
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/AlignParameters:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/AndOr:
   Enabled: false
 
-# Offense count: 30
 Style/Documentation:
   Enabled: false
 
@@ -20,7 +13,5 @@ Style/DotPosition:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
-# Offense count: 1
-# Configuration parameters: Methods.
 Style/SingleLineBlockParams:
   Enabled: false
