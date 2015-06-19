@@ -59,11 +59,6 @@ Style/MultilineOperationIndentation:
 Style/SingleLineBlockParams:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/UnneededPercentQ:
-  Enabled: false
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/WhileUntilDo:
