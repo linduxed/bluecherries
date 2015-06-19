@@ -8,7 +8,7 @@ module BlueCherries
     end
 
     def sort
-      motion_analyzed_words.sort_by { |word| word.value }.map(&:to_s)
+      motion_analyzed_words.sort_by(&:value).map(&:to_s)
     end
 
     private
@@ -34,7 +34,7 @@ module BlueCherries
       letters = @word.dup
       matching_motions = []
 
-      while !letters.empty? do
+      until letters.empty?
         match = find_highest_valued_matching_motion(letters)
         remove_letters_from_start_of_word!(letters, match)
 
@@ -55,9 +55,7 @@ module BlueCherries
     end
 
     def motions_sorted_descending_by_value
-      @sorted_motions ||= layout.motions.sort_by do |motion|
-        motion.value
-      end.reverse
+      @sorted_motions ||= layout.motions.sort_by(&:value).reverse
     end
 
     def remove_letters_from_start_of_word!(word, motion)
@@ -65,7 +63,7 @@ module BlueCherries
     end
 
     def missing_motion
-      -> { raise NonExhaustiveMotionSetError }
+      -> { fail NonExhaustiveMotionSetError }
     end
   end
 end

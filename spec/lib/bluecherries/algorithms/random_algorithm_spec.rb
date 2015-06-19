@@ -4,7 +4,7 @@ module BlueCherries
   describe RandomAlgorithm do
     describe '#create_password_components' do
       it 'respects the minimum length' do
-        dictionary = double('dictionary', words: %w{ foo bar baz })
+        dictionary = double('dictionary', words: %w(foo bar baz))
         min_password_length = 10
         algorithm = RandomAlgorithm.new(
           dictionary: dictionary,
@@ -17,7 +17,7 @@ module BlueCherries
       end
 
       it 'is nondeterministic' do
-        dictionary = double('dictionary', words: %w{ foo bar baz })
+        dictionary = double('dictionary', words: %w(foo bar baz))
         min_password_length = 10
         algorithm = RandomAlgorithm.new(
           dictionary: dictionary,
@@ -33,7 +33,7 @@ module BlueCherries
       end
 
       it 'does not transform the words from the dictionary' do
-        dictionary = double('dictionary', words: %w{ foo bar baz })
+        dictionary = double('dictionary', words: %w(foo bar baz))
         min_password_length = 10
         algorithm = RandomAlgorithm.new(
           dictionary: dictionary,

@@ -20,9 +20,9 @@ module BlueCherries
         with_stubbed_stdout do
           parser = double(parse: {})
           allow(ArgumentParser).to receive(:new).and_return(parser)
-          input_args = %w[-n 3]
+          input_args = %w(-n 3)
 
-          CLI.new({ args: input_args }).run
+          CLI.new(args: input_args).run
 
           expect(ArgumentParser).to have_received(:new).with(input_args)
         end
@@ -38,7 +38,7 @@ module BlueCherries
 
           CLI.new(args_and_options).run
 
-          expect(CommandLineOutput).to have_received(:new).with({ foo: 'foo' })
+          expect(CommandLineOutput).to have_received(:new).with(foo: 'foo')
         end
       end
 
@@ -55,7 +55,8 @@ module BlueCherries
             CLI.new(args: 'stubbed', min_password_length: 10).run
 
             merged_options = { min_password_length: 10, amount_of_passwords: 3 }
-            expect(CommandLineOutput).to have_received(:new).with(merged_options)
+            expect(CommandLineOutput).to have_received(:new).
+              with(merged_options)
           end
         end
 
@@ -68,14 +69,18 @@ module BlueCherries
             allow(silent_output).to receive(:lines)
             allow(CommandLineOutput).to receive(:new).and_return(silent_output)
 
-            CLI.new({
+            CLI.new(
               args: 'whatever parses into { amount_of_passwords: 3 }',
               amount_of_passwords: 10,
               min_password_length: 10
-            }).run
+            ).run
 
-            merged_options = { min_password_length: 10, amount_of_passwords: 10 }
-            expect(CommandLineOutput).to have_received(:new).with(merged_options)
+            merged_options = {
+              min_password_length: 10,
+              amount_of_passwords: 10
+            }
+            expect(CommandLineOutput).to have_received(:new).
+              with(merged_options)
           end
         end
       end

@@ -23,9 +23,7 @@ module BlueCherries
 
       words.map!(&:downcase)
 
-      if words.empty?
-        raise EmptyDictionaryError
-      end
+      fail EmptyDictionaryError if words.empty?
 
       words
     end
@@ -42,7 +40,7 @@ module BlueCherries
         File.expand_path input_path, prefix
       end
 
-      full_paths.find { |path| File.exists? path } || ''
+      full_paths.find { |path| File.exist? path } || ''
     end
 
     def search_path_prefixes

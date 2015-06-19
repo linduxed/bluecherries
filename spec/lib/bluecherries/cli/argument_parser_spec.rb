@@ -9,7 +9,7 @@ module BlueCherries
     describe '#parse' do
       describe 'flags' do
         it 'adds amount_of_passwords to the output hash for the "-n" flag' do
-          args = %w[-n 3]
+          args = %w(-n 3)
           expected_hash = { amount_of_passwords: 3 }
 
           parsed_arguments = ArgumentParser.new(args).parse
@@ -19,7 +19,7 @@ module BlueCherries
 
         describe '"-c"' do
           it 'adds min_password_length to the output hash' do
-            args = %w[-c 20]
+            args = %w(-c 20)
             expected_hash = { min_password_length: 20 }
 
             parsed_arguments = ArgumentParser.new(args).parse
@@ -28,7 +28,7 @@ module BlueCherries
           end
 
           it 'does not accept zero as a length' do
-            args = %w[-c 0]
+            args = %w(-c 0)
 
             expect do
               ArgumentParser.new(args).parse
@@ -52,7 +52,7 @@ module BlueCherries
 
         describe '"-a"' do
           it 'adds algorithm_kind to the output hash' do
-            args = %w[-a foobar]
+            args = %w(-a foobar)
             foobar_algorithm = double('foobar_algorithm')
             algorithm_finder = double('alg_finder', find: foobar_algorithm)
             allow(AlgorithmFinder).to receive(:new).and_return(algorithm_finder)
@@ -89,7 +89,7 @@ module BlueCherries
       end
 
       it 'prints a usage message if an invalid option is provided' do
-        bad_args = %w[-foo bar]
+        bad_args = %w(-foo bar)
 
         expect do
           ArgumentParser.new(bad_args).parse

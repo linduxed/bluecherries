@@ -7,11 +7,11 @@ module BlueCherries
     end
 
     def chars
-      keys.map { |key| key.char }.join
+      keys.map(&:char).join
     end
 
-    def ==(motion)
-      motion.keys == keys
+    def ==(other)
+      other.keys == keys
     end
   end
 end

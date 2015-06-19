@@ -1,0 +1,17 @@
+Style/AlignParameters:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/SingleLineBlockParams:
+  Enabled: false

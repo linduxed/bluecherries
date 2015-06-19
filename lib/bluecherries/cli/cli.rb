@@ -36,7 +36,7 @@ module BlueCherries
         $stderr.puts error.message
         exit EX_USAGE
       else
-        raise error
+        fail error
       end
     end
   end

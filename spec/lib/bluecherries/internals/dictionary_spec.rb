@@ -16,7 +16,7 @@ module BlueCherries
 
         words = Dictionary.new(file.path).words
 
-        expect(words).to eq %w{ foo bar baz }
+        expect(words).to eq %w(foo bar baz)
       end
 
       it 'does not return invalid lines' do
@@ -36,7 +36,7 @@ module BlueCherries
 
         words = Dictionary.new(file.path).words
 
-        expect(words).to eq %w{ some weirdly cased words }
+        expect(words).to eq %w(some weirdly cased words)
       end
 
       it 'raises an error if an empty dictionary is provided' do

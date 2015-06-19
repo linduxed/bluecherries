@@ -5,6 +5,8 @@ module BlueCherries
   class MissingLayoutError < StandardError; end
   class BadLayoutError < StandardError; end
 
+  Key = Struct.new(:char, :row, :column)
+
   class Layout
     def initialize(path = 'qwerty')
       @path = path
@@ -33,9 +35,7 @@ module BlueCherries
     def extract_character_rows_from_layout_file
       layout_rows = rows_from_layout.map(&:downcase).map(&:chars)
 
-      unless valid_layout?(layout_rows)
-        raise BadLayoutError
-      end
+      valid_layout?(layout_rows) or fail BadLayoutError
 
       layout_rows
     end
@@ -58,7 +58,7 @@ module BlueCherries
         File.expand_path(path, prefix)
       end
 
-      full_paths.find { |path| File.exists? path } || ''
+      full_paths.find { |path| File.exist? path } || ''
     end
 
     def search_path_prefixes
@@ -67,9 +67,6 @@ module BlueCherries
         '',
         Dir.pwd + '/'
       ]
-    end
-
-    class Key < Struct.new(:char, :row, :column)
     end
   end
 end

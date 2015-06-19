@@ -11,7 +11,7 @@ module BlueCherries
         key_rows = [
           [q_key],
           [a_key],
-          [z_key],
+          [z_key]
         ]
         qa = Motion.new([q_key, a_key])
         qz = Motion.new([q_key, z_key])

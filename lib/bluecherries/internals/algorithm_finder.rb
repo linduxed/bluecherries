@@ -8,11 +8,7 @@ module BlueCherries
     end
 
     def find
-      if found = find_name_in_algorithm_list
-        found
-      else
-        algorithm_not_found
-      end
+      find_name_in_algorithm_list || algorithm_not_found
     end
 
     private
@@ -28,7 +24,7 @@ module BlueCherries
     def algorithm_not_found
       fail(
         AlgorithmNotFound,
-        "There is no \"#{name}\" algorithm.\n" +
+        "There is no \"#{name}\" algorithm.\n" \
         "Available algorithms are: #{available_algorithms}"
       )
     end
