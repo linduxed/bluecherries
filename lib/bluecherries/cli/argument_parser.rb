@@ -57,9 +57,9 @@ module BlueCherries
       parser.parse(unparsed_args)
 
       opt_hash
-    rescue => error
+    rescue
       $stderr.puts parser.banner
-      raise error
+      raise
     end
 
     private
