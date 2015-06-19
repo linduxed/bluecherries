@@ -34,7 +34,7 @@ module BlueCherries
       letters = @word.dup
       matching_motions = []
 
-      while !letters.empty? do
+      until letters.empty? do
         match = find_highest_valued_matching_motion(letters)
         remove_letters_from_start_of_word!(letters, match)
 

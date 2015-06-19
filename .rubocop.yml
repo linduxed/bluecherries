@@ -55,11 +55,6 @@ Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 # Offense count: 1
-# Cop supports --auto-correct.
-Style/NegatedWhile:
-  Enabled: false
-
-# Offense count: 1
 Style/OpMethod:
   Enabled: false
 
