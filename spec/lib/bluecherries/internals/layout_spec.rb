@@ -80,7 +80,7 @@ module BlueCherries
           two_rows_adjacent_right,
           two_rows_adjacent_left,
           two_rows_one_space_right,
-          two_rows_one_space_left,
+          two_rows_one_space_left
         ].each do |expected_motions|
           expect(generated_motions_as_letters).to(
             include(*expected_motions),

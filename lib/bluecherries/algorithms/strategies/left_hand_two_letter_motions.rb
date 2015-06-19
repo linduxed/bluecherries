@@ -48,7 +48,7 @@ module BlueCherries
                 (current_key.row - next_key.row).abs == 1 &&
                 next_key.column == current_key.column
           end
-        end,
+        end
       ]
     end
   end
