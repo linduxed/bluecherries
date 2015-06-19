@@ -33,9 +33,7 @@ module BlueCherries
     def extract_character_rows_from_layout_file
       layout_rows = rows_from_layout.map(&:downcase).map(&:chars)
 
-      unless valid_layout?(layout_rows)
-        raise BadLayoutError
-      end
+      valid_layout?(layout_rows) or raise BadLayoutError
 
       layout_rows
     end
