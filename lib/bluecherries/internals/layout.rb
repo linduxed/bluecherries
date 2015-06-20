@@ -26,6 +26,10 @@ module BlueCherries
       ].map { |strategy| strategy.new(keys) }.map(&:generate).flatten
     end
 
+    def motions
+      left_hand_motions + right_hand_motions
+    end
+
     private
 
     def keys

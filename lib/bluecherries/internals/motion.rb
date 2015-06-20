@@ -10,6 +10,10 @@ module BlueCherries
       keys.map(&:char).join
     end
 
+    def value
+      1
+    end
+
     def ==(other)
       other.keys == keys
     end

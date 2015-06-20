@@ -13,6 +13,14 @@ module BlueCherries
       end
     end
 
+    describe '#value' do
+      it 'returns a value larger than zero' do
+        motion = Motion.new(double(:keys))
+
+        expect(motion.value).to be > 0
+      end
+    end
+
     describe '#==' do
       it 'checks whether the arrays of Keys are identical' do
         q_1 = 'q'
