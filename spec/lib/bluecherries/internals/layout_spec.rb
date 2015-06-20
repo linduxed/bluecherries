@@ -117,5 +117,19 @@ module BlueCherries
         expect(generated_motions).to include(*four_letter_sequences)
       end
     end
+
+    describe '#right_hand_motions' do
+      it 'returns all one letter sequences' do
+        one_letter_sequences = %w(y u i o p h j k l n m)
+        forbidden_sequences = %w(q w e r t a s d f g z x c v b)
+
+        generated_motions = Layout.new('qwerty').right_hand_motions
+        generated_motions_as_letters = generated_motions.map(&:chars)
+
+        expect(generated_motions_as_letters).to include(*one_letter_sequences)
+        expect(generated_motions_as_letters).not_to include(
+          *forbidden_sequences)
+      end
+    end
   end
 end
