@@ -18,6 +18,7 @@ describe 'Requesting typeable passwords' do
         expect(password).to include_words_from(high_typeability_words)
         expect(password).not_to include_words_from(low_typeability_words)
       end
+      expect(generated_passwords).not_to have_duplicates
     end
   end
 end
