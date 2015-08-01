@@ -8,27 +8,33 @@ module BlueCherries
       end
     end
 
-    it 'raises an error if a malformed layout is provided' do
-      file = Tempfile.new 'layout_file'
-      file.write("qw\nasdf\nz")
-      file.close
+    describe '#keys' do
+      context 'malformed layout was provided' do
+        it 'raises an error' do
+          file = Tempfile.new 'layout_file'
+          file.write("qw\nasdf\nz")
+          file.close
 
-      expect { Layout.new(file.path).keys }.to raise_error(
-        BadLayoutError)
-    end
+          expect { Layout.new(file.path).keys }.to raise_error(
+            BadLayoutError)
+        end
+      end
 
-    it 'raises an error if an empty layout is provided' do
-      file = Tempfile.new 'layout_file'
-      file.close
+      context 'an empty layout was provided' do
+        it 'raises an error' do
+          file = Tempfile.new 'layout_file'
+          file.close
 
-      expect { Layout.new(file.path).keys }.to raise_error(
-        BadLayoutError)
-    end
+          expect { Layout.new(file.path).keys }.to raise_error(
+            BadLayoutError)
+        end
+      end
 
-    context 'a path to a non-existant dictionary was provided' do
-      it 'raises an error' do
-        expect { Layout.new('foo.bar.baz').keys }.to raise_error(
-          MissingLayoutError)
+      context 'a path to a non-existant dictionary was provided' do
+        it 'raises an error' do
+          expect { Layout.new('foo.bar.baz').keys }.to raise_error(
+            MissingLayoutError)
+        end
       end
     end
   end
