@@ -7,9 +7,6 @@ module BlueCherries
       @keys_per_motion = keys_per_motion
     end
 
-    def all
-      all_permutations(@key_rows)
-    end
 
     def left_hand
       all_permutations(left_hand_key_rows)

@@ -3,29 +3,6 @@ require 'bluecherries/internals/motion'
 
 module BlueCherries
   describe MotionGenerator do
-    describe '#all' do
-      it 'returns all possible motions' do
-        q_key = double(char: 'q')
-        a_key = double(char: 'a')
-        z_key = double(char: 'z')
-        key_rows = [
-          [q_key],
-          [a_key],
-          [z_key]
-        ]
-        qa = Motion.new([q_key, a_key])
-        qz = Motion.new([q_key, z_key])
-        aq = Motion.new([a_key, q_key])
-        az = Motion.new([a_key, z_key])
-        zq = Motion.new([z_key, q_key])
-        za = Motion.new([z_key, a_key])
-
-        generated_motions = MotionGenerator.new(key_rows, 2).all
-
-        expect(generated_motions).to match_array([qa, qz, aq, az, zq, za])
-      end
-    end
-
     describe '#left_hand' do
       it 'returns motions only comprised from left hand keys' do
         q_key = double(char: 'q')
