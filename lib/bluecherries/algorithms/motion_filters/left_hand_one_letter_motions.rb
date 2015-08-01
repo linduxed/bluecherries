@@ -1,13 +1,11 @@
 module BlueCherries
   class LeftHandOneLetterMotions
-    def initialize(layout_keys)
-      @layout_keys = layout_keys
+    def initialize(all_left_hand_motions)
+      @all_left_hand_motions = all_left_hand_motions
     end
 
-    def generate
-      @layout_keys.map { |row| row.first(5) }.flatten.map do |key|
-        Motion.new([key])
-      end
+    def filter
+      @all_left_hand_motions.find_all { |motion| motion.keys.count == 1 }
     end
   end
 end
