@@ -1,7 +1,7 @@
-require 'bluecherries/algorithms/strategies/left_hand_one_letter_motions'
-require 'bluecherries/algorithms/strategies/left_hand_two_letter_motions'
-require 'bluecherries/algorithms/strategies/right_hand_one_letter_motions'
-require 'bluecherries/algorithms/strategies/right_hand_two_letter_motions'
+require 'bluecherries/algorithms/motion_filters/left_hand_one_letter_motions'
+require 'bluecherries/algorithms/motion_filters/left_hand_two_letter_motions'
+require 'bluecherries/algorithms/motion_filters/right_hand_one_letter_motions'
+require 'bluecherries/algorithms/motion_filters/right_hand_two_letter_motions'
 
 module BlueCherries
   class MissingLayoutError < StandardError; end
