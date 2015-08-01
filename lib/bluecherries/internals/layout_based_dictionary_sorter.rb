@@ -46,7 +46,7 @@ module BlueCherries
 
     def find_highest_valued_matching_motion(word)
       motions_sorted_descending_by_value.find(missing_motion) do |motion|
-        word.match(/^#{motion.chars}/)
+        word.match(/^#{motion.to_s}/)
       end
     end
 
@@ -56,7 +56,7 @@ module BlueCherries
     end
 
     def remove_letters_from_start_of_word!(word, motion)
-      word.sub!(/^#{motion.chars}/, '')
+      word.sub!(/^#{motion.to_s}/, '')
     end
 
     def missing_motion

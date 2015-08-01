@@ -38,7 +38,7 @@ module BlueCherries
         forbidden_sequences = %w(y u i o p h j k l n m)
 
         generated_motions = Layout.new('qwerty').left_hand_motions
-        generated_motions_as_letters = generated_motions.map(&:chars)
+        generated_motions_as_letters = generated_motions.map(&:to_s)
 
         expect(generated_motions_as_letters).to include(*one_letter_sequences)
         expect(generated_motions_as_letters).not_to include(
@@ -64,7 +64,7 @@ module BlueCherries
           ft aq az za vg)
 
         generated_motions = Layout.new('qwerty').left_hand_motions
-        generated_motions_as_letters = generated_motions.map(&:chars)
+        generated_motions_as_letters = generated_motions.map(&:to_s)
 
         [
           same_row_adjacent_right,
@@ -124,7 +124,7 @@ module BlueCherries
         forbidden_sequences = %w(q w e r t a s d f g z x c v b)
 
         generated_motions = Layout.new('qwerty').right_hand_motions
-        generated_motions_as_letters = generated_motions.map(&:chars)
+        generated_motions_as_letters = generated_motions.map(&:to_s)
 
         expect(generated_motions_as_letters).to include(*one_letter_sequences)
         expect(generated_motions_as_letters).not_to include(
@@ -148,7 +148,7 @@ module BlueCherries
           li il)
 
         generated_motions = Layout.new('qwerty').right_hand_motions
-        generated_motions_as_letters = generated_motions.map(&:chars)
+        generated_motions_as_letters = generated_motions.map(&:to_s)
 
         [
           same_row_adjacent_right,

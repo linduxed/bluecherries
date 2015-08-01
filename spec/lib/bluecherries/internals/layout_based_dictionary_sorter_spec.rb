@@ -6,9 +6,9 @@ module BlueCherries
       it 'returns the words found in the provided dictionary' do
         dictionary = double(:dictionary, words: %w(foobar quuxbar))
         layout = double(:layout)
-        foo = double(:foo, value: 5, chars: 'foo')
-        quux = double(:quux, value: 1, chars: 'quux')
-        bar = double(:bar, value: 5, chars: 'bar')
+        foo = double(:foo, value: 5, to_s: 'foo')
+        quux = double(:quux, value: 1, to_s: 'quux')
+        bar = double(:bar, value: 5, to_s: 'bar')
         generator = double(:motion_generator, motions: [foo, quux, bar])
         allow(MotionGenerator).to receive(:new).and_return(generator)
 
@@ -33,9 +33,9 @@ module BlueCherries
       it 'calculates the sum of the values of the motions of the word' do
         analyzed_word = 'foobar'
         layout = double(:layout)
-        foo = double(:foo, value: 5, chars: 'foo')
-        quux = double(:quux, value: 1, chars: 'quux')
-        bar = double(:bar, value: 5, chars: 'bar')
+        foo = double(:foo, value: 5, to_s: 'foo')
+        quux = double(:quux, value: 1, to_s: 'quux')
+        bar = double(:bar, value: 5, to_s: 'bar')
         generator = double(:motion_generator, motions: [foo, quux, bar])
         allow(MotionGenerator).to receive(:new).and_return(generator)
 
@@ -47,8 +47,8 @@ module BlueCherries
 
       it "raises an error if the available motions can't construct the word" do
         layout = double(:layout)
-        abc = double(:abc, value: 1, chars: 'abc')
-        xyz = double(:xyz, value: 5, chars: 'xyz')
+        abc = double(:abc, value: 1, to_s: 'abc')
+        xyz = double(:xyz, value: 5, to_s: 'xyz')
         generator = double(:motion_generator, motions: [abc, xyz])
         allow(MotionGenerator).to receive(:new).and_return(generator)
 
