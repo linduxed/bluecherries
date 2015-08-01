@@ -51,7 +51,8 @@ module BlueCherries
     end
 
     def motions_sorted_descending_by_value
-      @sorted_motions ||= @layout.motions.sort_by(&:value).reverse
+      @sorted_motions ||= MotionGenerator.new(@layout).motions.
+        sort_by(&:value).reverse
     end
 
     def remove_letters_from_start_of_word!(word, motion)
