@@ -13,7 +13,7 @@ module BlueCherries
       file.write("qw\nasdf\nz")
       file.close
 
-      expect { Layout.new(file.path).left_hand_motions }.to raise_error(
+      expect { Layout.new(file.path).keys }.to raise_error(
         BadLayoutError)
     end
 
@@ -21,13 +21,13 @@ module BlueCherries
       file = Tempfile.new 'layout_file'
       file.close
 
-      expect { Layout.new(file.path).left_hand_motions }.to raise_error(
+      expect { Layout.new(file.path).keys }.to raise_error(
         BadLayoutError)
     end
 
     context 'a path to a non-existant dictionary was provided' do
       it 'raises an error' do
-        expect { Layout.new('foo.bar.baz').left_hand_motions }.to raise_error(
+        expect { Layout.new('foo.bar.baz').keys }.to raise_error(
           MissingLayoutError)
       end
     end
