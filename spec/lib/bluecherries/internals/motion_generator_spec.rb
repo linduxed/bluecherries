@@ -3,72 +3,69 @@ require 'bluecherries/internals/motion'
 
 module BlueCherries
   describe MotionGenerator do
-    describe '#left_hand' do
+    describe '#left_hand_motions' do
       it 'returns motions only comprised from left hand keys' do
-        q_key = double(char: 'q')
-        w_key = double(char: 'w')
-        e_key = double(char: 'e')
-        r_key = double(char: 'r')
-        t_key = double(char: 't')
-        y_key = double(char: 'y')
-        u_key = double(char: 'u')
-        i_key = double(char: 'i')
-        o_key = double(char: 'o')
-        p_key = double(char: 'p')
-        key_rows = [
-          [q_key, w_key, e_key, r_key, t_key, y_key, u_key, i_key, o_key,
-            p_key]
-        ]
-        q = Motion.new([q_key])
-        w = Motion.new([w_key])
-        e = Motion.new([e_key])
-        r = Motion.new([r_key])
-        t = Motion.new([t_key])
-        y = Motion.new([y_key])
-        u = Motion.new([u_key])
-        i = Motion.new([i_key])
-        o = Motion.new([o_key])
-        p = Motion.new([p_key])
+        layout = double(:layout, keys: layout_keys)
 
-        generated_motions = MotionGenerator.new(key_rows, 1).left_hand
+        generated_motions = MotionGenerator.new(layout).left_hand_motions
 
-        expect(generated_motions).to include(q, w, e, r, t)
-        expect(generated_motions).not_to include(y, u, i, o, p)
+        letters_of_all_motions = generated_motions.map(&:to_s).map(&:chars).
+          flatten.uniq
+        expect(letters_of_all_motions).to include(
+          *%w(q w e r t a s d f g z x c v b)
+        )
+        expect(letters_of_all_motions).not_to include(
+          *%w(y u i o p h j k l n m)
+        )
       end
     end
 
-    describe '#right_hand' do
+    describe '#right_hand_motions' do
       it 'returns motions only comprised from right hand keys' do
-        q_key = double(char: 'q')
-        w_key = double(char: 'w')
-        e_key = double(char: 'e')
-        r_key = double(char: 'r')
-        t_key = double(char: 't')
-        y_key = double(char: 'y')
-        u_key = double(char: 'u')
-        i_key = double(char: 'i')
-        o_key = double(char: 'o')
-        p_key = double(char: 'p')
-        key_rows = [
-          [q_key, w_key, e_key, r_key, t_key, y_key, u_key, i_key, o_key,
-            p_key]
-        ]
-        q = Motion.new([q_key])
-        w = Motion.new([w_key])
-        e = Motion.new([e_key])
-        r = Motion.new([r_key])
-        t = Motion.new([t_key])
-        y = Motion.new([y_key])
-        u = Motion.new([u_key])
-        i = Motion.new([i_key])
-        o = Motion.new([o_key])
-        p = Motion.new([p_key])
+        layout = double(:layout, keys: layout_keys)
 
-        generated_motions = MotionGenerator.new(key_rows, 1).right_hand
+        generated_motions = MotionGenerator.new(layout).right_hand_motions
 
-        expect(generated_motions).to include(y, u, i, o, p)
-        expect(generated_motions).not_to include(q, w, e, r, t)
+        letters_of_all_motions = generated_motions.map(&:to_s).map(&:chars).
+          flatten.uniq
+        expect(letters_of_all_motions).to include(
+          *%w(y u i o p h j k l n m)
+        )
+        expect(letters_of_all_motions).not_to include(
+          *%w(q w e r t a s d f g z x c v b)
+        )
       end
+    end
+
+    def layout_keys
+      [
+        double(char: 'q', row: 0, column: 0),
+        double(char: 'w', row: 0, column: 1),
+        double(char: 'e', row: 0, column: 2),
+        double(char: 'r', row: 0, column: 3),
+        double(char: 't', row: 0, column: 4),
+        double(char: 'y', row: 0, column: 5),
+        double(char: 'u', row: 0, column: 6),
+        double(char: 'i', row: 0, column: 7),
+        double(char: 'o', row: 0, column: 8),
+        double(char: 'p', row: 0, column: 9),
+        double(char: 'a', row: 1, column: 0),
+        double(char: 's', row: 1, column: 1),
+        double(char: 'd', row: 1, column: 2),
+        double(char: 'f', row: 1, column: 3),
+        double(char: 'g', row: 1, column: 4),
+        double(char: 'h', row: 1, column: 5),
+        double(char: 'j', row: 1, column: 6),
+        double(char: 'k', row: 1, column: 7),
+        double(char: 'l', row: 1, column: 8),
+        double(char: 'z', row: 2, column: 0),
+        double(char: 'x', row: 2, column: 1),
+        double(char: 'c', row: 2, column: 2),
+        double(char: 'v', row: 2, column: 3),
+        double(char: 'b', row: 2, column: 4),
+        double(char: 'n', row: 2, column: 5),
+        double(char: 'm', row: 2, column: 6)
+      ]
     end
   end
 end
