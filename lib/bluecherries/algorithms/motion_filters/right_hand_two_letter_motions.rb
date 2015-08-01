@@ -4,7 +4,7 @@ module BlueCherries
       @layout_keys = layout_keys
     end
 
-    def generate
+    def filter
       all_possible_motions.reject do |motion|
         forbidden_motion_rules.any? { |rule| rule.banned_motion?(motion) }
       end
