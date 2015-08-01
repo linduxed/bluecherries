@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'bluecherries/internals/motion'
 
 module BlueCherries
   describe MotionGenerator do
