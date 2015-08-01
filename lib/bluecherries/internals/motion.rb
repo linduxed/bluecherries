@@ -6,7 +6,7 @@ module BlueCherries
       @keys = keys
     end
 
-    def chars
+    def to_s
       keys.map(&:char).join
     end
 

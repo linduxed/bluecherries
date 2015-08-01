@@ -1,19 +1,19 @@
 module BlueCherries
   class LeftHandTwoLetterMotions
-    def initialize(layout_keys)
-      @layout_keys = layout_keys
+    def initialize(all_left_hand_motions)
+      @all_left_hand_motions = all_left_hand_motions
     end
 
-    def generate
-      all_possible_motions.reject do |motion|
+    def filter
+      two_letter_motions.reject do |motion|
         forbidden_motion_rules.any? { |rule| rule.banned_motion?(motion) }
       end
     end
 
     private
 
-    def all_possible_motions
-      @all_possible_motions ||= MotionGenerator.new(@layout_keys, 2).left_hand
+    def two_letter_motions
+      @all_left_hand_motions.find_all { |motion| motion.keys.count == 2 }
     end
 
     def forbidden_motion_rules

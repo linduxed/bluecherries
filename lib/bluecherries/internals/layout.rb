@@ -1,8 +1,3 @@
-require 'bluecherries/algorithms/strategies/left_hand_one_letter_motions'
-require 'bluecherries/algorithms/strategies/left_hand_two_letter_motions'
-require 'bluecherries/algorithms/strategies/right_hand_one_letter_motions'
-require 'bluecherries/algorithms/strategies/right_hand_two_letter_motions'
-
 module BlueCherries
   class MissingLayoutError < StandardError; end
   class BadLayoutError < StandardError; end
@@ -14,34 +9,16 @@ module BlueCherries
       @path = path
     end
 
-    def left_hand_motions
-      [
-        LeftHandOneLetterMotions,
-        LeftHandTwoLetterMotions
-      ].map { |strategy| strategy.new(keys) }.map(&:generate).flatten
-    end
-
-    def right_hand_motions
-      [
-        RightHandOneLetterMotions,
-        RightHandTwoLetterMotions
-      ].map { |strategy| strategy.new(keys) }.map(&:generate).flatten
-    end
-
-    def motions
-      left_hand_motions + right_hand_motions
-    end
-
-    private
-
     def keys
       @keys ||= extract_character_rows_from_layout_file.
         map.with_index do |row_of_chars, row_index|
         row_of_chars.map.with_index do |char, column_index|
           Key.new(char, row_index, column_index)
         end
-      end
+      end.flatten
     end
+
+    private
 
     def extract_character_rows_from_layout_file
       layout_rows = rows_from_layout.map(&:downcase).map(&:chars)

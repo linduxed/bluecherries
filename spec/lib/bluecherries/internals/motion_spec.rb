@@ -2,12 +2,12 @@ require 'spec_helper'
 
 module BlueCherries
   describe Motion do
-    describe '#chars' do
+    describe '#to_s' do
       it 'returns a string with the joined characters of the motion' do
         b = double(char: 'b')
         a = double(char: 'a')
         z = double(char: 'z')
-        chars = Motion.new([b, a, z]).chars
+        chars = Motion.new([b, a, z]).to_s
 
         expect(chars).to eq('baz')
       end
