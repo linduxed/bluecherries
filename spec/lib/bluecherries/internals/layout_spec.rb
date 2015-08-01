@@ -130,6 +130,56 @@ module BlueCherries
         expect(generated_motions_as_letters).not_to include(
           *forbidden_sequences)
       end
+
+      it 'returns all two letter sequences' do
+        same_row_adjacent_right = %w(yu ui io op hj jk kl nm)
+        same_row_adjacent_left = %w(po oi iu uy lk kj jh mn)
+        same_row_one_space_right = %w(yi uo ip hk jl)
+        same_row_one_space_left = %w(iy ou pi kh lj)
+        same_row_two_spaces_right = %w(yo up hl)
+        same_row_two_spaces_left = %w(oy pu lh)
+        same_row_three_spaces_right = %w(yp)
+        same_row_three_spaces_left = %w(py)
+        two_rows_adjacent_right = %w(hu ji ko lp nj mk)
+        two_rows_adjacent_left = %w(uh ij ok pl jn km)
+        two_rows_one_space_right = %w(hi jo kp nk ml yk ul)
+        two_rows_one_space_left = %w(ih oj pk kn lm pk oj ih)
+        forbidden_motions = %w(yn ny um mu yh hy nh hn ju uj jm mj jy yj uk ku
+          li il)
+
+        generated_motions = Layout.new('qwerty').right_hand_motions
+        generated_motions_as_letters = generated_motions.map(&:chars)
+
+        [
+          same_row_adjacent_right,
+          same_row_adjacent_left,
+          same_row_one_space_right,
+          same_row_one_space_left,
+          same_row_two_spaces_right,
+          same_row_two_spaces_left,
+          same_row_three_spaces_right,
+          same_row_three_spaces_left,
+          two_rows_adjacent_right,
+          two_rows_adjacent_left,
+          two_rows_one_space_right,
+          two_rows_one_space_left
+        ].each do |expected_motions|
+          expect(generated_motions_as_letters).to(
+            include(*expected_motions),
+            "Generated motions: #{generated_motions_as_letters}\n" \
+              "Expected motions: #{expected_motions}\n" \
+              'Missing motions: ' \
+              "#{expected_motions - generated_motions_as_letters}"
+          )
+        end
+        expect(generated_motions_as_letters).not_to(
+          include(*forbidden_motions),
+            "Generated motions: #{generated_motions_as_letters}\n" \
+              "Forbidden motions: #{forbidden_motions}\n" \
+              'Forbidden found: ' \
+              "#{forbidden_motions & generated_motions_as_letters}"
+        )
+      end
     end
   end
 end
