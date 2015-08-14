@@ -79,8 +79,6 @@ module BlueCherries
         it 'raises an error' do
           expect { Layout.new('foo.bar.baz').keys }.to raise_error(
             MissingLayoutError)
-
-          file.delete
         end
       end
     end
