@@ -83,7 +83,59 @@ module BlueCherries
         )
       end
 
-      it 'returns all three letter sequences'
+      it 'returns all three letter sequences' do
+        layout = double(:layout, keys: layout_keys)
+        same_row_adjacent_right = %w(qwe wer ert asd sdf dfg zxc xcv cvb)
+        same_row_adjacent_left = %w(ewq rew tre dsa fds gfd cxz vcx bvc)
+        same_row_one_space_right = %w(qer wrt adf zxv xcb)
+        same_row_one_space_left = %w(req tew gfs fsa bvx)
+        same_row_two_spaces_right = %w(qrt afg zxb)
+        same_row_two_spaces_left = %w(trq gsa bxz)
+        two_rows_up_right = %w(ase awe aer adr set srt zdf)
+        two_rows_up_left = %w(fre fdw fdq fsq vca)
+        two_rows_down_right = %w(qwf qeg qsg acv)
+        two_rows_down_left = %w(rea rwa tda)
+        adjacent_row_alternation = %w(awd wdr zfb axt)
+        row_skipping_alternation = %w(zrb brz zrv vrz)
+        all_three_rows = %w(awv vwa arv vra zrg grz)
+        too_tight_finger_placement = %w(gvz gvc qas zas)
+        too_big_stretches = %w(qcr qxr)
+        forbidden_motions = too_tight_finger_placement + too_big_stretches
+
+        generated_motions = MotionGenerator.new(layout).left_hand_motions
+
+        generated_motions_as_letters = generated_motions.map(&:to_s)
+        [
+          same_row_adjacent_right,
+          same_row_adjacent_left,
+          same_row_one_space_right,
+          same_row_one_space_left,
+          same_row_two_spaces_right,
+          same_row_two_spaces_left,
+          two_rows_up_right,
+          two_rows_up_left,
+          two_rows_down_right,
+          two_rows_down_left,
+          adjacent_row_alternation,
+          row_skipping_alternation,
+          all_three_rows
+        ].each do |expected_motions|
+          expect(generated_motions_as_letters).to(
+            include(*expected_motions),
+            "Generated motions: #{generated_motions_as_letters}\n" \
+              "Expected motions: #{expected_motions}\n" \
+              'Missing motions: ' \
+              "#{expected_motions - generated_motions_as_letters}"
+          )
+        end
+        expect(generated_motions_as_letters).not_to(
+          include(*forbidden_motions),
+          "Generated motions: #{generated_motions_as_letters}\n" \
+            "Forbidden motions: #{forbidden_motions}\n" \
+            'Forbidden found: ' \
+            "#{forbidden_motions & generated_motions_as_letters}"
+        )
+      end
 
       it 'returns all four letter sequences'
     end
