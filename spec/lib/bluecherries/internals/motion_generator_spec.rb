@@ -76,10 +76,10 @@ module BlueCherries
         end
         expect(generated_motions_as_letters).not_to(
           include(*forbidden_motions),
-            "Generated motions: #{generated_motions_as_letters}\n" \
-              "Forbidden motions: #{forbidden_motions}\n" \
-              'Forbidden found: ' \
-              "#{forbidden_motions & generated_motions_as_letters}"
+          "Generated motions: #{generated_motions_as_letters}\n" \
+            "Forbidden motions: #{forbidden_motions}\n" \
+            'Forbidden found: ' \
+            "#{forbidden_motions & generated_motions_as_letters}"
         )
       end
 
@@ -159,10 +159,10 @@ module BlueCherries
         end
         expect(generated_motions_as_letters).not_to(
           include(*forbidden_motions),
-            "Generated motions: #{generated_motions_as_letters}\n" \
-              "Forbidden motions: #{forbidden_motions}\n" \
-              'Forbidden found: ' \
-              "#{forbidden_motions & generated_motions_as_letters}"
+          "Generated motions: #{generated_motions_as_letters}\n" \
+            "Forbidden motions: #{forbidden_motions}\n" \
+            'Forbidden found: ' \
+            "#{forbidden_motions & generated_motions_as_letters}"
         )
       end
 
