@@ -6,6 +6,10 @@ module BlueCherries
       @keys = keys
     end
 
+    def length
+      @keys.length
+    end
+
     def to_s
       keys.map(&:char).join
     end

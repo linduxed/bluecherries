@@ -2,6 +2,18 @@ require 'spec_helper'
 
 module BlueCherries
   describe Motion do
+    describe '#length' do
+      it 'returns the amount of keys in the motion' do
+        b = double(:b)
+        a = double(:a)
+        z = double(:z)
+
+        number_of_keys = Motion.new([b, a, z]).length
+
+        expect(number_of_keys).to eq(3)
+      end
+    end
+
     describe '#to_s' do
       it 'returns a string with the joined characters of the motion' do
         b = double(char: 'b')
