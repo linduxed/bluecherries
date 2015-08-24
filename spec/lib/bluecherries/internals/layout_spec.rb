@@ -11,7 +11,7 @@ module BlueCherries
     describe '#keys' do
       context 'valid layout was provided' do
         it 'returns a list of keys corresponding to the layout file' do
-          file = Tempfile.new 'layout_file'
+          file = Tempfile.new('layout_file')
           file.write("qwertyuiop\nasdfghjkl\nzxcvbnm")
           file.close
 
@@ -52,7 +52,7 @@ module BlueCherries
 
       context 'malformed layout was provided' do
         it 'raises an error' do
-          file = Tempfile.new 'layout_file'
+          file = Tempfile.new('layout_file')
           file.write("qw\nasdf\nz")
           file.close
 
@@ -65,7 +65,7 @@ module BlueCherries
 
       context 'an empty layout was provided' do
         it 'raises an error' do
-          file = Tempfile.new 'layout_file'
+          file = Tempfile.new('layout_file')
           file.close
 
           expect { Layout.new(file.path).keys }.to raise_error(

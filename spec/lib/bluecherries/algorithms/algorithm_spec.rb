@@ -24,7 +24,7 @@ module BlueCherries
         base_class_name = Algorithm.name
 
         expect(child_class_name).to match(/foobar/)
-        expect(base_class_name).to eq ''
+        expect(base_class_name).to eq('')
 
         BlueCherries.send(:remove_const, :FoobarAlgorithm)
       end

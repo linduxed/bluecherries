@@ -14,7 +14,7 @@ describe Executable do
     it 'returns the error string' do
       error = Executable.run('-foo bar').error
 
-      expect(error).to be_a String
+      expect(error).to be_a(String)
     end
 
     it 'returns the same result if invoked multiple times' do
@@ -31,7 +31,7 @@ describe Executable do
     it 'returns an integer' do
       exit_code = Executable.run.exit_code
 
-      expect(exit_code).to be_a Fixnum
+      expect(exit_code).to be_a(Fixnum)
     end
   end
 end

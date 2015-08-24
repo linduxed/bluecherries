@@ -10,37 +10,37 @@ module BlueCherries
 
     describe '#words' do
       it 'returns a collection of words' do
-        file = Tempfile.new 'dictionary_file'
+        file = Tempfile.new('dictionary_file')
         file.write "foo\nbar\nbaz\n"
         file.close
 
         words = Dictionary.new(file.path).words
 
-        expect(words).to eq %w(foo bar baz)
+        expect(words).to eq(%w(foo bar baz))
       end
 
       it 'does not return invalid lines' do
-        file = Tempfile.new 'dictionary_file'
+        file = Tempfile.new('dictionary_file')
         file.write "   \nvalidline\n  \n\t\n \t\n"
         file.close
 
         words = Dictionary.new(file.path).words
 
-        expect(words).to eq ['validline']
+        expect(words).to eq(['validline'])
       end
 
       it 'only returns lowercase words' do
-        file = Tempfile.new 'dictionary_file'
+        file = Tempfile.new('dictionary_file')
         file.write "Some\nWeIrDlY\ncased\nWORDS\n"
         file.close
 
         words = Dictionary.new(file.path).words
 
-        expect(words).to eq %w(some weirdly cased words)
+        expect(words).to eq(%w(some weirdly cased words))
       end
 
       it 'raises an error if an empty dictionary is provided' do
-        file = Tempfile.new 'dictionary_file'
+        file = Tempfile.new('dictionary_file')
 
         expect { Dictionary.new(file.path).words }.to(
           raise_error EmptyDictionaryError)

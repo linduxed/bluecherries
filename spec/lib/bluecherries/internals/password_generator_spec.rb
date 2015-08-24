@@ -14,7 +14,7 @@ module BlueCherries
 
         password = PasswordGenerator.new.generate(algorithm)
 
-        expect(password).to be_a Password
+        expect(password).to be_a(Password)
       end
     end
   end

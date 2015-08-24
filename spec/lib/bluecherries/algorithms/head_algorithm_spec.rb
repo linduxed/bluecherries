@@ -13,7 +13,7 @@ module BlueCherries
 
         password_components = algorithm.create_password_components
 
-        expect(password_components).to eq dictionary.words
+        expect(password_components).to eq(dictionary.words)
       end
 
       it 'respects the minimum length' do
@@ -39,7 +39,7 @@ module BlueCherries
 
         password_components = algorithm.create_password_components
 
-        expect(password_components[-1]).to eq password_components[-2]
+        expect(password_components[-1]).to eq(password_components[-2])
       end
     end
   end
