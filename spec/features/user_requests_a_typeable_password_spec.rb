@@ -18,6 +18,19 @@ describe 'Requesting typeable passwords' do
         expect(password).to include_words_from(high_typeability_words)
         expect(password).not_to include_words_from(low_typeability_words)
       end
+    end
+
+    it 'returns no duplicates' do
+      pending 'Implement MotionGenerator fully first'
+      words = %w(foo bar baz)
+      dictionary = Tempfile.new 'dictionary_file'
+      dictionary.write(words + "\n")
+      dictionary.close
+
+      executable = Executable.run("-a typeable -d #{dictionary.path} -l qwerty")
+      generated_passwords = executable.lines
+
+      expect(executable.error).to be_empty, "Error:\n#{executable.error}"
       expect(generated_passwords).not_to have_duplicates
     end
   end
