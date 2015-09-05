@@ -10,21 +10,19 @@ module BlueCherries
       describe 'flags' do
         it 'adds amount_of_passwords to the output hash for the "-n" flag' do
           args = %w(-n 3)
-          expected_hash = { amount_of_passwords: 3 }
 
           parsed_arguments = ArgumentParser.new(args).parse
 
-          expect(parsed_arguments).to eq(expected_hash)
+          expect(parsed_arguments).to eq(amount_of_passwords: 3)
         end
 
         describe '"-c"' do
           it 'adds min_password_length to the output hash' do
             args = %w(-c 20)
-            expected_hash = { min_password_length: 20 }
 
             parsed_arguments = ArgumentParser.new(args).parse
 
-            expect(parsed_arguments).to eq(expected_hash)
+            expect(parsed_arguments).to eq(min_password_length: 20)
           end
 
           it 'does not accept zero as a length' do
@@ -43,11 +41,10 @@ module BlueCherries
           file.write "foo\nbar\nbaz\n"
           file.close
           args = ['-d', file.path]
-          expected_hash = { dictionary_path: file.path }
 
           parsed_arguments = ArgumentParser.new(args).parse
 
-          expect(parsed_arguments).to eq(expected_hash)
+          expect(parsed_arguments).to eq(dictionary_path: file.path)
         end
 
         describe '"-a"' do
@@ -56,12 +53,11 @@ module BlueCherries
             foobar_algorithm = double('foobar_algorithm')
             algorithm_finder = double('alg_finder', find: foobar_algorithm)
             allow(AlgorithmFinder).to receive(:new).and_return(algorithm_finder)
-            expected_hash = { algorithm_kind: foobar_algorithm }
 
             parsed_arguments = ArgumentParser.new(args).parse
 
             expect(AlgorithmFinder).to have_received(:new).with('foobar')
-            expect(parsed_arguments).to eq(expected_hash)
+            expect(parsed_arguments).to eq(algorithm_kind: foobar_algorithm)
           end
 
           it 'requires an argument' do
@@ -80,11 +76,10 @@ module BlueCherries
           file.write "foo\nbar\nbaz\n"
           file.close
           args = ['-l', file.path]
-          expected_hash = { layout_path: file.path }
 
           parsed_arguments = ArgumentParser.new(args).parse
 
-          expect(parsed_arguments).to eq(expected_hash)
+          expect(parsed_arguments).to eq(layout_path: file.path)
         end
       end
 

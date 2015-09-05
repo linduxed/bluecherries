@@ -20,12 +20,13 @@ module BlueCherries
 
       it 'returns all one letter sequences' do
         layout = double(:layout, keys: layout_keys)
-        one_letter_sequences = %w(q w e r t a s d f g z x c v b)
 
         generated_motions = MotionGenerator.new(layout).left_hand_motions
 
         generated_motions_as_letters = generated_motions.map(&:to_s)
-        expect(generated_motions_as_letters).to include(*one_letter_sequences)
+        expect(generated_motions_as_letters).to include(
+          *%w(q w e r t a s d f g z x c v b)
+        )
       end
 
       it 'returns all two letter sequences' do
