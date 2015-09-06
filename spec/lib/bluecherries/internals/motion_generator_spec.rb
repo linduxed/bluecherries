@@ -22,9 +22,10 @@ module BlueCherries
         layout = double(:layout, keys: layout_keys)
 
         generated_motions = MotionGenerator.new(layout).left_hand_motions
+        one_letter_motions = generated_motions.select { |m| m.length == 1 }
 
-        generated_motions_as_letters = generated_motions.map(&:to_s)
-        expect(generated_motions_as_letters).to include(
+        one_letter_motions_as_letters = one_letter_motions.map(&:to_s)
+        expect(one_letter_motions_as_letters).to include(
           *%w(q w e r t a s d f g z x c v b)
         )
       end
